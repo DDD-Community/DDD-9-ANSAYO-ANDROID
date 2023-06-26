@@ -14,3 +14,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "DDD-9-ANSAYO-ANDROID"
 include(":app")
+include(":presentation")
+include(":data")
+include(":remote")
+include(":local")
+include(":domain")
