@@ -14,4 +14,5 @@ dependencies {
     implementation(project(":data"))
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
+    implementation(libs.kotlinx.coroutines.android)
 }
