@@ -10,4 +10,5 @@ java {
 
 dependencies {
     implementation(libs.kotlin.native)
+    implementation(libs.javax.inject)
 }
