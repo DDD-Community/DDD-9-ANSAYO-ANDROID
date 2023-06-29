@@ -10,4 +10,7 @@ java {
 
 dependencies {
     implementation(libs.kotlin.native)
+    implementation(libs.javax.inject)
+    implementation(libs.kotlinx.coroutines.android)
+
 }

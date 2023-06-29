@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -10,4 +12,10 @@ android {
 
 dependencies {
     implementation(project(":data"))
+    implementation(libs.hilt.android.core)
+    kapt(libs.hilt.compiler)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.bundles.okhttp)
+    implementation(libs.bundles.retrofit)
+
 }
