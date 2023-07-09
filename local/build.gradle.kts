@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.hilt)
@@ -16,4 +16,5 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.bundles.room)
+    implementation(libs.logger)
 }

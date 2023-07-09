@@ -18,6 +18,8 @@ okhttp = "4.10.0"
 
 room = "2.5.0"
 
+logger = "2.2.0"
+
 # Test
 junit4 = "4.13.2"
 androidxTestExt = "1.1.4"
@@ -49,6 +51,7 @@ androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-r
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidxActivity" }
 fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "androidxFragment" }
+logger = { group = "com.orhanobut", name = "logger", version.ref = "logger" }
 
 # Test
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
