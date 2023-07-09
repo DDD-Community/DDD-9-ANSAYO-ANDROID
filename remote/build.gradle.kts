@@ -17,5 +17,5 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.bundles.okhttp)
     implementation(libs.bundles.retrofit)
-
+    implementation(libs.logger)
 }

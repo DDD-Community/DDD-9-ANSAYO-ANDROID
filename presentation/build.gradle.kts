@@ -28,4 +28,5 @@ dependencies {
     implementation(libs.fragment.ktx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.logger)
 }
