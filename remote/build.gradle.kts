@@ -18,4 +18,5 @@ dependencies {
     implementation(libs.bundles.okhttp)
     implementation(libs.bundles.retrofit)
     implementation(libs.logger)
+    implementation(libs.sandwich)
 }
