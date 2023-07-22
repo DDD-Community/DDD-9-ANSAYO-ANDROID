@@ -1,0 +1,23 @@
+name: Build Check
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main, develop]
+
+jobs:
+  build_check:
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: github.event.pull_request.head.ref
+
+      - name: grant permission
+        run: chmod +x gradlew
+
+      - name: build check
+        shell: bash
+        run: |
+          ./gradlew assembleDebug
+        
