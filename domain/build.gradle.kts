@@ -1,6 +1,6 @@
+@file:Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("kotlin")
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
 }
 
 java {
