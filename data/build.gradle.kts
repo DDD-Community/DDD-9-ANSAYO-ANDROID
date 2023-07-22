@@ -16,4 +16,5 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.logger)
+    implementation(libs.gson)
 }
