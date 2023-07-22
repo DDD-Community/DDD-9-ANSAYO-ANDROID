@@ -3,12 +3,14 @@ package com.ddd.ansayo.remote.di
 import com.ddd.ansayo.remote.interceptor.AuthHeaderInterceptor
 import com.ddd.ansayo.remote.interceptor.TokenAuthenticator
 import com.orhanobut.logger.Logger
+import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -28,6 +30,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @AuthClient
     fun providesAuthClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         authHeaderInterceptor: AuthHeaderInterceptor,
@@ -45,6 +48,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @NoAuthClient
     fun providesNoAuthClient(
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
@@ -58,6 +62,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @FileUploadClient
     fun providesFileUploadClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         authHeaderInterceptor: AuthHeaderInterceptor,
@@ -71,5 +76,12 @@ object NetworkModule {
             .readTimeout(FILE_UPLOAD_TIME_OUT, TimeUnit.SECONDS)
             .writeTimeout(FILE_UPLOAD_TIME_OUT, TimeUnit.SECONDS)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesRetrofitBuilder(): Retrofit.Builder {
+        return Retrofit.Builder()
+            .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
     }
 }
