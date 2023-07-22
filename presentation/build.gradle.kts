@@ -24,4 +24,5 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.logger)
+    implementation(libs.orbit.viewmodel)
 }
