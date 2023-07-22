@@ -19,4 +19,5 @@ dependencies {
     implementation(libs.logger) {
         exclude(group = "com.android.support", module = "support-annotations")
     }
+    implementation(libs.gson)
 }
