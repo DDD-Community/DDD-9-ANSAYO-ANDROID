@@ -1,5 +1,6 @@
 package com.ddd.ansayo.domain.handler.course
 
+import com.ddd.ansayo.domain.model.common.Response
 import com.ddd.ansayo.domain.model.course.CoursePlaceImage
 import com.ddd.ansayo.domain.model.course.CourseWriteEvent
 import com.ddd.ansayo.domain.model.course.CourseWriteSideEffect
@@ -96,11 +97,11 @@ class CourseWriteEventHandler @Inject constructor() {
             CourseWriteEvent.CompleteApiCall -> {
                 CourseWriteSideEffect.HideLoading
             }
-            CourseWriteEvent.SuccessUpload -> {
-                CourseWriteSideEffect.Finish
-            }
-            is CourseWriteEvent.FailUpload -> {
-                CourseWriteSideEffect.ShowSnackBar(event.message)
+            is CourseWriteEvent.UploadCourse -> {
+                when (event.response) {
+                    is Response.Fail -> CourseWriteSideEffect.ShowSnackBar(event.response.message)
+                    is Response.Success -> CourseWriteSideEffect.Finish
+                }
             }
             else -> CourseWriteSideEffect.None
         }
