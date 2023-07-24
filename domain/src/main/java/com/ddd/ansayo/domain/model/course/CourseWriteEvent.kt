@@ -1,5 +1,8 @@
 package com.ddd.ansayo.domain.model.course
 
+import com.ddd.ansayo.domain.entity.course.UploadImageUrlEntity
+import com.ddd.ansayo.domain.model.common.Response
+
 sealed class CourseWriteEvent {
     data class InputCourseTitle(val text: String) : CourseWriteEvent()
     data class InputCourseDescription(val text: String) : CourseWriteEvent()
@@ -14,6 +17,5 @@ sealed class CourseWriteEvent {
     data class ToggleVisibilitySwitch(val checked: Boolean) : CourseWriteEvent()
     object StartApiCall : CourseWriteEvent()
     object CompleteApiCall : CourseWriteEvent()
-    object SuccessUpload : CourseWriteEvent()
-    data class FailUpload(val message: String) : CourseWriteEvent()
+    data class UploadCourse(val response: Response<UploadImageUrlEntity>) : CourseWriteEvent()
 }

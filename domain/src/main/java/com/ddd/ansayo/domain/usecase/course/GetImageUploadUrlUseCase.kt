@@ -1,4 +1,4 @@
-package com.ddd.ansayo.domain.usecase
+package com.ddd.ansayo.domain.usecase.course
 
 import com.ddd.ansayo.domain.entity.course.UploadImageUrlEntity
 import com.ddd.ansayo.domain.model.common.Response
