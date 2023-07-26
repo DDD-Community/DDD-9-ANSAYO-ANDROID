@@ -1,0 +1,24 @@
+package com.ddd.ansayo.domain.model.course
+
+sealed class CourseWriteMutation {
+    sealed class Mutation : CourseWriteMutation() {
+        data class UpdateCourseTitle(val isCourseTitleMaxInputted: Boolean) : Mutation()
+        data class UpdateCourseDescription(val isCourseDescriptionMaxInputted: Boolean) : Mutation()
+        data class UpdateCourseDate(val date: String) : Mutation()
+        data class AddPlaceImages(val places: List<CoursePlace>) : Mutation()
+        data class DeletePlace(val places: List<CoursePlace>) : Mutation()
+        data class DeletePlaceImage(val places: List<CoursePlace>) : Mutation()
+        data class UpdatePlaceReview(val places: List<CoursePlace>) : Mutation()
+        data class UpdateCourseVisibility(val isPrivate: Boolean) : Mutation()
+    }
+
+    sealed class SideEffect : CourseWriteMutation() {
+        object ShowLoading : SideEffect()
+        object HideLoading : SideEffect()
+        object ShowDatePickerDialog : SideEffect()
+        data class ShowPhotoPicker(val remainCount: Int) : SideEffect()
+        data class ShowSnackBar(val message: String) : SideEffect()
+        object GoToAddPlace : SideEffect()
+        object Finish : SideEffect()
+    }
+}
