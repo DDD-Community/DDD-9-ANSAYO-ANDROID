@@ -1,17 +1,12 @@
 package com.ddd.ansayo.presentation.viewmodel.course
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.ddd.ansayo.domain.handler.course.CourseWriteEventHandler
-import com.ddd.ansayo.domain.model.course.CourseWriteEvent
-import com.ddd.ansayo.domain.model.course.CourseWriteSideEffect
+import com.ddd.ansayo.domain.model.course.CourseWriteAction
+import com.ddd.ansayo.domain.model.course.CourseWriteMutation
 import com.ddd.ansayo.domain.model.course.CourseWriteState
 import com.ddd.ansayo.domain.usecase.course.GetImageUploadUrlUseCase
-import com.ddd.ansayo.presentation.model.course.CourseWriteAction
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
@@ -22,91 +17,61 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CourseCreateViewModel @Inject constructor(
-    private val eventHandler: CourseWriteEventHandler,
-    private val getImageUploadUrlUseCase: GetImageUploadUrlUseCase
-) : ContainerHost<CourseWriteState, CourseWriteSideEffect>, ViewModel() {
+    private val eventHandler: CourseWriteEventHandler
+) : ContainerHost<CourseWriteState, CourseWriteMutation.SideEffect>, ViewModel() {
 
-    override val container: Container<CourseWriteState, CourseWriteSideEffect> =
+
+
+    override val container: Container<CourseWriteState, CourseWriteMutation.SideEffect> =
         container(CourseWriteState.EMPTY)
 
-    fun onAction(action: CourseWriteAction) {
-        viewModelScope.launch {
-            when (action) {
-                CourseWriteAction.ClickAddPlace -> {
-                    onEvent(CourseWriteEvent.ClickAddPlace)
-                }
-
-                is CourseWriteAction.ClickAddPlaceImage -> {
-                    onEvent(CourseWriteEvent.ClickAddPlaceImage(action.placeOrder))
-                }
-
-                CourseWriteAction.ClickDatePicker -> {
-                    onEvent(CourseWriteEvent.ClickDatePicker)
-                }
-
-                is CourseWriteAction.ClickDeletePlace -> {
-                    onEvent(CourseWriteEvent.ClickDeletePlace(action.placeOrder))
-                }
-
-                is CourseWriteAction.ClickDeletePlaceImage -> {
-                    onEvent(
-                        CourseWriteEvent.ClickDeletePlaceImage(
-                            placeOrder = action.placeOrder,
-                            imageIndex = action.imageIndex
-                        )
-                    )
-                }
-
-                is CourseWriteAction.ClickUploadButton -> {
-                    // TODO("")
-                    getImageUploadUrlUseCase("", "")
-                        .onStart { onEvent(CourseWriteEvent.StartApiCall) }
-                        .onCompletion { onEvent(CourseWriteEvent.CompleteApiCall) }
-                        .collect { onEvent(CourseWriteEvent.UploadCourse(it)) }
-                }
-
-                is CourseWriteAction.InputCourseDescription -> {
-                    onEvent(CourseWriteEvent.InputCourseDescription(action.text))
-                }
-
-                is CourseWriteAction.InputCourseTitle -> {
-                    onEvent(CourseWriteEvent.InputCourseTitle(action.text))
-                }
-
-                is CourseWriteAction.InputPlaceReview -> {
-                    onEvent(
-                        CourseWriteEvent.InputPlaceReview(
-                            placeOrder = action.placeOrder,
-                            text = action.text
-                        )
-                    )
-                }
-
-                is CourseWriteAction.SelectDate -> {
-                    onEvent(CourseWriteEvent.SelectDate(action.date))
-                }
-
-                is CourseWriteAction.SelectImages -> {
-                    onEvent(
-                        CourseWriteEvent.SelectImages(
-                            placeOrder = action.placeOrder,
-                            images = action.images
-                        )
-                    )
-                }
-
-                is CourseWriteAction.ToggleVisibilitySwitch -> {
-                    onEvent(CourseWriteEvent.ToggleVisibilitySwitch(action.checked))
+    fun onAction(action: CourseWriteAction) = intent {
+        eventHandler.mutate(state, action)
+            .collect { mutation ->
+                when (mutation) {
+                    is CourseWriteMutation.Mutation -> reduce(mutation)
+                    is CourseWriteMutation.SideEffect -> postSideEffect(mutation)
                 }
             }
-        }
     }
 
-    private fun onEvent(event: CourseWriteEvent) {
+    private fun reduce(mutation: CourseWriteMutation.Mutation) {
         intent {
-            val currentState = container.stateFlow.value
-            reduce { eventHandler.reduceState(currentState, event) }
-            postSideEffect(eventHandler.handleSideEffect(currentState, event))
+            reduce {
+                when (mutation) {
+                    is CourseWriteMutation.Mutation.AddPlaceImages -> {
+                        state.copy(places = mutation.places)
+                    }
+
+                    is CourseWriteMutation.Mutation.DeletePlace -> {
+                        state.copy(places = mutation.places)
+                    }
+
+                    is CourseWriteMutation.Mutation.DeletePlaceImage -> {
+                        state.copy(places = mutation.places)
+                    }
+
+                    is CourseWriteMutation.Mutation.UpdateCourseDate -> {
+                        state.copy(date = mutation.date)
+                    }
+
+                    is CourseWriteMutation.Mutation.UpdateCourseDescription -> {
+                        state.copy(isCourseDescriptionMaxInputted = mutation.isCourseDescriptionMaxInputted)
+                    }
+
+                    is CourseWriteMutation.Mutation.UpdateCourseTitle -> {
+                        state.copy(isCourseTitleMaxInputted = mutation.isCourseTitleMaxInputted)
+                    }
+
+                    is CourseWriteMutation.Mutation.UpdateCourseVisibility -> {
+                        state.copy(isPrivate = mutation.isPrivate)
+                    }
+
+                    is CourseWriteMutation.Mutation.UpdatePlaceReview -> {
+                        state.copy(places = mutation.places)
+                    }
+                }
+            }
         }
     }
 }
