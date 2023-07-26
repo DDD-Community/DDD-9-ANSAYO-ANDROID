@@ -41,10 +41,17 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    // Allow references to generated code
+    kapt {
+        correctErrorTypes = true
+    }
+
 }
 
 dependencies {
     implementation(project(":presentation"))
+    implementation(project(":domain"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
@@ -58,4 +65,5 @@ dependencies {
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
     implementation(libs.logger)
+    implementation(libs.orbit.viewmodel)
 }
