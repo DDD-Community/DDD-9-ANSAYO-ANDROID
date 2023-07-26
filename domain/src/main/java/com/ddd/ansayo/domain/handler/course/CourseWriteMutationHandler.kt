@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
-class CourseWriteEventHandler @Inject constructor(
+class CourseWriteMutationHandler @Inject constructor(
     private val getImageUploadUrlUseCase: GetImageUploadUrlUseCase
 ) {
 

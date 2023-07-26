@@ -1,11 +1,10 @@
 package com.ddd.ansayo.presentation.viewmodel.course
 
 import androidx.lifecycle.ViewModel
-import com.ddd.ansayo.domain.handler.course.CourseWriteEventHandler
+import com.ddd.ansayo.domain.handler.course.CourseWriteMutationHandler
 import com.ddd.ansayo.domain.model.course.CourseWriteAction
 import com.ddd.ansayo.domain.model.course.CourseWriteMutation
 import com.ddd.ansayo.domain.model.course.CourseWriteState
-import com.ddd.ansayo.domain.usecase.course.GetImageUploadUrlUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
@@ -17,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CourseCreateViewModel @Inject constructor(
-    private val eventHandler: CourseWriteEventHandler
+    private val mutationHandler: CourseWriteMutationHandler
 ) : ContainerHost<CourseWriteState, CourseWriteMutation.SideEffect>, ViewModel() {
 
 
@@ -26,7 +25,7 @@ class CourseCreateViewModel @Inject constructor(
         container(CourseWriteState.EMPTY)
 
     fun onAction(action: CourseWriteAction) = intent {
-        eventHandler.mutate(state, action)
+        mutationHandler.mutate(state, action)
             .collect { mutation ->
                 when (mutation) {
                     is CourseWriteMutation.Mutation -> reduce(mutation)
