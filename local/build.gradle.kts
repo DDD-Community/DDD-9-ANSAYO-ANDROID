@@ -17,5 +17,7 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.bundles.room)
-    implementation(libs.logger)
+    implementation(libs.logger) {
+        exclude(group = "com.android.support", module = "support-annotations")
+    }
 }
