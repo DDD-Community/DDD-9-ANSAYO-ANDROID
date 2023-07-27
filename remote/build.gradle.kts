@@ -18,6 +18,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.bundles.okhttp)
     implementation(libs.bundles.retrofit)
-    implementation(libs.logger)
+    implementation(libs.logger) {
+        exclude(group = "com.android.support", module = "support-annotations")
+    }
     implementation(libs.sandwich)
 }

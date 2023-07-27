@@ -20,6 +20,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    configurations {
+        implementation.get().exclude(group = "org.jetbrains", module = "annotations")
+    }
+
     buildTypes {
         release {
             isDebuggable = false
@@ -41,10 +45,24 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    // Allow references to generated code
+    kapt {
+        correctErrorTypes = true
+    }
+
+    hilt {
+        enableAggregatingTask = true
+    }
+
 }
 
 dependencies {
     implementation(project(":presentation"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
+    implementation(project(":remote"))
+    implementation(project(":local"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
@@ -57,5 +75,8 @@ dependencies {
 
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
-    implementation(libs.logger)
+    implementation(libs.logger) {
+        exclude(group = "com.android.support", module = "support-annotations")
+    }
+    implementation(libs.orbit.viewmodel)
 }

@@ -23,6 +23,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.viewmodel)
-    implementation(libs.logger)
+    implementation(libs.logger) {
+        exclude(group = "com.android.support", module = "support-annotations")
+    }
     implementation(libs.orbit.viewmodel)
 }
