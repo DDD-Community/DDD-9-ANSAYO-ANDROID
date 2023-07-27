@@ -1,4 +1,4 @@
-package com.ddd.ansayo.presentation.model.course
+package com.ddd.ansayo.domain.model.course
 
 sealed class CourseWriteAction {
     data class InputCourseTitle(val text: String) : CourseWriteAction()
