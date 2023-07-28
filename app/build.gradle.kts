@@ -1,10 +1,16 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.hilt)
 }
+val properties = Properties().apply {
+    load(project.rootProject.file("local.properties").inputStream())
+}
+
 
 android {
     namespace = "com.ddd.ansayo"
@@ -18,6 +24,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "KAKAO_NATIVE_KEY", properties.getProperty("kakao_native_key"))
+        manifestPlaceholders["KAKAO_NATIVE_KEY"] = properties.getProperty("kakao_native_key")
+
     }
 
     configurations {
@@ -29,6 +38,7 @@ android {
             isDebuggable = false
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            resValue("string","kakao_native_key", properties.getProperty("kakao_native_key"))
         }
 
         debug {
@@ -79,4 +89,6 @@ dependencies {
         exclude(group = "com.android.support", module = "support-annotations")
     }
     implementation(libs.orbit.viewmodel)
+    implementation(libs.kakao.talk)
+    implementation(libs.kakao.user)
 }

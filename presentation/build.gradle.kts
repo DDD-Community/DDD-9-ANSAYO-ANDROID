@@ -27,4 +27,6 @@ dependencies {
         exclude(group = "com.android.support", module = "support-annotations")
     }
     implementation(libs.orbit.viewmodel)
+    implementation(libs.kakao.talk)
+    implementation(libs.kakao.user)
 }
