@@ -7,6 +7,7 @@ androidGoogleMaterial = "1.8.0"
 androidxLifecycle = "2.6.1"
 androidxActivity = "1.6.1"
 androidxFragment = "1.5.7"
+androidxRecyclerView = "1.2.1"
 hilt = "2.44"
 javax = "1"
 kotlin = "1.8.10"
@@ -18,6 +19,8 @@ room = "2.5.0"
 logger = "2.2.0"
 orbit = "6.0.0"
 gson = "2.10.1"
+imagePicker = "3.0.0"
+tedPermission = "3.3.0"
 
 # Test
 junit4 = "4.13.2"
@@ -34,6 +37,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidxConstraintLayout" }
 android-google-material = { group = "com.google.android.material", name = "material", version.ref = "androidGoogleMaterial" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidxRecyclerView" }
 hilt-android-core = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javax" }
@@ -54,6 +58,8 @@ logger = { group = "com.orhanobut", name = "logger", version.ref = "logger" }
 sandwich = { group = "com.github.skydoves", name = "sandwich", version.ref = "sandwich" }
 orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+imagePicker = { module = "com.github.esafirm:android-image-picker", version.ref = "imagePicker" }
+tedPermission = { module = "io.github.ParkSangGwon:tedpermission-coroutine", version.ref = "tedPermission" }
 
 # Test
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
