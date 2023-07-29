@@ -19,8 +19,6 @@ class CourseCreateViewModel @Inject constructor(
     private val mutationHandler: CourseWriteMutationHandler
 ) : ContainerHost<CourseWriteState, CourseWriteMutation.SideEffect>, ViewModel() {
 
-
-
     override val container: Container<CourseWriteState, CourseWriteMutation.SideEffect> =
         container(CourseWriteState.EMPTY)
 
@@ -51,19 +49,33 @@ class CourseCreateViewModel @Inject constructor(
                     }
 
                     is CourseWriteMutation.Mutation.UpdateCourseDate -> {
-                        state.copy(date = mutation.date)
+                        state.copy(
+                            header = state.header.copy(date = mutation.date)
+                        )
                     }
 
                     is CourseWriteMutation.Mutation.UpdateCourseDescription -> {
-                        state.copy(isCourseDescriptionMaxInputted = mutation.isCourseDescriptionMaxInputted)
+                        state.copy(
+                            header = state.header.copy(
+                                description = mutation.description,
+                                isCourseDescriptionMaxInputted = mutation.isCourseDescriptionMaxInputted
+                            )
+                        )
                     }
 
                     is CourseWriteMutation.Mutation.UpdateCourseTitle -> {
-                        state.copy(isCourseTitleMaxInputted = mutation.isCourseTitleMaxInputted)
+                        state.copy(
+                            header = state.header.copy(
+                                title = mutation.title,
+                                isCourseTitleMaxInputted = mutation.isCourseTitleMaxInputted
+                            )
+                        )
                     }
 
                     is CourseWriteMutation.Mutation.UpdateCourseVisibility -> {
-                        state.copy(isPrivate = mutation.isPrivate)
+                        state.copy(
+                            footer = state.footer.copy(isPrivate = mutation.isPrivate)
+                        )
                     }
 
                     is CourseWriteMutation.Mutation.UpdatePlaceReview -> {

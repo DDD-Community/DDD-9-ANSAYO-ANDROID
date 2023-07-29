@@ -22,6 +22,7 @@ class CourseWriteMutationHandler @Inject constructor(
             is CourseWriteAction.InputCourseTitle -> {
                 flowOf(
                     CourseWriteMutation.Mutation.UpdateCourseTitle(
+                        title = action.text,
                         isCourseTitleMaxInputted = action.text.length == COURSE_TITLE_MAX_LENGTH
                     )
                 )
@@ -30,6 +31,7 @@ class CourseWriteMutationHandler @Inject constructor(
             is CourseWriteAction.InputCourseDescription -> {
                 flowOf(
                     CourseWriteMutation.Mutation.UpdateCourseDescription(
+                        description = action.text,
                         isCourseDescriptionMaxInputted = action.text.length == COURSE_DESCRIPTION_MAX_LENGTH
                     )
                 )
@@ -83,7 +85,10 @@ class CourseWriteMutationHandler @Inject constructor(
             is CourseWriteAction.InputPlaceReview -> {
                 val newPlaces = state.places.map { place ->
                     if (place.order == action.placeOrder) {
-                        place.copy(isPlaceReviewMaxInputted = action.text.length == PLACE_REVIEW_MAX_LENGTH)
+                        place.copy(
+                            review = action.text,
+                            isPlaceReviewMaxInputted = action.text.length == PLACE_REVIEW_MAX_LENGTH
+                        )
                     } else {
                         place
                     }
@@ -119,7 +124,10 @@ class CourseWriteMutationHandler @Inject constructor(
                 } else {
                     val remainCount = PLACE_IMAGE_MAX_COUNT - currentImagesCount
                     flowOf(
-                        CourseWriteMutation.SideEffect.ShowPhotoPicker(remainCount = remainCount)
+                        CourseWriteMutation.SideEffect.ShowPhotoPicker(
+                            order = action.placeOrder,
+                            remainCount = remainCount
+                        )
                     )
                 }
             }

@@ -12,9 +12,5 @@ sealed class CourseWriteAction {
     data class ClickDeletePlace(val placeOrder: Int) : CourseWriteAction()
     data class ClickDeletePlaceImage(val placeOrder: Int, val imageIndex: Int) : CourseWriteAction()
     data class ToggleVisibilitySwitch(val checked: Boolean) : CourseWriteAction()
-    data class ClickUploadButton(
-        val courseTitle: String,
-        val courseDescription: String,
-        val placeReviews: List<String>
-    ) : CourseWriteAction()
+    object ClickUploadButton : CourseWriteAction()
 }
