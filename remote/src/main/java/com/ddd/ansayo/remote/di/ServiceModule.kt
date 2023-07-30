@@ -2,6 +2,7 @@ package com.ddd.ansayo.remote.di
 
 import com.ddd.ansayo.remote.service.CourseService
 import com.ddd.ansayo.remote.service.FileService
+import com.ddd.ansayo.remote.service.PlaceService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,6 +24,19 @@ object ServiceModule {
         retrofitBuilder: Retrofit.Builder,
         @AuthClient okHttpClient: OkHttpClient
     ): CourseService {
+        return retrofitBuilder
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .build()
+            .create()
+    }
+
+    @Provides
+    @Singleton
+    fun providesPlaceService(
+        retrofitBuilder: Retrofit.Builder,
+        @AuthClient okHttpClient: OkHttpClient
+    ): PlaceService {
         return retrofitBuilder
             .baseUrl(BASE_URL)
             .client(okHttpClient)
