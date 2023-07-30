@@ -1,6 +1,6 @@
 package com.ddd.ansayo.remote.interceptor
 
-import com.ddd.ansayo.data.datasource.auth.AuthLocalDataSource
+import com.ddd.ansayo.data.AuthLocalDataSource
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject

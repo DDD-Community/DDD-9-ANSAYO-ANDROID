@@ -19,7 +19,6 @@ class KakaoUseCaseImpl @Inject constructor(
                 } else {
                     return@loginWithKakaoTalk
                     Logger.d("유저동작 에러")
-
                 }
             }
 
@@ -27,7 +26,6 @@ class KakaoUseCaseImpl @Inject constructor(
             UserApiClient.instance.loginWithKakaoAccount(context) { token, error ->
                 if (error != null) {
                     Logger.d(" 로그인 실패 $error")
-
                 } else if (token != null) {
                     Logger.d("로그인 성공  ${token.accessToken}")
                 } else {
