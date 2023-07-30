@@ -10,6 +10,7 @@ androidxFragment = "1.5.7"
 hilt = "2.44"
 javax = "1"
 kotlin = "1.8.10"
+kotlinx = "1.5.1"
 kotlinxCoroutines = "1.6.4"
 retrofit = "2.9.0"
 okhttp = "4.10.0"
@@ -18,6 +19,10 @@ room = "2.5.0"
 logger = "2.2.0"
 orbit = "6.0.0"
 kakao = "2.14.0"
+serialization = "1.9.0"
+google = "2.8.6"
+androidxDataStore = "1.0.0"
+
 
 
 # Test
@@ -41,7 +46,7 @@ javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "j
 kotlin-native = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 okhttp-core = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
@@ -56,6 +61,9 @@ sandwich = { group = "com.github.skydoves", name = "sandwich", version.ref = "sa
 orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit" }
 kakao-user = { group = "com.kakao.sdk", name = "v2-user", version.ref = "kakao" }
 kakao-talk = { group = "com.kakao.sdk", name = "v2-talk", version.ref = "kakao" }
+kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx" }
+androidx-datastore = { group= "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore"}
+google-gson = { group= "com.google.code.gson", name = "gson", version.ref = "google"}
 
 # Test
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
@@ -73,6 +81,9 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization" }
+
+
 
 [bundles]
 okhttp = ["okhttp-core", "okhttp-logging-interceptor"]
