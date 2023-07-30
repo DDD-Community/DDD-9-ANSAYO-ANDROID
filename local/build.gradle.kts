@@ -13,6 +13,7 @@ android {
 
 dependencies {
     implementation(project(":data"))
+    implementation(project(":core-model"))
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
     implementation(libs.kotlinx.coroutines.android)

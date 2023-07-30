@@ -13,6 +13,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":core-model"))
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
     implementation(libs.kotlinx.coroutines.android)

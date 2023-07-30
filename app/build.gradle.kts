@@ -64,6 +64,7 @@ dependencies {
     implementation(project(":remote"))
     implementation(project(":local"))
     implementation(project(":core-design"))
+    implementation(project(":core-model"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
