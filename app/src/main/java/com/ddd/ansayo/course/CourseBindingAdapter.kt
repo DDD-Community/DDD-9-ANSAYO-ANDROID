@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.ddd.ansayo.R
+import com.ddd.ansayo.core_design.R as coreDesignR
 
 object CourseBindingAdapter {
 
@@ -12,10 +13,10 @@ object CourseBindingAdapter {
     fun TextView.setCourseDate(date: String) {
         if (date.isEmpty()) {
             text = context.getString(R.string.course_date_hint)
-            setTextColor(context.getColor(R.color.black))
+            setTextColor(context.getColor(coreDesignR.color.black))
         } else {
             text = date
-            setTextColor(context.getColor(R.color.black))
+            setTextColor(context.getColor(coreDesignR.color.black))
         }
     }
 

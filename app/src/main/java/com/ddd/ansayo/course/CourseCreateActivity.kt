@@ -26,9 +26,9 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.Date
 import java.util.Locale
+import com.ddd.ansayo.core_design.R as coreDesignR
 
 @AndroidEntryPoint
 class CourseCreateActivity :
@@ -177,7 +177,7 @@ class CourseCreateActivity :
                                             ImagePickerConfig {
                                                 language = "ko"
                                                 theme = R.style.Theme_DDD9ANSAYOANDROID
-                                                arrowColor = getColor(R.color.black)
+                                                arrowColor = getColor(coreDesignR.color.black)
                                                 folderTitle = "폴더 선택"
                                                 imageTitle = "이미지 선택"
                                                 doneButtonText = "완료"
