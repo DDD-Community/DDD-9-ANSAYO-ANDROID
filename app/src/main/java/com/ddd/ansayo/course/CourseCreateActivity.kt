@@ -55,7 +55,14 @@ class CourseCreateActivity :
         },
         placeAddClickListener = {
             viewModel.onAction(CourseWriteAction.ClickAddPlace)
-        }
+        },
+        placeImageAddClickListener = { order ->
+            viewModel.onAction(CourseWriteAction.ClickAddPlaceImage(order))
+        },
+        placeImageDeleteClickListener = { order, imageIndex ->
+            viewModel.onAction(CourseWriteAction.ClickDeletePlaceImage(order, imageIndex))
+        },
+
     )
     private val footerAdapter = CourseWriteFooterAdapter(
         visibilityChangedListener = {

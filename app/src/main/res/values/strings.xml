@@ -14,4 +14,5 @@
     <string name="warning_course_title_max_length">코스 제목은 30자 이내로 작성할 수 있어요.</string>
     <string name="warning_course_description_max_length">코스 설명은 300자 이내로 작성할 수 있어요.</string>
     <string name="warning_place_review_max_length">장소 리뷰는 300자 이내로 작성할 수 있어요.</string>
+    <string name="course_place_image_count">%d/%d</string>
 </resources>

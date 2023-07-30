@@ -86,4 +86,5 @@ dependencies {
     implementation(libs.orbit.viewmodel)
     implementation(libs.imagePicker)
     implementation(libs.tedPermission)
+    implementation(libs.glide)
 }

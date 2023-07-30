@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="place"
             type="com.ddd.ansayo.domain.model.course.CourseWriteState.Place" />
@@ -26,41 +27,67 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_end="24dp" />
 
-        <ImageView
-            android:id="@+id/iv_order"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:elevation="0dp"
+            app:placeOrder="@{place.order}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/gl_top" />
+            app:layout_constraintTop_toTopOf="@id/gl_top">
+
+            <TextView
+                android:id="@+id/tv_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{place.order}" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tv_place_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/gl_top"
-            app:layout_constraintStart_toEndOf="@id/iv_order" />
+            android:layout_marginStart="8dp"
+            android:text="@{place.title}"
+            app:layout_constraintStart_toEndOf="@id/cv_order"
+            app:layout_constraintTop_toTopOf="@id/cv_order" />
 
         <TextView
             android:id="@+id/tv_place_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_place_title"
-            app:layout_constraintStart_toStartOf="@id/tv_place_title" />
+            android:layout_marginTop="8dp"
+            android:text="@{place.category}"
+            app:layout_constraintStart_toStartOf="@id/tv_place_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_place_title" />
 
         <ImageView
             android:id="@+id/iv_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/gl_top"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_top" />
 
         <EditText
             android:id="@+id/et_place_review"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toTopOf="@id/tv_place_category"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_place_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_place_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@id/et_place_review"
+            app:layout_constraintStart_toStartOf="@id/et_place_review"
+            app:layout_constraintTop_toBottomOf="@id/et_place_review" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
