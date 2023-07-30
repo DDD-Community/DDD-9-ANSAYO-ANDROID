@@ -13,6 +13,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":core-model"))
 
     testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.test.ext)
