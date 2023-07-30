@@ -1,6 +1,6 @@
 package com.ddd.ansayo.domain.handler.course
 
-import com.ddd.ansayo.domain.model.common.Response
+import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.domain.model.course.CoursePlaceImage
 import com.ddd.ansayo.domain.model.course.CourseWriteMutation
 import com.ddd.ansayo.domain.model.course.CourseWriteAction

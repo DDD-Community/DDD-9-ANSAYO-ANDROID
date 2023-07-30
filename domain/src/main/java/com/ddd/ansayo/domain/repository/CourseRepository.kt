@@ -1,9 +1,8 @@
 package com.ddd.ansayo.domain.repository
 
-import com.ddd.ansayo.domain.entity.course.UploadImageUrlEntity
-import com.ddd.ansayo.domain.model.common.Response
+import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 
 interface CourseRepository {
 
-    suspend fun getUploadImageUrl(code: String, fileName: String): Response<UploadImageUrlEntity>
+    suspend fun getUploadImageUrl(code: String, fileName: String): UploadImageUrlEntity
 }
