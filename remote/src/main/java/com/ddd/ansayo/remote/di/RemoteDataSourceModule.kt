@@ -1,7 +1,9 @@
 package com.ddd.ansayo.remote.di
 
 import com.ddd.ansayo.data.datasource.course.CourseRemoteDataSource
+import com.ddd.ansayo.data.datasource.place.PlaceRemoteDataSource
 import com.ddd.ansayo.remote.datasource.CourseRemoteDataSourceImpl
+import com.ddd.ansayo.remote.datasource.PlaceRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,4 +19,10 @@ abstract class RemoteDataSourceModule {
     abstract fun bindsCourseRemoteDataSource(
         courseRemoteDataSourceImpl: CourseRemoteDataSourceImpl
     ): CourseRemoteDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindsPlaceRemoteDataSource(
+        placeRemoteDataSourceImpl: PlaceRemoteDataSourceImpl
+    ): PlaceRemoteDataSource
 }
