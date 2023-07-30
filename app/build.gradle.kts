@@ -46,6 +46,10 @@ android {
         jvmTarget = "1.8"
     }
 
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
     // Allow references to generated code
     kapt {
         correctErrorTypes = true
@@ -68,6 +72,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
     implementation(libs.android.google.material)
     implementation(libs.activity.ktx)
     implementation(libs.fragment.ktx)
@@ -81,4 +86,7 @@ dependencies {
         exclude(group = "com.android.support", module = "support-annotations")
     }
     implementation(libs.orbit.viewmodel)
+    implementation(libs.imagePicker)
+    implementation(libs.tedPermission)
+    implementation(libs.glide)
 }
