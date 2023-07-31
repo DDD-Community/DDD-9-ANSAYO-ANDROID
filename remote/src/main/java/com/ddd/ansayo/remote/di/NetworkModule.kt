@@ -1,5 +1,7 @@
 package com.ddd.ansayo.remote.di
 
+import com.ddd.ansayo.data.api.GgecoApiInterface
+import com.ddd.ansayo.remote.BuildConfig
 import com.ddd.ansayo.remote.interceptor.AuthHeaderInterceptor
 import com.ddd.ansayo.remote.interceptor.TokenAuthenticator
 import com.orhanobut.logger.Logger
@@ -9,6 +11,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Converter
+import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -41,6 +45,7 @@ object NetworkModule {
             .readTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
             .writeTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
             .build()
+
     }
 
     @Provides
@@ -71,5 +76,19 @@ object NetworkModule {
             .readTimeout(FILE_UPLOAD_TIME_OUT, TimeUnit.SECONDS)
             .writeTimeout(FILE_UPLOAD_TIME_OUT, TimeUnit.SECONDS)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideIdentityApi(
+        okHttpClient: OkHttpClient,
+        converterFactory: Converter.Factory
+    ): GgecoApiInterface {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.IDENTITY_BASE_URL)
+            .addConverterFactory(converterFactory)
+            .client(okHttpClient)
+            .build()
+            .create(GgecoApiInterface::class.java)
     }
 }

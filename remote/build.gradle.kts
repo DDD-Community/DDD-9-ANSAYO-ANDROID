@@ -9,6 +9,10 @@ plugins {
 android {
     namespace = "com.ddd.ansayo.remote"
     compileSdk = libs.versions.compileSdk.get().toInt()
+
+    defaultConfig {
+        buildConfigField("String", "IDENTITY_BASE_URL", "\"https://ggoco.com\"")
+    }
 }
 
 dependencies {
