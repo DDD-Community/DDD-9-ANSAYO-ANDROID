@@ -1,9 +1,9 @@
 package com.ddd.ansayo.remote.di
 
-import com.ddd.ansayo.data.api.GgecoApiInterface
 import com.ddd.ansayo.remote.BuildConfig
 import com.ddd.ansayo.remote.interceptor.AuthHeaderInterceptor
 import com.ddd.ansayo.remote.interceptor.TokenAuthenticator
+import com.ddd.ansayo.remote.service.LoginService
 import com.orhanobut.logger.Logger
 import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
@@ -86,13 +86,13 @@ object NetworkModule {
     fun provideIdentityApi(
         okHttpClient: OkHttpClient,
         converterFactory: Converter.Factory
-    ): GgecoApiInterface {
+    ): LoginService {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.IDENTITY_BASE_URL)
             .addConverterFactory(converterFactory)
             .client(okHttpClient)
             .build()
-            .create(GgecoApiInterface::class.java)
+            .create(LoginService::class.java)
     }
 
     @Provides

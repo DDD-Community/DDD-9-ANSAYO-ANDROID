@@ -1,4 +1,4 @@
-package com.ddd.ansayo.data.preference
+package com.ddd.ansayo.local.preference
 
 import android.content.Context
 import androidx.datastore.core.DataStore

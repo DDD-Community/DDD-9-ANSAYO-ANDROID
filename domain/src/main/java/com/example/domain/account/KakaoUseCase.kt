@@ -1,4 +1,4 @@
-package com.example.domain.identity
+package com.example.domain.account
 
 interface KakaoUseCase {
 

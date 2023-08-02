@@ -1,4 +1,4 @@
-package com.example.domain.custmoer.model
+package com.ddd.ansayo.core_model.account
 
 enum class SocialProvider {
     KAKAO_SYNC,

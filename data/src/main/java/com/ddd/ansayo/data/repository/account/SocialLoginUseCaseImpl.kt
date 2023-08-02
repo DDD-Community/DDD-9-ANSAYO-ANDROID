@@ -1,14 +1,14 @@
-package com.ddd.ansayo.data.identity
+package com.ddd.ansayo.data.repository.account
 
-import com.example.domain.custmoer.model.SocialProvider
-import com.example.domain.identity.IdentityRepository
-import com.example.domain.identity.SocialLoginUseCase
-import com.example.domain.identity.model.TokenInfoResponse
+import com.ddd.ansayo.core_model.account.SocialProvider
+import com.ddd.ansayo.core_model.account.TokenInfoResponse
+import com.example.domain.account.AccountRepository
+import com.example.domain.account.SocialLoginUseCase
 import com.orhanobut.logger.Logger
 import javax.inject.Inject
 
 class SocialLoginUseCaseImpl @Inject constructor(
-    private val identityRepository: IdentityRepository
+    private val identityRepository: AccountRepository
 ): SocialLoginUseCase {
 
     override suspend fun login(provider: SocialProvider, token: String): TokenInfoResponse {

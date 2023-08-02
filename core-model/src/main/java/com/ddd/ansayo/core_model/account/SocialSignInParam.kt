@@ -1,4 +1,4 @@
-package com.example.domain.custmoer.model
+package com.ddd.ansayo.core_model.account
 
 data class SocialSignInParam(
     val provider: String = "",

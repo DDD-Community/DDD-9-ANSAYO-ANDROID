@@ -1,6 +1,7 @@
-package com.example.domain.identity
+package com.ddd.ansayo.data.repository.account
 
 import android.content.Context
+import com.example.domain.account.KakaoUseCase
 import com.kakao.sdk.user.UserApiClient
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.qualifiers.ActivityContext

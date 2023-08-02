@@ -1,24 +1,24 @@
-package com.ddd.ansayo.data.identity
+package com.ddd.ansayo.remote.datasource
 
-import com.ddd.ansayo.data.api.GgecoApiInterface
-import com.ddd.ansayo.data.preference.UserPref
-import com.example.domain.custmoer.model.SocialProvider
-import com.example.domain.custmoer.model.SocialSignInParam
-import com.example.domain.identity.IdentityRepository
-import com.example.domain.identity.model.TokenInfoResponse
+import com.ddd.ansayo.core_model.account.SocialProvider
+import com.ddd.ansayo.core_model.account.SocialSignInParam
+import com.ddd.ansayo.core_model.account.TokenInfoResponse
+import com.ddd.ansayo.data.datasource.account.AccountRemoteDataSource
+import com.ddd.ansayo.local.preference.UserPref
+import com.ddd.ansayo.remote.service.LoginService
 import com.orhanobut.logger.Logger
 import javax.inject.Inject
 
-class IdentityRepositoryImpl @Inject constructor(
-    private val ggecoApiInterface: GgecoApiInterface,
+class AccountRemoteDataSourceImpl @Inject constructor(
+    private val loginservice: LoginService,
     private val userPref: UserPref
-): IdentityRepository {
+): AccountRemoteDataSource {
 
     override suspend fun signInWithSocial(
         provider: SocialProvider,
         token: String
     ): TokenInfoResponse {
-        ggecoApiInterface.signInWithSocial(
+        loginservice.signInWithSocial(
             SocialSignInParam(
                 provider = provider.toString(),
                 token = token
@@ -47,7 +47,7 @@ class IdentityRepositoryImpl @Inject constructor(
     }
 
     override suspend fun signOut() {
-        ggecoApiInterface.signOut()
+        loginservice.signOut()
     }
 
 }

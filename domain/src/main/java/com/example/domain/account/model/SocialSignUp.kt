@@ -1,6 +1,6 @@
-package com.example.domain.identity.model
+package com.example.domain.account.model
 
-import com.example.domain.custmoer.model.SocialProvider
+import com.ddd.ansayo.core_model.account.SocialProvider
 
 data class SocialSignUp(
     val provider: SocialProvider,
