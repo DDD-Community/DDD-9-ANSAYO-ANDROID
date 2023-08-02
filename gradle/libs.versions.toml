@@ -7,6 +7,7 @@ androidGoogleMaterial = "1.8.0"
 androidxLifecycle = "2.6.1"
 androidxActivity = "1.6.1"
 androidxFragment = "1.5.7"
+androidxRecyclerView = "1.2.1"
 hilt = "2.44"
 javax = "1"
 kotlin = "1.8.10"
@@ -24,6 +25,10 @@ google = "2.8.6"
 androidxDataStore = "1.0.0"
 
 
+gson = "2.10.1"
+imagePicker = "3.0.0"
+tedPermission = "3.3.0"
+glide = "4.15.1"
 
 # Test
 junit4 = "4.13.2"
@@ -40,6 +45,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidxConstraintLayout" }
 android-google-material = { group = "com.google.android.material", name = "material", version.ref = "androidGoogleMaterial" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidxRecyclerView" }
 hilt-android-core = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javax" }
@@ -64,6 +70,10 @@ kakao-talk = { group = "com.kakao.sdk", name = "v2-talk", version.ref = "kakao" 
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx" }
 androidx-datastore = { group= "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore"}
 google-gson = { group= "com.google.code.gson", name = "gson", version.ref = "google"}
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+imagePicker = { module = "com.github.esafirm:android-image-picker", version.ref = "imagePicker" }
+tedPermission = { module = "io.github.ParkSangGwon:tedpermission-coroutine", version.ref = "tedPermission" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 
 # Test
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }

@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">DDD-9-ANSAYO-ANDROID</string>
+
+    <!--  코스 작성  -->
+    <string name="course_title">코스 제목</string>
+    <string name="course_title_hint">코스 제목을 입력해주세요.</string>
+    <string name="course_description">코스 설명</string>
+    <string name="course_description_hint">코스에 대해서 간단히 설명해주세요.</string>
+    <string name="course_date_hint">날짜 추가</string>
+    <string name="add_place">장소 추가하기</string>
+    <string name="add_first_place_description">다녀온 장소의 기록을 남겨 주세요</string>
+    <string name="complete_write">작성 완료</string>
+    <string name="course_visibility">기록 공개</string>
+    <string name="warning_course_title_max_length">코스 제목은 30자 이내로 작성할 수 있어요.</string>
+    <string name="warning_course_description_max_length">코스 설명은 300자 이내로 작성할 수 있어요.</string>
+    <string name="warning_place_review_max_length">장소 리뷰는 300자 이내로 작성할 수 있어요.</string>
+    <string name="course_place_image_count">%d/%d</string>
 </resources>

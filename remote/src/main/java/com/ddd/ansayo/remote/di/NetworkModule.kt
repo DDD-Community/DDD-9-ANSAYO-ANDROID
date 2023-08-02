@@ -5,6 +5,7 @@ import com.ddd.ansayo.remote.BuildConfig
 import com.ddd.ansayo.remote.interceptor.AuthHeaderInterceptor
 import com.ddd.ansayo.remote.interceptor.TokenAuthenticator
 import com.orhanobut.logger.Logger
+import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,6 +33,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @AuthClient
     fun providesAuthClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         authHeaderInterceptor: AuthHeaderInterceptor,
@@ -45,11 +47,11 @@ object NetworkModule {
             .readTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
             .writeTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
             .build()
-
     }
 
     @Provides
     @Singleton
+    @NoAuthClient
     fun providesNoAuthClient(
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
@@ -63,6 +65,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @FileUploadClient
     fun providesFileUploadClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         authHeaderInterceptor: AuthHeaderInterceptor,
@@ -90,5 +93,12 @@ object NetworkModule {
             .client(okHttpClient)
             .build()
             .create(GgecoApiInterface::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesRetrofitBuilder(): Retrofit.Builder {
+        return Retrofit.Builder()
+            .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
     }
 }

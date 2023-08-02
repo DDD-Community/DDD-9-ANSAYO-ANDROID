@@ -17,7 +17,7 @@ android {
 
 dependencies {
     implementation(project(":data"))
-    implementation(project(":domain"))
+    implementation(project(":core-model"))
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
     implementation(libs.kotlinx.coroutines.android)
@@ -27,6 +27,4 @@ dependencies {
         exclude(group = "com.android.support", module = "support-annotations")
     }
     implementation(libs.sandwich)
-
-
 }

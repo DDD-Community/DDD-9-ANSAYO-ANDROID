@@ -39,7 +39,6 @@ android {
             isDebuggable = false
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            resValue("string","kakao_native_key", properties.getProperty("kakao_native_key"))
         }
 
         debug {
@@ -57,6 +56,10 @@ android {
         jvmTarget = "1.8"
     }
 
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
     // Allow references to generated code
     kapt {
         correctErrorTypes = true
@@ -74,9 +77,12 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":remote"))
     implementation(project(":local"))
+    implementation(project(":core-design"))
+    implementation(project(":core-model"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
     implementation(libs.android.google.material)
     implementation(libs.activity.ktx)
     implementation(libs.fragment.ktx)
@@ -92,4 +98,7 @@ dependencies {
     implementation(libs.orbit.viewmodel)
     implementation(libs.kakao.talk)
     implementation(libs.kakao.user)
+    implementation(libs.imagePicker)
+    implementation(libs.tedPermission)
+    implementation(libs.glide)
 }

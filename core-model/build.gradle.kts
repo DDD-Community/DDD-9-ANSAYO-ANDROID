@@ -1,4 +1,4 @@
-@file:Suppress("DSL_SCOPE_VIOLATION")
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.kotlin.jvm)
 }
@@ -9,8 +9,5 @@ java {
 }
 
 dependencies {
-    implementation(project(":core-model"))
     implementation(libs.kotlin.native)
-    implementation(libs.javax.inject)
-    implementation(libs.kotlinx.coroutines.android)
 }
