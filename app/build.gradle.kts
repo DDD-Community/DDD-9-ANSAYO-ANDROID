@@ -23,8 +23,8 @@ val properties = Properties().apply {
             versionName = "1.0"
 
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "KAKAO_NATIVE_KEY", properties.getProperty("kakao_native_key"))
-        manifestPlaceholders["KAKAO_NATIVE_KEY"] = properties.getProperty("kakao_native_key")
+            buildConfigField("String", "KAKAO_NATIVE_KEY", properties.getProperty("kakao_native_key"))
+            manifestPlaceholders["KAKAO_NATIVE_KEY"] = properties.getProperty("kakao_native_key")
         }
 
         configurations {
