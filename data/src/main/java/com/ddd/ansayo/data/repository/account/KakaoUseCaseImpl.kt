@@ -5,10 +5,11 @@ import com.example.domain.account.KakaoUseCase
 import com.kakao.sdk.user.UserApiClient
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.qualifiers.ActivityContext
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class KakaoUseCaseImpl @Inject constructor(
-    @ActivityContext private val context: Context
+    @ApplicationContext private val context: Context
 ) : KakaoUseCase {
     override fun getAccessToken() {
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {

@@ -2,7 +2,6 @@ package com.ddd.ansayo.data.repository.account
 
 
 import com.ddd.ansayo.core_model.account.SocialProvider
-import com.ddd.ansayo.core_model.account.SocialSignInParam
 import com.ddd.ansayo.core_model.account.TokenInfoResponse
 import com.ddd.ansayo.data.datasource.account.AccountRemoteDataSource
 import com.example.domain.account.AccountRepository
