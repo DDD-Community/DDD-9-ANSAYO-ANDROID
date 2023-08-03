@@ -41,6 +41,10 @@
             android:name=".place.SearchAddPlaceActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".image.ImageViewerActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
