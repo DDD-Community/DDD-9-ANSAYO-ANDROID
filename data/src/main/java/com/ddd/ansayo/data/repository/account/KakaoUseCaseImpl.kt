@@ -9,7 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class KakaoUseCaseImpl @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ActivityContext private val context: Context
 ) : KakaoUseCase {
     override fun getAccessToken() {
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {

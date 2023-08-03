@@ -13,12 +13,11 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+
     implementation(project(":core-model"))
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.bundles.okhttp)
-    implementation(libs.bundles.retrofit)
     implementation(libs.kakao.talk)
     implementation(libs.kakao.user)
     implementation(libs.logger) {

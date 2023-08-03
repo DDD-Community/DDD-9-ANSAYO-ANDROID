@@ -1,4 +1,4 @@
-package com.ddd.ansayo.presentation.viewmodel.course
+package com.ddd.ansayo.data.di
 
 import com.ddd.ansayo.data.repository.account.KakaoUseCaseImpl
 import com.example.domain.account.KakaoUseCase
