@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!--Ggco Design System Color -->
+    <color name="orange_point">#F37704</color>
+    <color name="pink_sub">#FF7E62</color>
+    <color name="blue_sub">#0D99FF</color>
+    <color name="green_sub">#69CE46</color>
+    <color name="orange_sub">#C83535</color>
+    <color name="pink_sub_text">#C83535</color>
+    <color name="blue_sub_text">#026EBC</color>
+    <color name="green_sub_text">#208208</color>
+    <color name="orange_sub_text">#C77E11</color>
+    <color name="red_caution">#FF2207</color>
+
+
+    <color name="N0">#000000</color>
+    <color name="N10">#262626</color>
+    <color name="N20">#383838</color>
+    <color name="N30">#4D4D4C</color>
+    <color name="N40">#616160</color>
+    <color name="N50">#7B7B7A</color>
+    <color name="N60">#959493</color>
+    <color name="N70">#AFAEAD</color>
+    <color name="N80">#C9C8C7</color>
+    <color name="N90">#EBEAE7</color>
+    <color name="N95">#F5F4F2</color>
+    <color name="N99">#FAFAFA</color>
+    <color name="N100">#FFFFFF</color>
+
 </resources>

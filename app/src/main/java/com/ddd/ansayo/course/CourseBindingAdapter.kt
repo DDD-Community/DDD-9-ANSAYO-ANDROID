@@ -13,10 +13,10 @@ object CourseBindingAdapter {
     fun TextView.setCourseDate(date: String) {
         if (date.isEmpty()) {
             text = context.getString(R.string.course_date_hint)
-            setTextColor(context.getColor(coreDesignR.color.black))
+            setTextColor(context.getColor(coreDesignR.color.N0))
         } else {
             text = date
-            setTextColor(context.getColor(coreDesignR.color.black))
+            setTextColor(context.getColor(coreDesignR.color.N0))
         }
     }
 

@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
-        android:background="@color/black"
+        android:background="@color/N10"
         app:layout_constraintTop_toBottomOf="@id/et_search" />
 
     <androidx.recyclerview.widget.RecyclerView
