@@ -22,4 +22,7 @@
 
     <!--  코스 작성하기 - 장소 검색하기  -->
     <string name="show_detail">상세보기</string>
+
+    <!--  이미지 뷰어  -->
+    <string name="count_per_total_count">%d / %d</string>
 </resources>
