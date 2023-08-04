@@ -177,7 +177,7 @@ class CourseCreateActivity :
                                             ImagePickerConfig {
                                                 language = "ko"
                                                 theme = R.style.Theme_DDD9ANSAYOANDROID
-                                                arrowColor = getColor(coreDesignR.color.black)
+                                                arrowColor = getColor(coreDesignR.color.N0)
                                                 folderTitle = "폴더 선택"
                                                 imageTitle = "이미지 선택"
                                                 doneButtonText = "완료"
