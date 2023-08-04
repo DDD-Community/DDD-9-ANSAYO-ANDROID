@@ -1,4 +1,4 @@
-package com.ddd.ansayo.data.datasource.auth
+package com.ddd.ansayo.data
 
 interface AuthLocalDataSource {
 

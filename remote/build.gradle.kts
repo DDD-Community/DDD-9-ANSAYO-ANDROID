@@ -9,10 +9,15 @@ plugins {
 android {
     namespace = "com.ddd.ansayo.remote"
     compileSdk = libs.versions.compileSdk.get().toInt()
+
+    defaultConfig {
+        buildConfigField("String", "IDENTITY_BASE_URL", "\"https://ggoco.com\"")
+    }
 }
 
 dependencies {
     implementation(project(":data"))
+    implementation(project(":local"))
     implementation(project(":core-model"))
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)

@@ -1,6 +1,6 @@
 package com.ddd.ansayo.local.di
 
-import com.ddd.ansayo.data.datasource.auth.AuthLocalDataSource
+import com.ddd.ansayo.data.AuthLocalDataSource
 import com.ddd.ansayo.local.datasource.AuthLocalDataSourceImpl
 import dagger.Binds
 import dagger.Module
