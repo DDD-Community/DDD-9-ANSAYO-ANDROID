@@ -17,7 +17,7 @@
         android:background="@drawable/bg_button_label_primary_default"
         android:clickable="true"
         android:focusable="true"
-        app:onBlockDoubleClick="@{() -> view.onClicked()}">
+        android:onClick="@{() -> view.onClicked()}">
 
         <TextView
             android:id="@+id/tv_content"

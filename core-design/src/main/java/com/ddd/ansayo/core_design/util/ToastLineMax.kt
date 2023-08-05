@@ -18,7 +18,7 @@ object ToastLineMax {
         } ?: let {
             val view: View = LayoutInflater.from(context)
                 .inflate(
-                    R.layout.ds_toast_line_max,
+                    R.layout.ds_toast_line,
                     (context as Activity).findViewById(R.id.container)
                 )
 

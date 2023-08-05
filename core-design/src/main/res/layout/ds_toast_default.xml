@@ -11,13 +11,14 @@
         android:id="@+id/tv_message"
         style="@style/Text_B4"
         android:layout_width="328dp"
-        android:layout_height="74dp"
+        android:layout_height="52dp"
+        android:maxLines="1"
         android:gravity="center_vertical"
         android:layout_marginStart="18dp"
         android:textColor="@color/N100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="일시적인 오류로 로그인에 실패했습니다.\n잠시 후  다시 시도해 주세요.(오류코드 -500)" />
+        tools:text="일시적인 오류로 로그인에 실패했습니다." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

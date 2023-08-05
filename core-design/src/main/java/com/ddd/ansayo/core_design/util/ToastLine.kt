@@ -18,7 +18,7 @@ object ToastLine {
         } ?: let {
             val view: View = LayoutInflater.from(context)
                 .inflate(
-                    R.layout.ds_toast_line,
+                    R.layout.ds_toast_default,
                     (context as Activity).findViewById(R.id.container)
                 )
 

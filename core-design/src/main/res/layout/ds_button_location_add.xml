@@ -17,7 +17,7 @@
         android:background="@color/N100"
         android:clickable="true"
         android:focusable="true"
-        app:onBlockDoubleClick="@{() -> view.onClicked()}">
+        android:onClick="@{() -> view.onClicked()}">
 
         <TextView
             android:id="@+id/tv_content"
