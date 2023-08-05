@@ -1,4 +1,4 @@
-package com.ddd.ansayo.core_design
+package com.ddd.ansayo.core_design.util
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.ddd.ansayo.core_design.R
 import com.ddd.ansayo.core_design.databinding.DsButtonSecondaryDefaultBinding
 
 class LabelSecondaryButton @JvmOverloads constructor(

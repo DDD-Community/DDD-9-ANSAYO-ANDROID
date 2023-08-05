@@ -7,7 +7,7 @@
 
         <variable
             name="view"
-            type="com.ddd.ansayo.core_design.LabelSecondaryButton" />
+            type="com.ddd.ansayo.core_design.util.LabelSecondaryButton" />
 
     </data>
 

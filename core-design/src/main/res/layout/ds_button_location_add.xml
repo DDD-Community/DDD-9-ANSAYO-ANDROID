@@ -7,7 +7,7 @@
 
         <variable
             name="view"
-            type="com.ddd.ansayo.core_design.LabelLocationButton" />
+            type="com.ddd.ansayo.core_design.util.LabelLocationButton" />
 
     </data>
 

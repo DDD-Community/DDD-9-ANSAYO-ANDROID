@@ -1,22 +1,21 @@
-package com.ddd.ansayo.core_design
+package com.ddd.ansayo.core_design.util
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import com.ddd.ansayo.core_design.databinding.DsButtonLineDefaultBinding
+import com.ddd.ansayo.core_design.databinding.DsButtonLocationAddBinding
 
-class LabelLineButton @JvmOverloads constructor(
+class LabelLocationButton @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attributeSet, defStyleAttr) {
 
     private val binding =
-        DsButtonLineDefaultBinding.inflate(LayoutInflater.from(context), this, true).apply {
-            view = this@LabelLineButton
+        DsButtonLocationAddBinding.inflate(LayoutInflater.from(context), this, true).apply {
+            view = this@LabelLocationButton
             executePendingBindings()
         }
 
@@ -40,11 +39,5 @@ class LabelLineButton @JvmOverloads constructor(
 
     override fun setEnabled(isEnabled: Boolean) {
         binding.root.isEnabled = isEnabled
-        binding.tvContent.setTextColor(
-            ContextCompat.getColor(
-                context,
-                if (isEnabled) R.color.orange_point else R.color.N70
-            )
-        )
     }
 }

@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ddd.ansayo.base.BaseActivity
-import com.ddd.ansayo.core_design.DividerDecoration
+import com.ddd.ansayo.core_design.util.DividerDecoration
 import com.ddd.ansayo.databinding.ActivitySearchAddPlaceBinding
 import com.ddd.ansayo.domain.model.place.SearchAddPlaceAction
 import com.ddd.ansayo.domain.model.place.SearchAddPlaceMutation
