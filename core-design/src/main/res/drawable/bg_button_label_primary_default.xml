@@ -3,4 +3,8 @@
     <item android:drawable="@drawable/button_label_primary_enable" android:state_enabled="true" />
 
     <item android:drawable="@drawable/button_label_primary_disabled" android:state_enabled="false" />
+
+    <item
+         android:drawable="@drawable/button_label_primary_pressed"
+         android:state_pressed="true" />
 </selector>
