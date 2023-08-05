@@ -34,4 +34,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.android.google.material)
+    implementation(libs.glide)
+
 }
