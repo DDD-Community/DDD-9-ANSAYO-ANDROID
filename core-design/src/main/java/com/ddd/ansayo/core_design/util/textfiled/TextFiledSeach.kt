@@ -19,8 +19,9 @@ class TextFiledSeach @JvmOverloads constructor(
 
         }
     }
-    
-    fun getText(): String {
-        return binding.etContent.text.toString()
+
+    fun setHint(hint: String) {
+        binding.etContent.hint = hint
     }
+
 }

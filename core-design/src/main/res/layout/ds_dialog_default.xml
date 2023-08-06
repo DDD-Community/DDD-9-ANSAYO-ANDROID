@@ -5,7 +5,8 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="294dp"
-    android:layout_height="180dp"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
     android:background="@drawable/bg_dialog_default">
 
     <TextView

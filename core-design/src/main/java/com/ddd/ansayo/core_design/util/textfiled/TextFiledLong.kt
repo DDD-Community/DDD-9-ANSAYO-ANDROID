@@ -20,11 +20,13 @@ class TextFiledLong @JvmOverloads constructor(
         }
     }
 
-    fun setMaxTextLength(length: Int) {
-        binding.tvLength.text = "${getText()}/ $length"
+    fun setHint(text: String) {
+        binding.etContent.hint = text
     }
 
-    fun getText(): String {
-        return binding.etContent.text.toString()
+    fun getTextLength(text: String?) {
+        binding.tvLength.text = text?.let {
+            "${it.length} / 40"
+        }
     }
 }

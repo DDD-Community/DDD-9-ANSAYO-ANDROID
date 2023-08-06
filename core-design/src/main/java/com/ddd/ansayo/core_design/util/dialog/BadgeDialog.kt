@@ -24,7 +24,6 @@ class BadgeDialog (
             binding = DsDialogBadgeBinding.inflate(layoutInflater)
 
             binding.apply {
-
                 tvBadgeTitle.text = title
                 tvBadgeContext.text = contents
                 tvDate.text = contentsDate

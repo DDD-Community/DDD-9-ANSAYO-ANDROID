@@ -9,22 +9,6 @@
             name="view"
             type="com.ddd.ansayo.core_design.util.textfiled.TextFiledShort" />
 
-        <variable
-            name="label"
-            type="String" />
-
-        <variable
-            name="enabled"
-            type="Boolean" />
-
-        <variable
-            name="hint"
-            type="String" />
-
-        <variable
-            name="text"
-            type="String" />
-
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,15 +19,13 @@
             style="@style/Text_B1"
             android:layout_width="0dp"
             android:layout_height="123dp"
-            android:enabled="@{enabled}"
-            android:hint="@{hint}"
+            android:maxLength="300"
             android:gravity="start"
             android:paddingTop="16dp"
             android:paddingBottom="26dp"
             android:textColorHint="@color/N70"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:text="@={text}"
             android:background="@drawable/button_label_secondary_disabled"
             android:textCursorDrawable="@drawable/ds_ggeco_cursor_default"
             android:paddingStart="16dp"

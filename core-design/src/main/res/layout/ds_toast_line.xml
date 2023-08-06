@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/tv_message"
-        style="@style/Text_B4"
+        style="@style/Text_B1"
         android:layout_width="328dp"
         android:layout_height="74dp"
         android:gravity="center_vertical"

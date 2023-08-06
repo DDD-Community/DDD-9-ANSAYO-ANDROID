@@ -5,7 +5,8 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="294dp"
-    android:layout_height="348dp"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
     android:background="@drawable/bg_dialog_default">
     
     <ImageView
@@ -62,6 +63,8 @@
        android:textColor="@color/N95"
        android:background="@drawable/bg_button_label_primary_default"
        android:layout_marginTop="16dp"
+       android:layout_marginBottom="16dp"
+       android:layout_marginHorizontal="16dp"
        app:layout_constraintTop_toBottomOf="@id/tv_date"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"/>
