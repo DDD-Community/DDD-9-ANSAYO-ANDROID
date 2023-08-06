@@ -1,4 +1,4 @@
-package com.ddd.ansayo.core_design.util
+package com.ddd.ansayo.core_design.util.button
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,17 +7,17 @@ import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.ddd.ansayo.core_design.R
-import com.ddd.ansayo.core_design.databinding.DsButtonPrimaryDefaultBinding
+import com.ddd.ansayo.core_design.databinding.DsButtonSecondaryDefaultBinding
 
-class LabelPrimaryButton @JvmOverloads constructor(
+class LabelSecondaryButton @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attributeSet, defStyleAttr) {
 
     private val binding =
-        DsButtonPrimaryDefaultBinding.inflate(LayoutInflater.from(context), this, true).apply {
-            view = this@LabelPrimaryButton
+        DsButtonSecondaryDefaultBinding.inflate(LayoutInflater.from(context), this, true).apply {
+            view = this@LabelSecondaryButton
             executePendingBindings()
         }
 
@@ -44,7 +44,7 @@ class LabelPrimaryButton @JvmOverloads constructor(
         binding.tvContent.setBackgroundColor(
             ContextCompat.getColor(
                 context,
-                if (isEnabled) R.color.orange_point else R.color.N80
+                if (isEnabled) R.color.N90 else R.color.N50
             )
         )
     }

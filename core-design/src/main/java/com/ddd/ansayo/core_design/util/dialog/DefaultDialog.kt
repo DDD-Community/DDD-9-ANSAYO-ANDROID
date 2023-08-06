@@ -1,4 +1,4 @@
-package com.ddd.ansayo.core_design.util
+package com.ddd.ansayo.core_design.util.dialog
 
 import android.app.Dialog
 import android.content.Context

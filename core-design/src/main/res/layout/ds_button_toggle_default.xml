@@ -7,7 +7,7 @@
 
         <variable
             name="view"
-            type="com.ddd.ansayo.core_design.util.LabelToggleButton" />
+            type="com.ddd.ansayo.core_design.util.button.LabelToggleButton" />
 
     </data>
 

@@ -1,4 +1,4 @@
-package com.ddd.ansayo.core_design.util
+package com.ddd.ansayo.core_design.util.toast
 
 import android.app.Activity
 import android.content.Context
