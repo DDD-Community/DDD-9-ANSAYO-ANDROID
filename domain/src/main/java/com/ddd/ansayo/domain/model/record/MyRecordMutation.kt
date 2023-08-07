@@ -12,5 +12,6 @@ sealed class MyRecordMutation {
 
     sealed class SideEffect : MyRecordMutation() {
         object NaviToCourseWrite : SideEffect()
+        data class NaviToCourseDetail(val id: String) : SideEffect()
     }
 }
