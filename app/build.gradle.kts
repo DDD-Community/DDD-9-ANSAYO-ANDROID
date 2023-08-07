@@ -24,6 +24,8 @@ val properties = Properties().apply {
 
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             buildConfigField("String", "KAKAO_NATIVE_KEY", properties.getProperty("kakao_native_key"))
+            buildConfigField("String", "NAVER_CLIENT_ID", properties.getProperty("naver_client_id"))
+            buildConfigField("String", "NAVER_CLIENT_SECRET", properties.getProperty("naver_client_secret"))
             manifestPlaceholders["KAKAO_NATIVE_KEY"] = properties.getProperty("kakao_native_key")
         }
 
@@ -101,5 +103,6 @@ val properties = Properties().apply {
         implementation(libs.imagePicker)
         implementation(libs.tedPermission)
         implementation(libs.glide)
+        implementation(libs.naver.oauth)
 
 }

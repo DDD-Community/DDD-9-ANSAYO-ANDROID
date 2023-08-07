@@ -15,25 +15,26 @@ class KakaoUseCaseImpl @Inject constructor(
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
             UserApiClient.instance.loginWithKakaoTalk(context) { token, error ->
                 if (error != null) {
-                    Logger.d("카카오톡으로 로그인 실패 $error")
+                    Logger.e("카카오톡으로 로그인 실패 $error")
                 } else if (token != null) {
                     Logger.d("카카오톡으로 로그인 성공  ${token.accessToken}")
                 } else {
+                    Logger.e("유저동작 에러")
+
                     return@loginWithKakaoTalk
-                    Logger.d("유저동작 에러")
                 }
             }
 
         }else {
             UserApiClient.instance.loginWithKakaoAccount(context) { token, error ->
                 if (error != null) {
-                    Logger.d(" 로그인 실패 $error")
+                    Logger.e(" 로그인 실패 $error")
                 } else if (token != null) {
                     Logger.d("로그인 성공  ${token.accessToken}")
                 } else {
-                    return@loginWithKakaoAccount
-                    Logger.d("유저동작 에러")
+                    Logger.e("유저동작 에러")
 
+                    return@loginWithKakaoAccount
                 }
             }
         }
@@ -42,7 +43,7 @@ class KakaoUseCaseImpl @Inject constructor(
     override fun signOut() {
         UserApiClient.instance.logout { error ->
             if (error != null) {
-                Logger.d( "로그아웃 실패. SDK에서 토큰 삭제됨", error)
+                Logger.e( "로그아웃 실패. SDK에서 토큰 삭제됨", error)
             }
             else {
                 Logger.d("로그아웃 성공. SDK에서 토큰 삭제됨")
