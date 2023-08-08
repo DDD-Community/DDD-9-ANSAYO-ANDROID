@@ -22,4 +22,5 @@
 
     <!--  코스 작성하기 - 장소 검색하기  -->
     <string name="show_detail">상세보기</string>
+    <string name="show_details">상세보기</string>
 </resources>

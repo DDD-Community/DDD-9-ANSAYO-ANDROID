@@ -1,4 +1,4 @@
-package com.ddd.ansayo.core_design
+package com.ddd.ansayo.core_design.util
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.ddd.ansayo.core_design.R
 
 class DividerDecoration(
     context: Context,
