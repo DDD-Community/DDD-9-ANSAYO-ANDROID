@@ -25,7 +25,7 @@ class FavoritePlaceMutationHandler @Inject constructor(
                         if (it.placeId == action.id) it
                         else it
                     }
-                    emit(FavoritePlaceMutation.Mutation.UpdatePlaces(places))
+                    emit(FavoritePlaceMutation.Mutation.UpdateFavorite(places))
                 }
                 FavoritePlaceAction.ClickFindPlace -> {
                     emit(FavoritePlaceMutation.SideEffect.NaviToSearch)
