@@ -31,4 +31,9 @@
 
     <!--  이미지 뷰어  -->
     <string name="count_per_total_count">%d / %d</string>
+
+    <!--  내 기록  -->
+    <string name="my_record_write_guide_title">추억하고 싶은 코스가 있나요?</string>
+    <string name="my_record_write_guide_description">나의 발자취를 남겨 보세요.</string>
+    <string name="course_write">코스 기록하기</string>
 </resources>

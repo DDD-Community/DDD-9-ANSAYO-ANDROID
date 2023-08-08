@@ -4,7 +4,9 @@ import android.os.Bundle
 import com.ddd.ansayo.R
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
