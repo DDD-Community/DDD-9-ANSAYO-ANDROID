@@ -40,7 +40,12 @@ class FavoriteCourseMutationHandler @Inject constructor(
                             emit(FavoriteCourseMutation.SideEffect.ShowSnackBar(result.message))
                         }
                         is Response.Success -> {
-                            emit(FavoriteCourseMutation.Mutation.UpdateCourses(result.data))
+                            emit(
+                                FavoriteCourseMutation.Mutation.UpdateCourses(
+                                    courses = result.data,
+                                    hasFavorites = result.data.isNotEmpty()
+                                )
+                            )
                         }
                     }
                 }

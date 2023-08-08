@@ -39,7 +39,12 @@ class FavoritePlaceMutationHandler @Inject constructor(
                             emit(FavoritePlaceMutation.SideEffect.ShowSnackBar(result.message))
                         }
                         is Response.Success -> {
-                            emit(FavoritePlaceMutation.Mutation.UpdatePlaces(result.data))
+                            emit(
+                                FavoritePlaceMutation.Mutation.UpdatePlaces(
+                                    places = result.data,
+                                    hasFavorites = result.data.isNotEmpty()
+                                )
+                            )
                         }
                     }
                 }

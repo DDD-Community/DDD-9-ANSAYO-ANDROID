@@ -4,7 +4,7 @@ import com.ddd.ansayo.core_model.place.Place
 
 sealed class FavoritePlaceMutation {
     sealed class Mutation : FavoritePlaceMutation() {
-        data class UpdatePlaces(val places: List<Place>) : Mutation()
+        data class UpdatePlaces(val places: List<Place>, val hasFavorites: Boolean) : Mutation()
         data class UpdateFavorite(val places: List<Place>) : Mutation()
     }
 

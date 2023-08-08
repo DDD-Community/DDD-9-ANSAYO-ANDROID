@@ -4,7 +4,7 @@ import com.ddd.ansayo.domain.model.course.Course
 
 sealed class FavoriteCourseMutation {
     sealed class Mutation : FavoriteCourseMutation() {
-        data class UpdateCourses(val courses: List<Course>) : Mutation()
+        data class UpdateCourses(val courses: List<Course>, val hasFavorites: Boolean) : Mutation()
         data class UpdateFavorite(val courses: List<Course>) : Mutation()
     }
 
