@@ -14,6 +14,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":data"))
     implementation(project(":core-model"))
 
     testImplementation(libs.junit4)
@@ -29,4 +30,6 @@ dependencies {
         exclude(group = "com.android.support", module = "support-annotations")
     }
     implementation(libs.orbit.viewmodel)
+    implementation(libs.kakao.talk)
+    implementation(libs.kakao.user)
 }

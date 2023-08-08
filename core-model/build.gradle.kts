@@ -11,4 +11,6 @@ java {
 dependencies {
     implementation(libs.kotlin.native)
     implementation(libs.gson)
+    implementation(libs.kotlinx.serialization)
+
 }
