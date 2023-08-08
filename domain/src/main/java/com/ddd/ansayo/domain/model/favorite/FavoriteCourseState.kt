@@ -5,4 +5,11 @@ import com.ddd.ansayo.domain.model.course.Course
 data class FavoriteCourseState(
     val hasFavorites: Boolean,
     val courses: List<Course>
-)
+) {
+    companion object {
+        val EMPTY = FavoriteCourseState(
+            hasFavorites = true,
+            courses = emptyList()
+        )
+    }
+}
