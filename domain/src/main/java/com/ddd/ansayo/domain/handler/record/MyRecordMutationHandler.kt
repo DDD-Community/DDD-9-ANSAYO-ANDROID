@@ -26,6 +26,14 @@ class MyRecordMutationHandler @Inject constructor() {
                 MyRecordAction.SelectMyRecordTab -> {
                     emit(MyRecordMutation.Mutation.UpdateRecords(false, emptyList()))
                 }
+
+                is MyRecordAction.ClickCourse -> {
+                    emit(MyRecordMutation.SideEffect.NaviToCourseDetail(action.id))
+                }
+
+                MyRecordAction.CompleteCourseWrite -> {
+                    emit(MyRecordMutation.Mutation.UpdateRecords(false, emptyList()))
+                }
             }
         }
     }
