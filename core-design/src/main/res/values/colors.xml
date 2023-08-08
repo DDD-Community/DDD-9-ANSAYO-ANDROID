@@ -28,4 +28,7 @@
     <color name="N99">#FAFAFA</color>
     <color name="N100">#FFFFFF</color>
 
+    <!--Etc -->
+    <color name="transparent">#00FFFFFF</color>
+
 </resources>

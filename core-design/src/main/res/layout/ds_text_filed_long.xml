@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="view"
+            type="com.ddd.ansayo.core_design.util.textfiled.TextFiledShort" />
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_content"
+            style="@style/Text_B1"
+            android:layout_width="0dp"
+            android:layout_height="123dp"
+            android:maxLength="300"
+            android:gravity="start"
+            android:paddingTop="16dp"
+            android:paddingBottom="26dp"
+            android:textColorHint="@color/N70"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:background="@drawable/button_label_secondary_disabled"
+            android:textCursorDrawable="@drawable/ds_ggeco_cursor_default"
+            android:paddingStart="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:hint="코스에 대해서 간단히 설명해주세요."/>
+
+        <TextView
+            android:id="@+id/tv_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11dp"
+            android:textColor="@color/N60"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="0 / 0"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
