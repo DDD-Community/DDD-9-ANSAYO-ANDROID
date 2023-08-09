@@ -29,7 +29,6 @@ class BadgeDialog (
                 tvDate.text = contentsDate
                 Glide.with(context)
                     .load(image)
-                    .error(R.drawable.ic_tem_badge_error)
                     .into(ivBadge)
                 btnConfirm.apply {
                     text = button.first
