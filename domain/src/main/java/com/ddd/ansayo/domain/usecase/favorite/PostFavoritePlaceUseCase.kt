@@ -6,11 +6,11 @@ import com.ddd.ansayo.domain.repository.PlaceRepository
 import com.ddd.ansayo.domain.util.toResponse
 import javax.inject.Inject
 
-class GetFavoritePlacesUseCase @Inject constructor(
+class PostFavoritePlaceUseCase @Inject constructor(
     private val placeRepository: PlaceRepository
 ) {
 
-    suspend operator fun invoke() : Response<FavoritePlacesEntity.Response> {
-        return placeRepository.getFavoritePlaces().toResponse()
+    suspend operator fun invoke(id: String): Response<Unit> {
+        return placeRepository.postFavoritePlace(FavoritePlacesEntity.PostRequest(id)).toResponse()
     }
 }
