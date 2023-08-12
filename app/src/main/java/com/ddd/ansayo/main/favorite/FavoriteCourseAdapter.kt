@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.databinding.ItemFavoriteCourseBinding
-import com.ddd.ansayo.domain.model.course.Course
 import com.ddd.ansayo.util.ItemCallback
 
 class FavoriteCourseAdapter(
@@ -13,7 +13,7 @@ class FavoriteCourseAdapter(
     private val favoriteClickListener: (String, Boolean) -> Unit
 ) : ListAdapter<Course, FavoriteCourseAdapter.ViewHolder>(
     ItemCallback(
-        itemTheSame = { oldItem, newItem -> oldItem == newItem },
+        itemTheSame = { oldItem, newItem -> oldItem.id == newItem.id },
         contentsTheSame = { oldItem, newItem -> oldItem == newItem }
     )
 ) {
@@ -35,12 +35,12 @@ class FavoriteCourseAdapter(
 
         init {
             binding.root.setOnClickListener {
-                binding.course?.let { courseClickListener(it.toString()) }
+                binding.course?.let { courseClickListener(it.id) }
             }
 
             binding.ivFavorite.setOnClickListener {
                 binding.course?.let {
-                    favoriteClickListener(it.toString(), binding.ivFavorite.isSelected)
+                    favoriteClickListener(it.id, binding.ivFavorite.isSelected)
                 }
             }
         }
