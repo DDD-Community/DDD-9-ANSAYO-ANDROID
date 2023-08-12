@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <bitmap
+            android:tint="@color/orange_point"
+            android:src="@drawable/ic_navi_like_sel" />
+    </item>
+    <item android:state_selected="false">
+        <bitmap
+            android:tint="@color/N50"
+            android:src="@drawable/ic_navi_like_default" />
+    </item>
+</selector>
