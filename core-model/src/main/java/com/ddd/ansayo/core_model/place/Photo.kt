@@ -2,7 +2,7 @@ package com.ddd.ansayo.core_model.place
 
 import com.google.gson.annotations.SerializedName
 
-data class PlacePhoto(
+data class Photo(
     val height: Int,
     @SerializedName("html_attributions") val htmlAttributions: List<String>,
     @SerializedName("photo_path") val photoPath: String,
