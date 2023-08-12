@@ -76,9 +76,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tv_category"
             app:layout_constraintEnd_toStartOf="@id/tv_show_detail"
             app:layout_constraintStart_toEndOf="@id/iv_rating"
-            app:layout_constraintTop_toTopOf="@id/tv_category"
-            app:placeRating="@{place.rating}"
-            app:placeReviewCount="@{place.userRatingsTotal}" />
+            app:layout_constraintTop_toTopOf="@id/tv_category" />
 
         <TextView
             android:id="@+id/tv_show_detail"

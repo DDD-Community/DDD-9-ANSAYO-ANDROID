@@ -7,7 +7,7 @@
 
         <variable
             name="course"
-            type="com.ddd.ansayo.domain.model.course.Course" />
+            type="com.ddd.ansayo.core_model.course.Course" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

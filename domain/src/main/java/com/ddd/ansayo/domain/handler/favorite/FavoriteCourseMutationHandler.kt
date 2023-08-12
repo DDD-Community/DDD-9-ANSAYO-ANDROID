@@ -4,32 +4,51 @@ import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.domain.model.favorite.FavoriteCourseAction
 import com.ddd.ansayo.domain.model.favorite.FavoriteCourseMutation
 import com.ddd.ansayo.domain.model.favorite.FavoriteCourseState
+import com.ddd.ansayo.domain.usecase.favorite.DeleteFavoriteCourseUseCase
 import com.ddd.ansayo.domain.usecase.favorite.GetFavoriteCoursesUseCase
+import com.ddd.ansayo.domain.usecase.favorite.PostFavoriteCourseUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class FavoriteCourseMutationHandler @Inject constructor(
-    private val getFavoriteCoursesUseCase: GetFavoriteCoursesUseCase
+    private val getFavoriteCoursesUseCase: GetFavoriteCoursesUseCase,
+    private val postFavoriteCourseUseCase: PostFavoriteCourseUseCase,
+    private val deleteFavoriteCourseUseCase: DeleteFavoriteCourseUseCase
 ) {
 
     suspend fun mutate(
         state: FavoriteCourseState,
         action: FavoriteCourseAction
-    ) : Flow<FavoriteCourseMutation> {
+    ): Flow<FavoriteCourseMutation> {
         return flow {
             when (action) {
                 is FavoriteCourseAction.ClickCourse -> {
                     emit(FavoriteCourseMutation.SideEffect.NaviToCourseDetail(action.id))
                 }
+
                 is FavoriteCourseAction.ClickFavorite -> {
-                    // TODO()
-                    val courses = state.courses.map {
-                        if (it.todo.toString() == action.id) it
-                        else it
+                    when (val result =
+                        if (action.like) {
+                            deleteFavoriteCourseUseCase(action.id)
+                        } else {
+                            postFavoriteCourseUseCase(action.id)
+                        }
+                    ) {
+                        is Response.Success -> {
+                            val courses = state.courses.map {
+                                if (it.id == action.id) it.copy(isFavorite = action.like.not())
+                                else it
+                            }
+                            emit(FavoriteCourseMutation.Mutation.UpdateFavorite(courses))
+                        }
+
+                        is Response.Fail -> {
+                            emit(FavoriteCourseMutation.SideEffect.ShowSnackBar(result.message))
+                        }
                     }
-                    emit(FavoriteCourseMutation.Mutation.UpdateFavorite(courses))
                 }
+
                 FavoriteCourseAction.ClickFindCourse -> {
                     emit(FavoriteCourseMutation.SideEffect.NaviToSearch)
                 }
@@ -39,11 +58,12 @@ class FavoriteCourseMutationHandler @Inject constructor(
                         is Response.Fail -> {
                             emit(FavoriteCourseMutation.SideEffect.ShowSnackBar(result.message))
                         }
+
                         is Response.Success -> {
                             emit(
                                 FavoriteCourseMutation.Mutation.UpdateCourses(
-                                    courses = result.data,
-                                    hasFavorites = result.data.isNotEmpty()
+                                    courses = result.data.courses.orEmpty(),
+                                    hasFavorites = result.data.courses.isNullOrEmpty().not()
                                 )
                             )
                         }

@@ -6,11 +6,12 @@ import com.ddd.ansayo.domain.repository.CourseRepository
 import com.ddd.ansayo.domain.util.toResponse
 import javax.inject.Inject
 
-class GetFavoriteCoursesUseCase @Inject constructor(
+class PostFavoriteCourseUseCase @Inject constructor(
     private val courseRepository: CourseRepository
 ) {
 
-    suspend operator fun invoke() : Response<FavoriteCoursesEntity.Response> {
-        return courseRepository.getFavoriteCourses().toResponse()
+    suspend operator fun invoke(id: String): Response<Unit> {
+        return courseRepository.postFavoriteCourse(FavoriteCoursesEntity.PostRequest(id))
+            .toResponse()
     }
 }

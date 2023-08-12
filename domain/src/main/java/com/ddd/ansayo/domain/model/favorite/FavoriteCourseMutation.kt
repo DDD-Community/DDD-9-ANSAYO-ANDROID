@@ -1,6 +1,6 @@
 package com.ddd.ansayo.domain.model.favorite
 
-import com.ddd.ansayo.domain.model.course.Course
+import com.ddd.ansayo.core_model.course.Course
 
 sealed class FavoriteCourseMutation {
     sealed class Mutation : FavoriteCourseMutation() {
