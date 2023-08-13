@@ -1,9 +1,9 @@
 package com.ddd.ansayo.data.di
 
-import com.ddd.ansayo.data.repository.account.KakaoUseCaseImpl
-import com.ddd.ansayo.data.repository.account.NaverUseCaseImpl
-import com.example.domain.account.KakaoUseCase
-import com.example.domain.account.NaverUseCase
+import com.ddd.ansayo.data.repository.auth.KakaoUseCaseImpl
+import com.ddd.ansayo.data.repository.auth.NaverUseCaseImpl
+import com.ddd.ansayo.domain.usecase.login.KakaoUseCase
+import com.ddd.ansayo.domain.usecase.login.NaverUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

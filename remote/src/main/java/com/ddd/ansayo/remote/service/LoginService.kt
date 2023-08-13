@@ -1,14 +1,16 @@
 package com.ddd.ansayo.remote.service
 
-import com.ddd.ansayo.core_model.account.SocialSignInParam
-import com.ddd.ansayo.core_model.account.TokenInfoResponse
-import retrofit2.Response
+import com.ddd.ansayo.core_model.auth.AuthToken
+import com.ddd.ansayo.core_model.auth.TokenInfo
+import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface LoginService {
-    @POST("link/signin")
-    suspend fun signInWithSocial(@Body param: SocialSignInParam): Response<TokenInfoResponse>
+    @POST("app/auth/signin")
+    suspend fun signInWithSocial(
+        @Body param: TokenInfo
+    ): ApiResponse<AuthToken>
 
     @POST("user/signout")
     suspend fun signOut()

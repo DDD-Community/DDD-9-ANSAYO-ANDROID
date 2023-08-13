@@ -1,4 +1,4 @@
-package com.example.domain.account
+package com.ddd.ansayo.domain.usecase.login
 
 interface NaverUseCase {
 

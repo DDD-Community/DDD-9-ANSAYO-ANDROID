@@ -1,11 +1,10 @@
-package com.ddd.ansayo.data.repository.account
+package com.ddd.ansayo.data.repository.auth
 
 import android.content.Context
-import com.example.domain.account.KakaoUseCase
+import com.ddd.ansayo.domain.usecase.login.KakaoUseCase
 import com.kakao.sdk.user.UserApiClient
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.qualifiers.ActivityContext
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class KakaoUseCaseImpl @Inject constructor(
@@ -18,6 +17,7 @@ class KakaoUseCaseImpl @Inject constructor(
                     Logger.e("카카오톡으로 로그인 실패 $error")
                 } else if (token != null) {
                     Logger.d("카카오톡으로 로그인 성공  ${token.accessToken}")
+
                 } else {
                     Logger.e("유저동작 에러")
 

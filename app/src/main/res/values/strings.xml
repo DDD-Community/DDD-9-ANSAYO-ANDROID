@@ -5,6 +5,11 @@
     <string name="category">%s ∙ %s</string>
     <string name="rating">%d/5 (%d건)</string>
 
+    <!--  로그인  -->
+    <string name="login_title">깨코와 함께 동네 정복하기</string>
+    <string name="login_content">다른 사람에게 코스를 추천 받고\n나도 방문한 코스를 기록하고 추천할 수 있어요!</string>
+
+
     <!--  메인  -->
     <string name="home">홈</string>
     <string name="my_record">내 기록</string>

@@ -83,20 +83,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideIdentityApi(
-        okHttpClient: OkHttpClient,
-        converterFactory: Converter.Factory
-    ): LoginService {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.IDENTITY_BASE_URL)
-            .addConverterFactory(converterFactory)
-            .client(okHttpClient)
-            .build()
-            .create(LoginService::class.java)
-    }
-
-    @Provides
-    @Singleton
     fun providesRetrofitBuilder(): Retrofit.Builder {
         return Retrofit.Builder()
             .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
