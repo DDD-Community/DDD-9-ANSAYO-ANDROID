@@ -1,6 +1,8 @@
 package com.ddd.ansayo.presentation.viewmodel.login
 
+import android.media.session.MediaSession.Token
 import androidx.lifecycle.ViewModel
+import com.ddd.ansayo.core_model.auth.AuthToken
 import com.ddd.ansayo.core_model.auth.TokenInfo
 import com.ddd.ansayo.domain.handler.login.LoginMutationHandler
 import com.ddd.ansayo.domain.model.login.LoginAction
@@ -34,13 +36,17 @@ class LoginViewModel @Inject constructor(
         }
 
     private fun reduce(mutation: LoginMutation.Mutation) {
-//        intent {
-//            reduce {
-//                when(mutation) {
-//
-//                }
-//
-//            }
-//        }
+        intent {
+            reduce {
+                when(mutation) {
+                    is LoginMutation.Mutation.PostAuthToken -> {
+                        state.copy(
+                            AuthToken = mutation.tokenInfo.accessToken
+                        )
+                    }
+                }
+
+            }
+        }
     }
 }

@@ -1,8 +1,8 @@
 package com.ddd.ansayo.domain.model.login
 
 sealed class LoginAction {
-    object ClickKakaoLogin: LoginAction()
-    object ClickNaverLogin: LoginAction()
+    data class ClickKakaoLogin(val authToken: String): LoginAction()
+    data class ClickNaverLogin(val authToken: String): LoginAction()
 }
 
 

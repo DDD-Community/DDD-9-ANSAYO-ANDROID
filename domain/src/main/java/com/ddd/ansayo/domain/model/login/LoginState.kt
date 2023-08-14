@@ -3,11 +3,11 @@ package com.ddd.ansayo.domain.model.login
 import com.ddd.ansayo.core_model.auth.AuthToken
 
 data class LoginState(
-    val response: AuthToken
+    val AuthToken: String
 ) {
     companion object {
         val EMPTY = LoginState (
-            response = AuthToken(token = "")
+            AuthToken = ""
         )
     }
 }

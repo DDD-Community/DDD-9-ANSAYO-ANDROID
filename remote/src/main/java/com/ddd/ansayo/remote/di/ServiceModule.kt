@@ -10,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import javax.inject.Singleton
 
@@ -65,6 +66,7 @@ object ServiceModule {
     ): LoginService {
         return retrofitBuilder
             .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
             .create()
