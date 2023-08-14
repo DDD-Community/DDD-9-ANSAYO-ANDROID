@@ -6,6 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ddd.ansayo.base.BaseActivity
+import com.ddd.ansayo.core_design.util.snackbar.SnackBarLineMax
 import com.ddd.ansayo.data.repository.auth.KakaoUseCase
 import com.ddd.ansayo.data.repository.auth.NaverUseCase
 import com.ddd.ansayo.databinding.ActivityLoginBinding
@@ -72,9 +73,8 @@ class LoginActivity:
                 viewModel.container.sideEffectFlow.collect{
                     when(it) {
                         is LoginMutation.SideEffect.ShowSnackBar -> {
-                            Snackbar
-                                .make(binding.root, it.message , Snackbar.LENGTH_SHORT)
-                                .show()
+                            SnackBarLineMax(binding.root,it.message).show()
+                            Logger.e(it.message)
                         }
                         is LoginMutation.SideEffect.StartHomeSreen -> {
                             Logger.d("Login Post Auth !")
