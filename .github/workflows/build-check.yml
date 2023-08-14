@@ -2,8 +2,8 @@ name: Build Check
 
 on:
   pull_request:
-    types: [opened, synchronize]
-    branches: [main, develop]
+    types: [ opened, synchronize ]
+    branches: [ main, develop ]
 
 jobs:
   build_check:
@@ -14,6 +14,13 @@ jobs:
 
       - name: grant permission
         run: chmod +x gradlew
+
+      - name: create local.properties
+        env:
+          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
+        shell: bash
+        run: |
+          echo "${LOCAL_PROPERTIES}" > ./local.properties
 
       - name: build check
         shell: bash
