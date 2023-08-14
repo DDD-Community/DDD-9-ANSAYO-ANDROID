@@ -1,5 +1,6 @@
 package com.ddd.ansayo.data.repository.course
 
+import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.data.datasource.course.CourseRemoteDataSource
@@ -13,19 +14,19 @@ class CourseRepositoryImpl @Inject constructor(
     override suspend fun getUploadImageUrl(
         code: String,
         fileName: String
-    ): UploadImageUrlEntity {
+    ): Response<UploadImageUrlEntity> {
         return courseRemoteDataSource.getUploadImageUrl(code, fileName)
     }
 
-    override suspend fun getFavoriteCourses(): FavoriteCoursesEntity.Response {
+    override suspend fun getFavoriteCourses(): Response<FavoriteCoursesEntity.Response> {
         return courseRemoteDataSource.getFavoriteCourses()
     }
 
-    override suspend fun postFavoriteCourse(body: FavoriteCoursesEntity.PostRequest) {
+    override suspend fun postFavoriteCourse(body: FavoriteCoursesEntity.PostRequest): Response<Unit> {
         return courseRemoteDataSource.postFavoriteCourse(body)
     }
 
-    override suspend fun deleteFavoriteCourse(courseId: String) {
+    override suspend fun deleteFavoriteCourse(courseId: String): Response<Unit> {
         return courseRemoteDataSource.deleteFavoriteCourse(courseId)
     }
 }

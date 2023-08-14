@@ -1,10 +1,12 @@
-package com.ddd.ansayo.domain.util
+package com.ddd.ansayo.remote.util
 
 import com.ddd.ansayo.core_model.common.Response
+import com.skydoves.sandwich.ApiResponse
+import com.skydoves.sandwich.getOrThrow
 
-inline fun <reified T> T.toResponse(): Response<T> {
+inline fun <reified T> ApiResponse<T>.toResponse(): Response<T> {
     return runCatching {
-        this
+        this.getOrThrow()
     }.fold(
         onSuccess = {
             Response.Success(it)

@@ -16,7 +16,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ServiceModule {
 
-    private const val BASE_URL = "https://ggeco-api.azurewebsites.net/api/"
+    private const val BASE_URL = "https://ggeco-func.azurewebsites.net/"
 
     @Provides
     @Singleton

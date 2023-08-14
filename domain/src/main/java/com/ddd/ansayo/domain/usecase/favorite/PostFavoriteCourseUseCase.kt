@@ -3,7 +3,6 @@ package com.ddd.ansayo.domain.usecase.favorite
 import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
 import com.ddd.ansayo.domain.repository.CourseRepository
-import com.ddd.ansayo.domain.util.toResponse
 import javax.inject.Inject
 
 class PostFavoriteCourseUseCase @Inject constructor(
@@ -12,6 +11,5 @@ class PostFavoriteCourseUseCase @Inject constructor(
 
     suspend operator fun invoke(id: String): Response<Unit> {
         return courseRepository.postFavoriteCourse(FavoriteCoursesEntity.PostRequest(id))
-            .toResponse()
     }
 }
