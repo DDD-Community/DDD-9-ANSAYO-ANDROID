@@ -1,15 +1,11 @@
 package com.ddd.ansayo.data.repository.auth
 
 import android.content.Context
-import android.content.Intent
-import com.ddd.ansayo.core_model.auth.model.User
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.orhanobut.logger.Logger
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 class KakaoUseCase(
     private val context: Context,

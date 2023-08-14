@@ -21,36 +21,33 @@ class LoginMutationHandler @Inject constructor(
         return flow {
             when(action) {
                 is LoginAction.ClickKakaoLogin -> {
-                    when(val result = socialLoginUseCase.invoke(
-                        token = state.AuthToken,
-                        kakaoAccount = true,
-                        naverAccount = false
-                    )) {
-                        is Response.Success -> LoginMutation.SideEffect.StartHomeSreen
-                        is Response.Fail -> LoginMutation.SideEffect.ShowSnackBar(result.message)
+                  when(val result = socialLoginUseCase(
+                      TokenInfo(
+                          accessToken = action.authToken,
+                          kakaoAccount = true,
+                          naverAccount = false
+                      )
+                  )) {
+                      is Response.Fail -> LoginMutation.SideEffect.ShowSnackBar(result.message)
+                      is Response.Success -> LoginMutation.SideEffect.StartHomeSreen
+                  }
 
-                    }
-                    flowOf(
-                        LoginMutation.Mutation.PostAuthToken(
-                            TokenInfo(
-                                accessToken = action.authToken,
-                                kakaoAccount = true,
-                                naverAccount = false
-                            )
-                        )
-                    )
                 }
                 is LoginAction.ClickNaverLogin -> {
-                    flowOf(
-                        LoginMutation.Mutation.PostAuthToken(
-                            TokenInfo(
-                                accessToken = action.authToken,
-                                kakaoAccount = false,
-                                naverAccount = true
-                            )
+                    when(val result = socialLoginUseCase(
+                        TokenInfo(
+                            accessToken = action.authToken,
+                            kakaoAccount = false,
+                            naverAccount = true
                         )
-                    )
-
+                    )) {
+                        is Response.Fail -> {
+                            emit(LoginMutation.SideEffect.ShowSnackBar(result.message))
+                        }
+                        is Response.Success -> {
+                            emit(LoginMutation.SideEffect.StartHomeSreen)
+                        }
+                    }
                 }
             }
         }

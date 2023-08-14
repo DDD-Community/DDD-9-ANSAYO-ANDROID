@@ -7,12 +7,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.data.repository.auth.KakaoUseCase
+import com.ddd.ansayo.data.repository.auth.NaverUseCase
 import com.ddd.ansayo.databinding.ActivityLoginBinding
 import com.ddd.ansayo.domain.model.login.LoginAction
 import com.ddd.ansayo.domain.model.login.LoginMutation
+import com.ddd.ansayo.local.preference.PreferenceUtil
 import com.ddd.ansayo.presentation.viewmodel.login.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
-import com.kakao.sdk.common.util.Utility
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -29,20 +30,27 @@ class LoginActivity:
         initView()
         collectState()
         collectSideEffect()
-        var keyHash = Utility.getKeyHash(this)
-        Logger.e(keyHash)
     }
 
     private fun initView() {
         val kakaoLogin = KakaoUseCase(this)  { oAuthToken, throwable ->
             viewModel.onAction(LoginAction.ClickKakaoLogin(oAuthToken!!.accessToken))
-            Logger.d( oAuthToken?.accessToken.toString())
-            Logger.d( throwable?.message)
+            PreferenceUtil(this@LoginActivity).setAuthToken("authToken", oAuthToken.accessToken)
+            Logger.d( " kakao token: ${oAuthToken?.accessToken.toString()} or fail : $throwable")
+        }
+        val naverLogin = NaverUseCase(this) { token, throwable ->
+            viewModel.onAction(LoginAction.ClickNaverLogin(token!!))
+            PreferenceUtil(this@LoginActivity).setAuthToken("authToken", token)
+            Logger.d( "naver token: $token or fail : $throwable")
+
 
         }
         binding.run {
             btnLoginKakao.setOnClickListener {
                kakaoLogin.getAccessToken()
+            }
+            binding.btnLoginNaver.setOnClickListener {
+                 naverLogin.getAccessToken()
             }
         }
     }

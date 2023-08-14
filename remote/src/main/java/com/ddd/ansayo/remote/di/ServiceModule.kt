@@ -22,6 +22,19 @@ object ServiceModule {
 
     @Provides
     @Singleton
+    fun providesLoginService(
+        retrofitBuilder: Retrofit.Builder,
+        @AuthClient okHttpClient: OkHttpClient
+    ): LoginService {
+        return retrofitBuilder
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .build()
+            .create()
+    }
+
+    @Provides
+    @Singleton
     fun providesCourseService(
         retrofitBuilder: Retrofit.Builder,
         @AuthClient okHttpClient: OkHttpClient
@@ -58,17 +71,4 @@ object ServiceModule {
             .create()
     }
 
-    @Provides
-    @Singleton
-    fun providesLoginService(
-        retrofitBuilder: Retrofit.Builder,
-        @AuthClient okHttpClient: OkHttpClient
-    ): LoginService {
-        return retrofitBuilder
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-            .create()
-    }
 }
