@@ -1,4 +1,7 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
+
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -6,12 +9,16 @@ plugins {
     alias(libs.plugins.hilt)
 }
 
+val localProperties = Properties()
+localProperties.load(project.rootProject.file("local.properties").inputStream())
+
 android {
     namespace = "com.ddd.ansayo.remote"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        buildConfigField("String", "IDENTITY_BASE_URL", "\"https://ggoco.com\"")
+
+        buildConfigField("String", "X_FUNCTION_KEY", localProperties.getProperty("x_function_key"))
     }
 }
 

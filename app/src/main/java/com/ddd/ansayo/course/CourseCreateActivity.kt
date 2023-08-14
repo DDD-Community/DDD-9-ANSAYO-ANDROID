@@ -1,6 +1,8 @@
 package com.ddd.ansayo.course
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
@@ -204,6 +206,12 @@ class CourseCreateActivity :
                     }
                 }
             }
+        }
+    }
+
+    companion object {
+        fun getIntent(context: Context) : Intent {
+            return Intent(context, CourseCreateActivity::class.java)
         }
     }
 }

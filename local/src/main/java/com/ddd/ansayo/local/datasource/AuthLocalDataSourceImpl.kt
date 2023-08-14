@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 class AuthLocalDataSourceImpl @Inject constructor(): AuthLocalDataSource {
     override val authToken: String
-        get() = TODO("Not yet implemented")
+        get() = ""
 }

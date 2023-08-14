@@ -15,7 +15,6 @@ dependencies {
     implementation(project(":domain"))
 
     implementation(project(":core-model"))
-    implementation(project(":core-design"))
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
     implementation(libs.kotlinx.coroutines.android)

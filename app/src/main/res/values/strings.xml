@@ -4,6 +4,8 @@
     <!--  공통  -->
     <string name="category">%s ∙ %s</string>
     <string name="rating">%d/5 (%d건)</string>
+    <string name="course">코스</string>
+    <string name="place">장소</string>
 
     <!--  로그인  -->
     <string name="login_title">깨코와 함께 동네 정복하기</string>
@@ -36,4 +38,18 @@
 
     <!--  이미지 뷰어  -->
     <string name="count_per_total_count">%d / %d</string>
+
+    <!--  내 기록  -->
+    <string name="my_record_write_guide_title">추억하고 싶은 코스가 있나요?</string>
+    <string name="my_record_write_guide_description">나의 발자취를 남겨 보세요.</string>
+    <string name="course_write">코스 기록하기</string>
+
+    <!--  관심 목록  -->
+    <string name="no_favorite_course_title"><![CDATA[관심 목록에 <font color="#F37704">찜한 코스</font>가 없어요]]></string>
+    <string name="no_favorite_course_description">깨고 싶은 코스에 하트를 눌러주세요!</string>
+    <string name="no_favorite_place_title"><![CDATA[관심 목록에 <font color="#F37704">찜한 장소</font>가 없어요]]></string>
+    <string name="no_favorite_place_description">깨고 싶은 장소에 하트를 눌러주세요!</string>
+    <string name="find_course">코스 발견하기</string>
+    <string name="find_place">장소 발견하기</string>
+
 </resources>

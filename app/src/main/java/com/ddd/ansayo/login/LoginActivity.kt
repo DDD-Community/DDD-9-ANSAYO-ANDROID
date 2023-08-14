@@ -1,7 +1,6 @@
 package com.ddd.ansayo.login
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -11,15 +10,11 @@ import com.ddd.ansayo.data.repository.auth.KakaoUseCase
 import com.ddd.ansayo.databinding.ActivityLoginBinding
 import com.ddd.ansayo.domain.model.login.LoginAction
 import com.ddd.ansayo.domain.model.login.LoginMutation
-import com.ddd.ansayo.domain.util.toResponse
-import com.ddd.ansayo.local.preference.PreferenceUtil
 import com.ddd.ansayo.presentation.viewmodel.login.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.kakao.sdk.common.util.Utility
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

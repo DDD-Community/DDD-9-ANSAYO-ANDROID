@@ -1,6 +1,7 @@
 package com.ddd.ansayo.data.repository.auth
 
 import com.ddd.ansayo.core_model.auth.AuthToken
+import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.data.datasource.auth.AuthRemoteDataSource
 import com.ddd.ansayo.domain.repository.AuthRepository
 import javax.inject.Inject
@@ -12,7 +13,7 @@ class AuthRepositoryImpl @Inject constructor(
         token: String,
         kakaoAccount: Boolean,
         naverAccount: Boolean
-    ): AuthToken {
+    ): Response<AuthToken> {
 
        return authRemoteDataSource.signInWithSocial(token, kakaoAccount, naverAccount)
     }
