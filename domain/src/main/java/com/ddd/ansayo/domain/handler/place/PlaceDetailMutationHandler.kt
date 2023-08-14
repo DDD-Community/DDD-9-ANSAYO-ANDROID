@@ -33,6 +33,7 @@ class PlaceDetailMutationHandler @Inject constructor(
                 }
 
                 is PlaceDetailAction.ClickFavorite -> {
+                    if (state.placeDetail == null) return@flow
                     when (val result =
                         if (action.like) {
                             deleteFavoritePlaceUseCase(state.placeDetail.place.placeId)
