@@ -5,5 +5,4 @@ import com.ddd.ansayo.core_model.search.SearchPlaceEntity
 
 interface PlaceSearchRepository {
     suspend fun getPlaceCourse(): Response<SearchPlaceEntity.Response>
-
 }

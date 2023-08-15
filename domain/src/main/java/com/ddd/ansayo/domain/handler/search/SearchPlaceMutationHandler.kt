@@ -11,7 +11,6 @@ import javax.inject.Inject
 class SearchPlaceMutationHandler @Inject constructor(
     private val getSearchPlaceUseCase: GetSearchPlaceUseCase
 ) {
-
     suspend fun mutate(
         state: SearchPlaceMutation,
         action: SearchPlaceAction

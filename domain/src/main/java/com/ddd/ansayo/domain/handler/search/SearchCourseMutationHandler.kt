@@ -11,7 +11,6 @@ import javax.inject.Inject
 class SearchCourseMutationHandler @Inject constructor(
     private val getSearchCoursesUseCase: GetSearchCoursesUseCase
 ) {
-
     suspend fun mutate(
         state: SearchCourseMutation,
         action: SearchCourseAction
