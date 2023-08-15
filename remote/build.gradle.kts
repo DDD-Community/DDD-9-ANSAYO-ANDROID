@@ -17,14 +17,12 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-
         buildConfigField("String", "X_FUNCTION_KEY", localProperties.getProperty("x_function_key"))
     }
 }
 
 dependencies {
     implementation(project(":data"))
-    implementation(project(":local"))
     implementation(project(":core-model"))
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
