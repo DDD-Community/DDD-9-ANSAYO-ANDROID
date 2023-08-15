@@ -1,3 +1,13 @@
 package com.ddd.ansayo.domain.model.search
 
-data class SearchCourseState()
+import com.ddd.ansayo.domain.model.course.Course
+
+data class SearchCourseState(
+    val courses: List<Course>
+) {
+    companion object {
+        val EMPTY = SearchCourseState(
+            courses = emptyList()
+        )
+    }
+}

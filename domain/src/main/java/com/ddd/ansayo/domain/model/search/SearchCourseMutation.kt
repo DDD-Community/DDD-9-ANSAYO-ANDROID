@@ -11,7 +11,7 @@ sealed class SearchCourseMutation {
     }
 
     sealed class SideEffect: SearchCourseMutation() {
-
+        object StartCourseRecord : SideEffect()
         data class StartCourseDetail(val id: String): SideEffect()
     }
 }
