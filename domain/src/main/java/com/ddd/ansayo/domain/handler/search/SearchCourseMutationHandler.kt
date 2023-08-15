@@ -6,6 +6,7 @@ import com.ddd.ansayo.domain.model.search.SearchCourseMutation
 import com.ddd.ansayo.domain.usecase.search.GetSearchCoursesUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class SearchCourseMutationHandler @Inject constructor(
@@ -17,14 +18,20 @@ class SearchCourseMutationHandler @Inject constructor(
     ): Flow<SearchCourseMutation> {
         return flow {
             when(action) {
-                is SearchCourseAction.ClickCourse -> {
+                is SearchCourseAction.InputPlaceSearchWord -> {
+                    flowOf(
+                        SearchCourseMutation.Mutation.UpdateSearchWord(
+                            word = action.text
+                        )
+                    )
+                }
+                is SearchCourseAction.ClickCourseList -> {
                     emit(SearchCourseMutation.SideEffect.StartCourseDetail(action.id))
                 }
                 is SearchCourseAction.ClickRecordCourse -> {
                     emit(SearchCourseMutation.SideEffect.StartCourseRecord)
-
                 }
-                is SearchCourseAction.SelectSearchListTab -> {
+                is SearchCourseAction.ClickSearch -> {
                     when(val result = getSearchCoursesUseCase()) {
                         is Response.Fail -> {
 
@@ -37,6 +44,12 @@ class SearchCourseMutationHandler @Inject constructor(
                             )
                         }
                     }
+                }
+                is SearchCourseAction.SelectSearchListTab -> {
+                    flowOf(SearchCourseMutation.SideEffect.NavToPlace)
+                }
+                is SearchCourseAction.ClickBackButton -> {
+                    flowOf(SearchCourseMutation.SideEffect.BackScreen)
                 }
             }
         }
