@@ -25,4 +25,5 @@ abstract class RemoteDataSourceModule {
     abstract fun bindsPlaceRemoteDataSource(
         placeRemoteDataSourceImpl: PlaceRemoteDataSourceImpl
     ): PlaceRemoteDataSource
+
 }

@@ -1,7 +1,9 @@
 package com.ddd.ansayo.remote.di
 
+import com.ddd.ansayo.remote.BuildConfig
 import com.ddd.ansayo.remote.interceptor.AuthHeaderInterceptor
 import com.ddd.ansayo.remote.interceptor.TokenAuthenticator
+import com.ddd.ansayo.remote.service.LoginService
 import com.orhanobut.logger.Logger
 import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
@@ -10,6 +12,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
