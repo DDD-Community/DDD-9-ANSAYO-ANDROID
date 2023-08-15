@@ -29,7 +29,6 @@ class LoginActivity:
         super.onCreate(savedInstanceState)
 
         initView()
-        collectState()
         collectSideEffect()
     }
 
@@ -37,36 +36,21 @@ class LoginActivity:
         val kakaoLogin = KakaoUseCase(this)  { oAuthToken, throwable ->
             viewModel.onAction(LoginAction.ClickKakaoLogin(oAuthToken!!.accessToken))
             PreferenceUtil(this@LoginActivity).setAuthToken("authToken", oAuthToken.accessToken)
-            Logger.d( " kakao token: ${oAuthToken?.accessToken.toString()} or fail : $throwable")
         }
         val naverLogin = NaverUseCase(this) { token, throwable ->
             viewModel.onAction(LoginAction.ClickNaverLogin(token!!))
             PreferenceUtil(this@LoginActivity).setAuthToken("authToken", token)
-            Logger.d( "naver token: $token or fail : $throwable")
-
-
         }
+
         binding.run {
             btnLoginKakao.setOnClickListener {
                kakaoLogin.getAccessToken()
             }
             binding.btnLoginNaver.setOnClickListener {
-                 naverLogin.getAccessToken()
+               naverLogin.getAccessToken()
             }
         }
     }
-
-    private fun collectState() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-
-
-                }
-            }
-        }
-    }
-
     private fun collectSideEffect() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -77,7 +61,6 @@ class LoginActivity:
                             Logger.e(it.message)
                         }
                         is LoginMutation.SideEffect.StartHomeSreen -> {
-                            Logger.d("Login Post Auth !")
 
                         }
 
