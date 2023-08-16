@@ -3,6 +3,7 @@ package com.ddd.ansayo.domain.handler.search
 import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.domain.model.search.SearchCourseAction
 import com.ddd.ansayo.domain.model.search.SearchCourseMutation
+import com.ddd.ansayo.domain.model.search.SearchCourseState
 import com.ddd.ansayo.domain.usecase.search.GetSearchCoursesUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,7 +14,7 @@ class SearchCourseMutationHandler @Inject constructor(
     private val getSearchCoursesUseCase: GetSearchCoursesUseCase
 ) {
     suspend fun mutate(
-        state: SearchCourseMutation,
+        state: SearchCourseState,
         action: SearchCourseAction
     ): Flow<SearchCourseMutation> {
         return flow {
