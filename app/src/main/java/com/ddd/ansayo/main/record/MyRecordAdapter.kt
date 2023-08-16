@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.ddd.ansayo.common.CourseViewHolder
+import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.databinding.ItemCourseBinding
-import com.ddd.ansayo.domain.model.course.Course
 import com.ddd.ansayo.util.ItemCallback
 
 class MyRecordAdapter(

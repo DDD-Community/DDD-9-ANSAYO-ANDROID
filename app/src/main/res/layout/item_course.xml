@@ -7,13 +7,12 @@
 
         <variable
             name="course"
-            type="com.ddd.ansayo.domain.model.course.Course" />
+            type="com.ddd.ansayo.core_model.course.Course" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="120dp">
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_image"
