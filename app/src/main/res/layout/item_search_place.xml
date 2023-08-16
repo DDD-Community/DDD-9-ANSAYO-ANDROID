@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="place"
+            type="com.ddd.ansayo.core_model.place.Place" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageView
+            android:id="@+id/iv_thumbnail"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_place_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:textAppearance="@style/Text_H4"
+            android:textColor="@color/N10"
+            app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="소디스에스프레소바" />
+
+        <TextView
+            android:id="@+id/tv_place_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="7dp"
+            android:textAppearance="@style/Text_B3"
+            android:textColor="@color/N40"
+            app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/tv_place_title"
+            tools:text="관관악구 ∙ 카페" />
+
+        <ImageView
+            android:id="@+id/iv_rating"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_star_gray"
+            app:layout_constraintBottom_toBottomOf="@id/tv_place_location"
+            app:layout_constraintStart_toEndOf="@id/tv_place_location"
+            app:layout_constraintTop_toTopOf="@id/tv_place_location" />
+
+        <TextView
+            android:id="@+id/tv_place_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:textAppearance="@style/Text_B3"
+            android:textColor="@color/N40"
+            app:layout_constraintBottom_toBottomOf="@id/tv_place_location"
+            app:layout_constraintStart_toEndOf="@id/iv_rating"
+            app:layout_constraintTop_toTopOf="@id/tv_place_location"
+            tools:text="4.0/5" />
+
+        <TextView
+            android:id="@+id/tv_place_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:textAppearance="@style/Text_B3"
+            android:textColor="@color/N40"
+            app:layout_constraintBottom_toBottomOf="@id/tv_place_location"
+            app:layout_constraintStart_toEndOf="@id/tv_place_rating"
+            app:layout_constraintTop_toTopOf="@id/tv_place_location"
+            tools:text="(1,200건)" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
