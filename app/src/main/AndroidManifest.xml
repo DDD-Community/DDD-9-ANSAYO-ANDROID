@@ -25,7 +25,7 @@
         android:theme="@style/Theme.DDD9ANSAYOANDROID"
         tools:targetApi="31">
         <activity
-            android:name=".main.MainActivity"
+            android:name=".login.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -46,9 +46,14 @@
 
                 <data
                     android:host="oauth"
-                    android:scheme="${KAKAO_NATIVE_KEY}" />
+                    android:scheme="${KAKAO_SCHEME}" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".main.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".course.CourseCreateActivity"

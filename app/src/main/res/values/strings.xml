@@ -7,6 +7,11 @@
     <string name="course">코스</string>
     <string name="place">장소</string>
 
+    <!--  로그인  -->
+    <string name="login_title">깨코와 함께 동네 정복하기</string>
+    <string name="login_content">다른 사람에게 코스를 추천 받고\n나도 방문한 코스를 기록하고 추천할 수 있어요!</string>
+
+
     <!--  메인  -->
     <string name="home">홈</string>
     <string name="my_record">내 기록</string>
@@ -46,4 +51,5 @@
     <string name="no_favorite_place_description">깨고 싶은 장소에 하트를 눌러주세요!</string>
     <string name="find_course">코스 발견하기</string>
     <string name="find_place">장소 발견하기</string>
+
 </resources>

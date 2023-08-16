@@ -24,7 +24,9 @@ val properties = Properties().apply {
 
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             buildConfigField("String", "KAKAO_NATIVE_KEY", properties.getProperty("kakao_native_key"))
-            manifestPlaceholders["KAKAO_NATIVE_KEY"] = properties.getProperty("kakao_native_key")
+            buildConfigField("String", "NAVER_CLIENT_ID", properties.getProperty("naver_client_id"))
+            buildConfigField("String", "NAVER_CLIENT_SECRET", properties.getProperty("naver_client_secret"))
+            manifestPlaceholders["KAKAO_SCHEME"] = properties.getProperty("kakao_scheme")
         }
 
         configurations {
@@ -35,6 +37,8 @@ val properties = Properties().apply {
             release {
                 isDebuggable = false
                 isMinifyEnabled = true
+                manifestPlaceholders["KAKAO_SCHEME"] = properties.getProperty("kakao_scheme")
+
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
@@ -44,6 +48,8 @@ val properties = Properties().apply {
             debug {
                 isDebuggable = true
                 isMinifyEnabled = false
+                manifestPlaceholders["KAKAO_SCHEME"] = properties.getProperty("kakao_scheme")
+
             }
         }
 
@@ -101,5 +107,6 @@ val properties = Properties().apply {
         implementation(libs.imagePicker)
         implementation(libs.tedPermission)
         implementation(libs.glide)
+        implementation(libs.naver.oauth)
 
 }

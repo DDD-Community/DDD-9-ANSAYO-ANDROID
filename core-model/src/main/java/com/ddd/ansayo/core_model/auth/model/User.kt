@@ -1,4 +1,4 @@
-package com.ddd.ansayo.core_model.account.model
+package com.ddd.ansayo.core_model.auth.model
 
 import java.util.Date
 
