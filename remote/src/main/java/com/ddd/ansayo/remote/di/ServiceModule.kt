@@ -2,6 +2,7 @@ package com.ddd.ansayo.remote.di
 
 import com.ddd.ansayo.remote.service.CourseService
 import com.ddd.ansayo.remote.service.FileService
+import com.ddd.ansayo.remote.service.LoginService
 import com.ddd.ansayo.remote.service.PlaceService
 import dagger.Module
 import dagger.Provides
@@ -9,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import javax.inject.Singleton
 
@@ -17,6 +19,19 @@ import javax.inject.Singleton
 object ServiceModule {
 
     private const val BASE_URL = "https://ggeco-func.azurewebsites.net/"
+
+    @Provides
+    @Singleton
+    fun providesLoginService(
+        retrofitBuilder: Retrofit.Builder,
+        @AuthClient okHttpClient: OkHttpClient
+    ): LoginService {
+        return retrofitBuilder
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .build()
+            .create()
+    }
 
     @Provides
     @Singleton
@@ -55,4 +70,5 @@ object ServiceModule {
             .build()
             .create()
     }
+
 }
