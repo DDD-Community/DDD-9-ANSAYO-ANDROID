@@ -6,4 +6,5 @@ object Constant {
     const val SELECT_FAVORITE_TAB = "SELECT_FAVORITE_TAB"
     const val FETCH_FAVORITE_COURSE = "FETCH_FAVORITE_COURSE"
     const val FETCH_FAVORITE_PLACE = "FETCH_FAVORITE_PLACE"
+    const val PLACE_ID = "PLACE_ID"
 }

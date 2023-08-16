@@ -2,5 +2,5 @@
 
     <!--Design System-->
     <string name="text_filed_length">%1$d / %2$d</string>
-
+    <string name="review_count">(%d)건</string>
 </resources>

@@ -11,6 +11,7 @@ data class Place(
     val phone: String,
     val photos: List<Photo>,
     @SerializedName("place_id") val placeId: String,
+    val rating: Float,
     val reviews: List<Review>,
     val types: List<String>,
     @SerializedName("is_favorite") val isFavorite: Boolean

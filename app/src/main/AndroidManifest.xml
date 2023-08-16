@@ -45,6 +45,10 @@
             android:name=".image.ImageViewerActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".place.PlaceDetailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
