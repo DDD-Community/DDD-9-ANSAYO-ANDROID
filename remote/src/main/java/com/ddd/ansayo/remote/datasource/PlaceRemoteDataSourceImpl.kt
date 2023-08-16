@@ -3,6 +3,7 @@ package com.ddd.ansayo.remote.datasource
 import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.place.FavoritePlacesEntity
 import com.ddd.ansayo.core_model.place.Place
+import com.ddd.ansayo.core_model.place.SearchPlaceEntity
 import com.ddd.ansayo.data.datasource.place.PlaceRemoteDataSource
 import com.ddd.ansayo.remote.service.PlaceService
 import com.ddd.ansayo.remote.util.toResponse
@@ -26,5 +27,9 @@ class PlaceRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun deleteFavoritePlace(placeId: String): Response<Unit> {
         return placeService.deleteFavoritePlace(placeId).toResponse()
+    }
+
+    override suspend fun getSearchPlace(query: String): Response<SearchPlaceEntity> {
+        return placeService.getSearchCourse(query).toResponse()
     }
 }
