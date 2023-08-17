@@ -46,4 +46,5 @@
     <string name="no_favorite_place_description">깨고 싶은 장소에 하트를 눌러주세요!</string>
     <string name="find_course">코스 발견하기</string>
     <string name="find_place">장소 발견하기</string>
+    <string name="input_search_keyword">검색해 주세요.</string>
 </resources>
