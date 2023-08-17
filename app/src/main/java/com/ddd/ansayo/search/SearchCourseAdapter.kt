@@ -18,20 +18,25 @@ class SearchCourseAdapter(
     )
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemSearchCourseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemSearchCourseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding, courseClickListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
+
     class ViewHolder(
         private val binding: ItemSearchCourseBinding,
         private val courseClickListener: (String) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
-
+            binding.root.setOnClickListener {
+                binding.course?.let { courseClickListener(it.id) }
+            }
         }
+
         fun onBind(item: Course) {
             binding.course = item
         }

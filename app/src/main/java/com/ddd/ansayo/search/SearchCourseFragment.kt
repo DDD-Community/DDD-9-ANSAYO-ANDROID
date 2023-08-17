@@ -75,17 +75,13 @@ class SearchCourseFragment :
                         is SearchCourseMutation.SideEffect.NavToPlace -> {
 
                         }
-
-                        is SearchCourseMutation.SideEffect.StartCourseRecord -> {
-
-                        }
                         is SearchCourseMutation.SideEffect.StartCourseDetail -> {
 
                         }
-                        is SearchCourseMutation.SideEffect.BackScreen -> {
+                        is SearchCourseMutation.SideEffect.StartCourseRecord -> {
 
                         }
-                        else -> {
+                        is SearchCourseMutation.SideEffect.BackScreen -> {
 
                         }
                     }

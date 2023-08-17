@@ -12,7 +12,7 @@ class SearchPlaceAdapter (
     private val placeClickListener: (String) -> Unit
 ) : ListAdapter<Place, SearchPlaceAdapter.ViewHolder>(
     ItemCallback(
-        itemTheSame = { oldItem, newItem -> oldItem == newItem },
+        itemTheSame = { oldItem, newItem -> oldItem.placeId == newItem.placeId },
         contentsTheSame = { oldItem, newItem -> oldItem == newItem }
     )
 ) {
@@ -29,6 +29,9 @@ class SearchPlaceAdapter (
         private val placeClickListener: (String) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
+            binding.root.setOnClickListener {
+                binding.place?.let { placeClickListener(it.placeId) }
+            }
 
         }
         fun onBind(item: Place) {

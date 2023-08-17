@@ -78,10 +78,6 @@ class SearchPlaceFragment :
                         is SearchPlaceMutation.SideEffect.NavToCourse -> {
 
                         }
-                        else ->{
-
-                        }
-
                     }
                 }
             }

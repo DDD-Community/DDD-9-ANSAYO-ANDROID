@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="120dp">
         
         <ImageView
             android:id="@+id/iv_thumbnail"
@@ -20,7 +20,8 @@
             android:layout_marginVertical="16dp"
             android:layout_marginStart="16dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@color/orange_point"/>
 
         <TextView
             android:id="@+id/tv_course_title"
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/Text_H4"
             android:textColor="@color/N10"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="26dp"
             android:layout_marginStart="12dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
@@ -41,7 +42,7 @@
             android:textAppearance="@style/Text_B3"
             android:textColor="@color/N40"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintTop_toBottomOf="@id/tv_course_title"
             app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
             tools:text="관악구 ∙ 일식"/>
@@ -97,7 +98,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/Text_B2"
             android:textColor="@color/N40"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:layout_marginStart="12dp"
             app:layout_constraintTop_toBottomOf="@id/tv_course_location"
             app:layout_constraintStart_toEndOf="@id/iv_thumbnail"

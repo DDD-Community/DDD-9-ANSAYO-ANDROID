@@ -10,7 +10,6 @@ sealed class SearchPlaceMutation {
     sealed class SideEffect: SearchPlaceMutation() {
         object BackScreen: SideEffect()
         object NavToCourse: SideEffect()
-        object ShowSearchResultEmpty: SideEffect()
         data class StartPlaceDetail(val id: String): SideEffect()
     }
 }
