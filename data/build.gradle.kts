@@ -13,10 +13,14 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+
     implementation(project(":core-model"))
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kakao.talk)
+    implementation(libs.kakao.user)
+    implementation(libs.naver.oauth)
     implementation(libs.logger) {
         exclude(group = "com.android.support", module = "support-annotations")
     }

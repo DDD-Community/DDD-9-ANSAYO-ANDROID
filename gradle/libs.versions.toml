@@ -11,6 +11,7 @@ androidxRecyclerView = "1.2.1"
 hilt = "2.44"
 javax = "1"
 kotlin = "1.8.10"
+kotlinx = "1.5.1"
 kotlinxCoroutines = "1.6.4"
 retrofit = "2.9.0"
 okhttp = "4.10.0"
@@ -18,6 +19,13 @@ sandwich = "1.3.7"
 room = "2.5.0"
 logger = "2.2.0"
 orbit = "6.0.0"
+kakao = "2.14.0"
+serialization = "1.9.0"
+google = "2.8.6"
+androidxDataStore = "1.0.0"
+navercorp = "5.7.0"
+
+
 gson = "2.10.1"
 imagePicker = "3.0.0"
 tedPermission = "3.3.0"
@@ -58,10 +66,17 @@ fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref
 logger = { group = "com.orhanobut", name = "logger", version.ref = "logger" }
 sandwich = { group = "com.github.skydoves", name = "sandwich", version.ref = "sandwich" }
 orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit" }
+kakao-user = { group = "com.kakao.sdk", name = "v2-user", version.ref = "kakao" }
+kakao-talk = { group = "com.kakao.sdk", name = "v2-talk", version.ref = "kakao" }
+naver-oauth = { group = "com.navercorp.nid", name = "oauth-jdk8", version.ref = "navercorp" }
+kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx" }
+androidx-datastore = { group= "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore"}
+google-gson = { group= "com.google.code.gson", name = "gson", version.ref = "google"}
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 imagePicker = { module = "com.github.esafirm:android-image-picker", version.ref = "imagePicker" }
 tedPermission = { module = "io.github.ParkSangGwon:tedpermission-coroutine", version.ref = "tedPermission" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+
 
 # Test
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
@@ -80,8 +95,13 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization" }
+
+
 
 [bundles]
 okhttp = ["okhttp-core", "okhttp-logging-interceptor"]
 retrofit = ["retrofit-core", "retrofit-converter-gson"]
 room = ["room-ktx", "room-runtime", "room-compiler"]
+kakao = ["kakao-user", "kakao-talk"]
+
