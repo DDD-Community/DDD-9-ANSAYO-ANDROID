@@ -2,8 +2,8 @@ package com.ddd.ansayo.data.repository.course
 
 import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
-import com.ddd.ansayo.core_model.course.SearchCourseEntity
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
+import com.ddd.ansayo.core_model.search.SearchCourseEntity
 import com.ddd.ansayo.data.datasource.course.CourseRemoteDataSource
 import com.ddd.ansayo.domain.repository.CourseRepository
 import javax.inject.Inject
@@ -31,7 +31,7 @@ class CourseRepositoryImpl @Inject constructor(
         return courseRemoteDataSource.deleteFavoriteCourse(courseId)
     }
 
-    override suspend fun getSearchCourses(query: String): Response<SearchCourseEntity> {
+    override suspend fun getSearchCourses(query: String): Response<SearchCourseEntity.Response> {
         return courseRemoteDataSource.getSearchCourses(query)
     }
 

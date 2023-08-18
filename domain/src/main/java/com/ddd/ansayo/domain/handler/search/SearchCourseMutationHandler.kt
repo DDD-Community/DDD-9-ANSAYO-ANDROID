@@ -33,7 +33,7 @@ class SearchCourseMutationHandler @Inject constructor(
                     emit(SearchCourseMutation.SideEffect.StartCourseRecord)
                 }
                 is SearchCourseAction.ClickSearch -> {
-                    when(val result = getSearchCoursesUseCase()) {
+                    when(val result = getSearchCoursesUseCase(action.text)) {
                         is Response.Fail -> {
 
                         }
