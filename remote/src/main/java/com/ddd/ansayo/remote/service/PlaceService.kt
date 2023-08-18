@@ -1,7 +1,9 @@
 package com.ddd.ansayo.remote.service
 
+import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.core_model.place.FavoritePlacesEntity
 import com.ddd.ansayo.core_model.place.Place
+import com.ddd.ansayo.core_model.place.SearchPlaceEntity
 import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -28,4 +30,9 @@ interface PlaceService {
     suspend fun deleteFavoritePlace(
         @Query("place_id") placeId: String
     ): ApiResponse<Unit>
+
+    @GET("app/place/search")
+    suspend fun getSearchCourse(
+        @Query("query") query: String,
+    ): ApiResponse<SearchPlaceEntity>
 }

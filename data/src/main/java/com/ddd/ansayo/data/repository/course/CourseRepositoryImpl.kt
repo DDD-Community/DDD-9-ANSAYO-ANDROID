@@ -2,6 +2,7 @@ package com.ddd.ansayo.data.repository.course
 
 import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
+import com.ddd.ansayo.core_model.course.SearchCourseEntity
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.data.datasource.course.CourseRemoteDataSource
 import com.ddd.ansayo.domain.repository.CourseRepository
@@ -29,4 +30,9 @@ class CourseRepositoryImpl @Inject constructor(
     override suspend fun deleteFavoriteCourse(courseId: String): Response<Unit> {
         return courseRemoteDataSource.deleteFavoriteCourse(courseId)
     }
+
+    override suspend fun getSearchCourses(query: String): Response<SearchCourseEntity> {
+        return courseRemoteDataSource.getSearchCourses(query)
+    }
+
 }
