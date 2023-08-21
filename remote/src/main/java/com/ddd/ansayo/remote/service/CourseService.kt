@@ -1,9 +1,8 @@
 package com.ddd.ansayo.remote.service
 
-import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
-import com.ddd.ansayo.core_model.course.SearchCourseEntity
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
+import com.ddd.ansayo.core_model.search.SearchCourseEntity
 import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -35,5 +34,5 @@ interface CourseService {
     @GET("app/course/search")
     suspend fun getSearchCourse(
         @Query("query") query: String
-    ): ApiResponse<SearchCourseEntity>
+    ): ApiResponse<SearchCourseEntity.Response>
 }
