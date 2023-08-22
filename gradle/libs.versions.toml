@@ -24,12 +24,11 @@ serialization = "1.9.0"
 google = "2.8.6"
 androidxDataStore = "1.0.0"
 navercorp = "5.7.0"
-
-
 gson = "2.10.1"
 imagePicker = "3.0.0"
 tedPermission = "3.3.0"
 glide = "4.15.1"
+chucker = "4.0.0"
 
 # Test
 junit4 = "4.13.2"
@@ -70,13 +69,14 @@ kakao-user = { group = "com.kakao.sdk", name = "v2-user", version.ref = "kakao" 
 kakao-talk = { group = "com.kakao.sdk", name = "v2-talk", version.ref = "kakao" }
 naver-oauth = { group = "com.navercorp.nid", name = "oauth-jdk8", version.ref = "navercorp" }
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx" }
-androidx-datastore = { group= "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore"}
-google-gson = { group= "com.google.code.gson", name = "gson", version.ref = "google"}
+androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore" }
+google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "google" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 imagePicker = { module = "com.github.esafirm:android-image-picker", version.ref = "imagePicker" }
 tedPermission = { module = "io.github.ParkSangGwon:tedpermission-coroutine", version.ref = "tedPermission" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
-
+chucker-debug = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
+chucker-release = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
 
 # Test
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
