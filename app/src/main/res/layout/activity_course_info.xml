@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_map_back"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/temp_map"
+        android:layout_width="match_parent"
+        android:layout_height="264dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src= "@color/orange_point"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_course_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/temp_map"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+       <TextView
+           android:id="@+id/tv_course_title"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:textAppearance="@style/Text_H2"
+           android:textColor="@color/N10"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="22dp"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           tools:text="샤로수길 빵지순례"/>
+
+        <TextView
+            android:id="@+id/tv_course_loction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text_B3"
+            android:textColor="@color/orange_point"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_course_title"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="관악구 ∙ 베이커리"/>
+
+        <ImageView
+            android:id="@+id/iv_course_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_navi_like_default"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text_B4"
+            android:textColor="@color/N60"
+            android:layout_marginTop="1dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_course_like"
+            app:layout_constraintStart_toStartOf="@id/iv_course_like"
+            app:layout_constraintEnd_toEndOf="@id/iv_course_like"
+            tools:text="21"/>
+        <View
+            android:id="@+id/v_center"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/N90"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_course_loction"/>
+        
+        <ImageView
+            android:id="@+id/iv_author_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toBottomOf="@id/v_center"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@color/orange_point"/>
+
+        <TextView
+            android:id="@+id/tv_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="@color/N10"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/v_center"
+            app:layout_constraintStart_toEndOf="@id/iv_author_profile"
+            tools:text="루돌프코"/>
+
+        <TextView
+            android:id="@+id/tv_author_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text_B3"
+            android:textColor="@color/N40"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_author_name"
+            app:layout_constraintStart_toEndOf="@id/iv_author_profile"
+            tools:text="빵에 살고 빵에 죽는"/>
+
+
+        <TextView
+            android:id="@+id/tv_course_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text_B2"
+            android:textColor="@color/N40"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_author_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="오늘은 샤로수길에 가서 빵을 먹었다!\n너무 빵복한 하루였다.\n장블랑제리는 여전히 맛있었고 두번 째로 들린\n라미스콘은 여전히 신선했다. 오늘 하루가 오랫동안\n기억에 남을 것 같다!"/>
+
+        <View
+            android:id="@+id/v_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/N90"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_course_description"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_course_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/N10"
+        android:layout_marginTop="26dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@id/cl_course_top"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="2023년 7월 17일"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_course_plave"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:layout_marginTop="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/tv_course_date"
+        tools:listitem="@layout/item_course_info_place" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
