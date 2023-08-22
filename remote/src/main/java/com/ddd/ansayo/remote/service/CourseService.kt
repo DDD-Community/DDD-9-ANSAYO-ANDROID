@@ -1,5 +1,6 @@
 package com.ddd.ansayo.remote.service
 
+import com.ddd.ansayo.core_model.course.CourseInfo
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.core_model.search.SearchCourseEntity
@@ -20,6 +21,11 @@ interface CourseService {
 
     @GET("app/course/favorite")
     suspend fun getFavoriteCourses(): ApiResponse<FavoriteCoursesEntity.Response>
+
+    @GET("app/course")
+    suspend fun getCourseInfo(
+        @Query("course_id") courseId: String,
+    ): ApiResponse<CourseInfo>
 
     @POST("/app/course/favorite")
     suspend fun postFavoriteCourse(
