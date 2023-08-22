@@ -24,7 +24,7 @@ class CourseInfoHandler @Inject constructor(
         return flow {
             when (action) {
                 is CourseInfoAction.BackScreen -> {
-                    flowOf(CourseInfoMutation.SideEffect.BackScreen)
+                    emit(CourseInfoMutation.SideEffect.BackScreen)
                 }
                 is CourseInfoAction.NaviToPlaceDetail -> {
                     emit(CourseInfoMutation.SideEffect.NaviToPlaceDetail(action.id))
