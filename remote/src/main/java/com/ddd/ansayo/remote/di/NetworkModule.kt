@@ -73,20 +73,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    @NoAuthClient
-    fun providesNoAuthClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
-    ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .connectTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
-            .readTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
-            .writeTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
-            .build()
-    }
-
-    @Provides
-    @Singleton
     @FileUploadClient
     fun providesFileUploadClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
