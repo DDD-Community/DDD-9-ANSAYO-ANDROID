@@ -8,8 +8,4 @@ annotation class AuthClient
 
 @Qualifier
 @Retention(value = AnnotationRetention.BINARY)
-annotation class NoAuthClient
-
-@Qualifier
-@Retention(value = AnnotationRetention.BINARY)
 annotation class FileUploadClient

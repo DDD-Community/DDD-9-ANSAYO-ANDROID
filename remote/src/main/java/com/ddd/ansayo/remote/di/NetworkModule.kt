@@ -1,5 +1,9 @@
 package com.ddd.ansayo.remote.di
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.chuckerteam.chucker.api.RetentionManager
 import com.ddd.ansayo.remote.interceptor.AuthHeaderInterceptor
 import com.ddd.ansayo.remote.interceptor.TokenAuthenticator
 import com.orhanobut.logger.Logger
@@ -7,6 +11,7 @@ import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -31,30 +36,35 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    @AuthClient
-    fun providesAuthClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor,
-        authHeaderInterceptor: AuthHeaderInterceptor,
-        tokenAuthenticator: TokenAuthenticator
-    ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(authHeaderInterceptor)
-            .authenticator(tokenAuthenticator)
-            .connectTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
-            .readTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
-            .writeTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
+    fun provideChuckerInterceptor(
+        @ApplicationContext context: Context
+    ): ChuckerInterceptor {
+        return ChuckerInterceptor.Builder(context)
+            .collector(
+                ChuckerCollector(
+                    context = context,
+                    retentionPeriod = RetentionManager.Period.ONE_DAY
+                )
+            )
+            .alwaysReadResponseBody(true)
+            .createShortcut(true)
             .build()
     }
 
     @Provides
     @Singleton
-    @NoAuthClient
-    fun providesNoAuthClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
+    @AuthClient
+    fun providesAuthClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        authHeaderInterceptor: AuthHeaderInterceptor,
+        tokenAuthenticator: TokenAuthenticator,
+        chuckerInterceptor: ChuckerInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(chuckerInterceptor)
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(authHeaderInterceptor)
+            .authenticator(tokenAuthenticator)
             .connectTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
             .readTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
             .writeTimeout(COMMON_TIME_OUT, TimeUnit.SECONDS)
@@ -67,9 +77,11 @@ object NetworkModule {
     fun providesFileUploadClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         authHeaderInterceptor: AuthHeaderInterceptor,
-        tokenAuthenticator: TokenAuthenticator
+        tokenAuthenticator: TokenAuthenticator,
+        chuckerInterceptor: ChuckerInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(chuckerInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(authHeaderInterceptor)
             .authenticator(tokenAuthenticator)
