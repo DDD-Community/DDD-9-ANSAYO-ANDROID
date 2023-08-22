@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="placeDetail"
+            type="com.ddd.ansayo.domain.model.place.PlaceDetail" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/Text_H2"
+            android:textColor="@color/N10"
+            android:text="@{placeDetail.place.name}"
+            app:layout_constraintEnd_toStartOf="@id/iv_favorite"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="쟝블랑제리" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/Text_B3"
+            android:textColor="@color/orange_point"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="관악구 ∙ 베이커리" />
+
+        <com.ddd.ansayo.core_design.util.RatingView
+            android:id="@+id/rating_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:currentRating="@{4.0f}"
+            app:emphasize="true"
+            app:layout_constraintBottom_toBottomOf="@id/tv_category"
+            app:layout_constraintStart_toEndOf="@id/tv_category"
+            app:layout_constraintTop_toTopOf="@id/tv_category"
+            app:reviewCount="@{placeDetail.place.reviews.size()}" />
+
+        <ImageView
+            android:id="@+id/iv_favorite"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/selector_favorite"
+            app:isSelected="@{placeDetail.favorite}"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_navi_like_sel" />
+
+        <TextView
+            android:id="@+id/tv_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text_B4"
+            android:textColor="@drawable/selector_main_text_color"
+            app:isSelected="@{placeDetail.favorite}"
+            app:layout_constraintEnd_toEndOf="@id/iv_favorite"
+            app:layout_constraintStart_toStartOf="@id/iv_favorite"
+            app:layout_constraintTop_toBottomOf="@id/iv_favorite"
+            tools:text="21" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/N90"
+            app:layout_constraintTop_toBottomOf="@id/tv_category" />
+
+        <TextView
+            android:id="@+id/tv_schedule_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="영업시간"
+            android:textAppearance="@style/Text_B2"
+            android:textColor="@color/N60"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+        <TextView
+            android:id="@+id/tv_schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text_B2"
+            android:textColor="@color/N40"
+            app:layout_constraintStart_toEndOf="@id/barrier_title"
+            app:layout_constraintTop_toTopOf="@id/tv_schedule_title"
+            tools:text="매일 07:00 ~ 22:00" />
+
+        <TextView
+            android:id="@+id/tv_phone_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="전화번호"
+            android:textAppearance="@style/Text_B2"
+            android:textColor="@color/N60"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text_B2"
+            android:textColor="@color/N40"
+            app:layout_constraintStart_toEndOf="@id/barrier_title"
+            app:layout_constraintTop_toTopOf="@id/tv_phone_title"
+            tools:text="02-889-5170" />
+
+        <TextView
+            android:id="@+id/tv_address_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="주소"
+            android:textAppearance="@style/Text_B2"
+            android:textColor="@color/N60"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_phone" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text_B2"
+            android:textColor="@color/N40"
+            app:layout_constraintStart_toEndOf="@id/barrier_title"
+            app:layout_constraintTop_toTopOf="@id/tv_address_title"
+            tools:text="서울 관악구 낙성대역길 8" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:barrierMargin="12dp"
+            app:constraint_referenced_ids="tv_schedule_title, tv_phone_title, tv_address_title" />
+
+        <FrameLayout
+            android:id="@+id/map_view"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:background="@color/N0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_address" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

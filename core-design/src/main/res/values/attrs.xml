@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RatingView">
+        <attr name="emphasize" format="boolean" />
+        <attr name="currentRating" format="float" />
+        <attr name="reviewCount" format="integer" />
+    </declare-styleable>
+</resources>

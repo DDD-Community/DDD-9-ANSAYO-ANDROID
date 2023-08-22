@@ -9,4 +9,5 @@ object Constant {
     const val SELECT_SEARCH_TAB = "SELECT_SEARCH_TAB"
     const val FETCH_SEARCH_COURSE = "FETCH_SEARCH_COURSE"
     const val FETCH_SEARCH_PLACE = "FETCH_SEARCH_PLACE"
+    const val PLACE_ID = "PLACE_ID"
 }

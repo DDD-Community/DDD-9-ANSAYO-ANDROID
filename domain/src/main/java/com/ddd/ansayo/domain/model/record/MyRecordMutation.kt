@@ -1,6 +1,6 @@
 package com.ddd.ansayo.domain.model.record
 
-import com.ddd.ansayo.domain.model.course.Course
+import com.ddd.ansayo.core_model.course.Course
 
 sealed class MyRecordMutation {
     sealed class Mutation : MyRecordMutation() {

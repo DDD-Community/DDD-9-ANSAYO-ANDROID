@@ -4,6 +4,7 @@ import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.place.FavoritePlacesEntity
 import com.ddd.ansayo.core_model.place.Place
 import com.ddd.ansayo.core_model.place.SearchPlaceEntity
+import com.ddd.ansayo.core_model.place.PlaceInfoEntity
 import com.ddd.ansayo.data.datasource.place.PlaceRemoteDataSource
 import com.ddd.ansayo.remote.service.PlaceService
 import com.ddd.ansayo.remote.util.toResponse
@@ -31,5 +32,12 @@ class PlaceRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun getSearchPlace(query: String): Response<SearchPlaceEntity> {
         return placeService.getSearchCourse(query).toResponse()
+    }
+
+    override suspend fun getPlaceInfo(
+        placeId: String,
+        courseCount: Int
+    ): Response<PlaceInfoEntity> {
+        return placeService.getPlaceInfo(placeId, courseCount).toResponse()
     }
 }

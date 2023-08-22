@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="course"
+            type="com.ddd.ansayo.core_model.course.Course" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/N90"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="이 장소를 포함한 코스"
+            android:textAppearance="@style/Text_H3"
+            android:textColor="@color/N10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_course"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_header">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_image"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginVertical="16dp"
+                android:layout_marginStart="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:src="@color/red_caution" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_course_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@style/Text_H4"
+                app:layout_constraintBottom_toTopOf="@id/tv_course_category"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cv_image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="오늘은 삼시 초밥" />
+
+            <TextView
+                android:id="@+id/tv_course_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textAppearance="@style/Text_B3"
+                android:textColor="@color/N40"
+                app:layout_constraintBottom_toTopOf="@id/tv_course_description"
+                app:layout_constraintStart_toStartOf="@id/tv_course_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_course_title"
+                tools:text="관악구 ∙ 일식" />
+
+            <ImageView
+                android:id="@+id/iv_place"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_place"
+                app:layout_constraintBottom_toBottomOf="@id/tv_course_category"
+                app:layout_constraintStart_toEndOf="@id/tv_course_category"
+                app:layout_constraintTop_toTopOf="@id/tv_course_category"
+                app:tint="@color/N40" />
+
+            <TextView
+                android:id="@+id/tv_place_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Text_B3"
+                android:textColor="@color/N40"
+                app:layout_constraintBottom_toBottomOf="@id/tv_course_category"
+                app:layout_constraintStart_toEndOf="@id/iv_place"
+                app:layout_constraintTop_toTopOf="@id/tv_course_category"
+                tools:text="3" />
+
+            <ImageView
+                android:id="@+id/iv_like"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_navi_like_default"
+                app:layout_constraintBottom_toBottomOf="@id/tv_course_category"
+                app:layout_constraintStart_toEndOf="@id/tv_place_count"
+                app:layout_constraintTop_toTopOf="@id/tv_course_category"
+                app:tint="@color/N40" />
+
+            <TextView
+                android:id="@+id/tv_like_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Text_B3"
+                android:textColor="@color/N40"
+                app:layout_constraintBottom_toBottomOf="@id/tv_course_category"
+                app:layout_constraintStart_toEndOf="@id/iv_like"
+                app:layout_constraintTop_toTopOf="@id/tv_course_category"
+                tools:text="47" />
+
+            <TextView
+                android:id="@+id/tv_course_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textAppearance="@style/Text_B2"
+                android:textColor="@color/N40"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/tv_course_title"
+                app:layout_constraintStart_toStartOf="@id/tv_course_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_course_category"
+                tools:text="관악구 신림쪽에서 초밥을 먹었어요!관악구 신림쪽에서 초밥을 먹었어요!관악구 신림쪽에서 초밥을 먹었어요!" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

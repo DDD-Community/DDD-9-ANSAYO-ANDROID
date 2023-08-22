@@ -4,6 +4,7 @@ import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.core_model.place.FavoritePlacesEntity
 import com.ddd.ansayo.core_model.place.Place
 import com.ddd.ansayo.core_model.place.SearchPlaceEntity
+import com.ddd.ansayo.core_model.place.PlaceInfoEntity
 import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -35,4 +36,10 @@ interface PlaceService {
     suspend fun getSearchCourse(
         @Query("query") query: String,
     ): ApiResponse<SearchPlaceEntity>
+
+    @GET("app/place")
+    suspend fun getPlaceInfo(
+        @Query("place_id") placeId: String,
+        @Query("course_count") courseCount: Int
+    ): ApiResponse<PlaceInfoEntity>
 }
