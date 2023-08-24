@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.ddd.ansayo.GgecoApplication
 import com.ddd.ansayo.R
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.core_design.util.snackbar.SnackBarLineMax
@@ -41,26 +42,31 @@ class LoginActivity:
     }
 
     private fun initView() {
-//        if (PreferenceUtil(this@LoginActivity).getAuthToken("authToken").isNotEmpty()) {
-//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-//        }
-        val kakaoLogin = KakaoUseCase(this)  { oAuthToken, throwable ->
-            viewModel.onAction(LoginAction.ClickKakaoLogin(oAuthToken!!.accessToken))
-            PreferenceUtil(this@LoginActivity).setAuthToken("authToken", oAuthToken.accessToken)
+        val isLocalToken = PreferenceUtil(this@LoginActivity).authToken
+        if (!isLocalToken.isNullOrEmpty()) {
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
         }
-        val naverLogin = NaverUseCase(this) { token, throwable ->
-            viewModel.onAction(LoginAction.ClickNaverLogin(token!!))
-            PreferenceUtil(this@LoginActivity).setAuthToken("authToken", token)
+            val kakaoLogin = KakaoUseCase(this)  { oAuthToken, _ ->
+                viewModel.onAction(LoginAction.ClickKakaoLogin(oAuthToken!!.accessToken))
+                GgecoApplication.prefs.authToken = oAuthToken.accessToken
+
+            }
+            val naverLogin = NaverUseCase(this) { token, _ ->
+                viewModel.onAction(LoginAction.ClickNaverLogin(token!!))
+                GgecoApplication.prefs.authToken = token
+
+            }
+
+            binding.run {
+                btnLoginKakao.setOnClickListener {
+                    kakaoLogin.getAccessToken()
+                }
+                binding.btnLoginNaver.setOnClickListener {
+                    naverLogin.getAccessToken()
+
+            }
         }
 
-        binding.run {
-            btnLoginKakao.setOnClickListener {
-               kakaoLogin.getAccessToken()
-            }
-            binding.btnLoginNaver.setOnClickListener {
-               naverLogin.getAccessToken()
-            }
-        }
     }
     private fun collectSideEffect() {
         lifecycleScope.launch {

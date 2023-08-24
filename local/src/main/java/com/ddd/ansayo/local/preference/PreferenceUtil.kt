@@ -2,6 +2,8 @@ package com.ddd.ansayo.local.preference
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
+import androidx.annotation.RequiresApi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -12,19 +14,10 @@ class PreferenceUtil @Inject constructor(
     private val prefs: SharedPreferences =
         context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
 
-    fun getAuthToken(key: String,defValue: String): String {
-       return prefs.getString(key,defValue).toString()
-    }
+    private val prefsKey = "authToken"
 
-    fun setAuthToken(key: String,defValue: String): String {
-        return prefs.edit().putString(key,defValue).toString()
-    }
+    var authToken : String?
+        get() = prefs.getString(prefsKey, "")
+        set(value) = prefs.edit().putString(prefsKey, value).apply()
 
-    fun getAuthTokenType(key: String,defValue: String): String {
-        return prefs.getString(key,defValue).toString()
-    }
-
-    fun setAuthTokenType(key: String,defValue: String): String {
-        return prefs.edit().putString(key,defValue).toString()
-    }
 }
