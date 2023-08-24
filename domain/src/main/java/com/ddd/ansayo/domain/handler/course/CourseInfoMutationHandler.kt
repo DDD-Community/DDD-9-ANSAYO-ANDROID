@@ -9,10 +9,9 @@ import com.ddd.ansayo.domain.usecase.favorite.DeleteFavoritePlaceUseCase
 import com.ddd.ansayo.domain.usecase.favorite.PostFavoritePlaceUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
-class CourseInfoHandler @Inject constructor(
+class CourseInfoMutationHandler @Inject constructor(
     private val getCourseInfoUseCase: GetCourseInfoUseCase,
     private val postFavoritePlaceUseCase: PostFavoritePlaceUseCase,
     private val deleteFavoritePlaceUseCase: DeleteFavoritePlaceUseCase
@@ -38,11 +37,12 @@ class CourseInfoHandler @Inject constructor(
                         }
                     ) {
                         is Response.Success -> {
-                            val places = state.courseInfo.places.map {
-                                if (it.placeId == action.id) it.copy(isFavorite = action.like.not())
+                            val course = state.courseInfo.course.let {
+                                if (it.id == action.id) it.copy(isFavorite = action.like.not())
                                 else it
                             }
-                            emit(CourseInfoMutation.Mutation.UpdateFavorite(places))
+
+                            emit(CourseInfoMutation.Mutation.UpdateFavorite(course))
                         }
 
                         is Response.Fail -> {
