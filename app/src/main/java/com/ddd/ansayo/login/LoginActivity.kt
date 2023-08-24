@@ -1,10 +1,17 @@
 package com.ddd.ansayo.login
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.ddd.ansayo.R
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.core_design.util.snackbar.SnackBarLineMax
 import com.ddd.ansayo.data.repository.auth.KakaoUseCase
@@ -13,6 +20,7 @@ import com.ddd.ansayo.databinding.ActivityLoginBinding
 import com.ddd.ansayo.domain.model.login.LoginAction
 import com.ddd.ansayo.domain.model.login.LoginMutation
 import com.ddd.ansayo.local.preference.PreferenceUtil
+import com.ddd.ansayo.main.MainActivity
 import com.ddd.ansayo.presentation.viewmodel.login.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.orhanobut.logger.Logger
@@ -49,6 +57,13 @@ class LoginActivity:
             binding.btnLoginNaver.setOnClickListener {
                naverLogin.getAccessToken()
             }
+            val builder = SpannableStringBuilder(tvTitle.text)
+            val text = tvTitle.text.toString()
+            val orange = ForegroundColorSpan(ContextCompat.getColor(binding.root.context, com.ddd.ansayo.core_design.R.color.orange_point))
+
+//            builder.setSpan(orange, 0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+//            builder.setSpan(orange, 5,9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            tvTitle.text = builder
         }
     }
     private fun collectSideEffect() {
@@ -60,8 +75,8 @@ class LoginActivity:
                             SnackBarLineMax(binding.root,it.message).show()
                             Logger.e(it.message)
                         }
-                        is LoginMutation.SideEffect.StartHomeSreen -> {
-
+                        is LoginMutation.SideEffect.StartHomeScreen -> {
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         }
 
                     }
