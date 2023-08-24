@@ -41,6 +41,9 @@ class LoginActivity:
     }
 
     private fun initView() {
+//        if (PreferenceUtil(this@LoginActivity).getAuthToken("authToken").isNotEmpty()) {
+//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+//        }
         val kakaoLogin = KakaoUseCase(this)  { oAuthToken, throwable ->
             viewModel.onAction(LoginAction.ClickKakaoLogin(oAuthToken!!.accessToken))
             PreferenceUtil(this@LoginActivity).setAuthToken("authToken", oAuthToken.accessToken)
@@ -57,13 +60,6 @@ class LoginActivity:
             binding.btnLoginNaver.setOnClickListener {
                naverLogin.getAccessToken()
             }
-            val builder = SpannableStringBuilder(tvTitle.text)
-            val text = tvTitle.text.toString()
-            val orange = ForegroundColorSpan(ContextCompat.getColor(binding.root.context, com.ddd.ansayo.core_design.R.color.orange_point))
-
-//            builder.setSpan(orange, 0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-//            builder.setSpan(orange, 5,9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            tvTitle.text = builder
         }
     }
     private fun collectSideEffect() {

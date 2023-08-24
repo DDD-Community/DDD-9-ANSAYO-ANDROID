@@ -28,8 +28,12 @@ class LoginMutationHandler @Inject constructor(
                           naverAccount = false
                       )
                   )) {
-                      is Response.Fail -> LoginMutation.SideEffect.ShowSnackBar(result.message)
-                      is Response.Success -> LoginMutation.SideEffect.StartHomeSreen
+                      is Response.Fail -> {
+                          LoginMutation.SideEffect.ShowSnackBar(result.message)
+                      }
+                      is Response.Success -> {
+                          emit(LoginMutation.SideEffect.StartHomeScreen)
+                      }
                   }
 
                 }
@@ -45,7 +49,7 @@ class LoginMutationHandler @Inject constructor(
                             emit(LoginMutation.SideEffect.ShowSnackBar(result.message))
                         }
                         is Response.Success -> {
-                            emit(LoginMutation.SideEffect.StartHomeSreen)
+                            emit(LoginMutation.SideEffect.StartHomeScreen)
                         }
                     }
                 }
