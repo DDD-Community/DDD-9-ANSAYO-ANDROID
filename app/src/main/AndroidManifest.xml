@@ -71,6 +71,10 @@
             android:name=".place.PlaceDetailActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".course.info.CourseInfoActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

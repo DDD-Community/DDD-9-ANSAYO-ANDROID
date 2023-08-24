@@ -1,5 +1,6 @@
 package com.ddd.ansayo.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
@@ -7,12 +8,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.core_design.util.snackbar.SnackBarLineMax
+import com.ddd.ansayo.course.info.CourseInfoActivity
 import com.ddd.ansayo.data.repository.auth.KakaoUseCase
 import com.ddd.ansayo.data.repository.auth.NaverUseCase
 import com.ddd.ansayo.databinding.ActivityLoginBinding
 import com.ddd.ansayo.domain.model.login.LoginAction
 import com.ddd.ansayo.domain.model.login.LoginMutation
 import com.ddd.ansayo.local.preference.PreferenceUtil
+import com.ddd.ansayo.main.MainActivity
 import com.ddd.ansayo.presentation.viewmodel.login.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.orhanobut.logger.Logger
@@ -27,6 +30,8 @@ class LoginActivity:
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        startActivity(Intent(this@LoginActivity, CourseInfoActivity::class.java))
 
         initView()
         collectSideEffect()
