@@ -94,7 +94,6 @@ val properties = Properties().apply {
         implementation(libs.android.google.material)
         implementation(libs.activity.ktx)
         implementation(libs.fragment.ktx)
-        implementation(libs.androidx.fragment)
         testImplementation(libs.junit4)
         androidTestImplementation(libs.androidx.test.ext)
         androidTestImplementation(libs.androidx.test.espresso.core)
