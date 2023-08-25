@@ -12,6 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
         maven("https://jitpack.io")
         maven("https://devrepo.kakao.com/nexus/content/groups/public/")
+        maven("https://naver.jfrog.io/artifactory/maven/")
 
     }
 }
