@@ -26,7 +26,9 @@ val properties = Properties().apply {
             buildConfigField("String", "KAKAO_NATIVE_KEY", properties.getProperty("kakao_native_key"))
             buildConfigField("String", "NAVER_CLIENT_ID", properties.getProperty("naver_client_id"))
             buildConfigField("String", "NAVER_CLIENT_SECRET", properties.getProperty("naver_client_secret"))
+            buildConfigField("String", "NAVER_CLIENT_MAPS_ID", properties.getProperty("naver_client_maps_id"))
             manifestPlaceholders["KAKAO_SCHEME"] = properties.getProperty("kakao_scheme")
+            manifestPlaceholders["NAVER_MAPS_ID"] = properties.getProperty("naver_client_maps_id")
         }
 
         configurations {
@@ -108,5 +110,6 @@ val properties = Properties().apply {
         implementation(libs.tedPermission)
         implementation(libs.glide)
         implementation(libs.naver.oauth)
+        implementation(libs.naver.maps)
 
 }

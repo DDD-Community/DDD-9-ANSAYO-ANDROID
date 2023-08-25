@@ -10,7 +10,7 @@ sealed class LoginMutation {
 
     sealed class SideEffect: LoginMutation() {
         data class ShowSnackBar(val message: String): SideEffect()
-        object StartHomeSreen: SideEffect()
+        object StartHomeScreen: SideEffect()
 
     }
 }

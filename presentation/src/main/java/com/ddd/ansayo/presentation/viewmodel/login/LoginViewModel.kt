@@ -41,7 +41,7 @@ class LoginViewModel @Inject constructor(
                 when(mutation) {
                     is LoginMutation.Mutation.PostAuthToken -> {
                         state.copy(
-                            AuthToken = mutation.tokenInfo.accessToken
+                            authToken = mutation.tokenInfo.accessToken
                         )
                     }
                 }
