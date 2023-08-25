@@ -29,7 +29,7 @@ class LoginMutationHandler @Inject constructor(
                       )
                   )) {
                       is Response.Fail -> {
-                          LoginMutation.SideEffect.ShowSnackBar(result.message)
+                          emit(LoginMutation.SideEffect.ShowSnackBar(result.message))
                       }
                       is Response.Success -> {
                           emit(LoginMutation.SideEffect.StartHomeScreen)
