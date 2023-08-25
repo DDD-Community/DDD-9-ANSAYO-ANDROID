@@ -40,13 +40,14 @@
                   app:layout_constraintStart_toStartOf="parent"
                   app:layout_constraintTop_toTopOf="parent"/>
 
-              <ImageView
-                  android:id="@+id/temp_map"
-                  android:layout_width="match_parent"
+              <androidx.fragment.app.FragmentContainerView
+                  android:id="@+id/fcv_map_container"
+                  android:layout_width="0dp"
                   android:layout_height="264dp"
+                  android:name="com.naver.maps.map.MapFragment"
                   app:layout_constraintTop_toTopOf="parent"
                   app:layout_constraintStart_toStartOf="parent"
-                  tools:src= "@color/orange_point"/>
+                  app:layout_constraintEnd_toEndOf="parent" />
 
           </androidx.constraintlayout.widget.ConstraintLayout>
       </com.google.android.material.appbar.AppBarLayout>
@@ -64,7 +65,7 @@
                 android:id="@+id/cl_course_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/temp_map"
+                app:layout_constraintTop_toBottomOf="@id/fcv_map_container"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView

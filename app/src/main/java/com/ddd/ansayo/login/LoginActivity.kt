@@ -33,7 +33,9 @@ class LoginActivity:
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
+        startActivity(Intent(this@LoginActivity, CourseInfoActivity::class.java))
+        Logger.e("token ${authLocalDataSource.authToken}")
         initView()
         collectSideEffect()
     }
