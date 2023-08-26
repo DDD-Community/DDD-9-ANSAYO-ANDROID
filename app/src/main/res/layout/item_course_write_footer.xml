@@ -42,13 +42,14 @@
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <com.ddd.ansayo.core_design.util.button.LabelPrimaryButton
             android:id="@+id/btn_complete"
             android:layout_width="0dp"
             android:layout_height="48dp"
+            android:layout_marginTop="36dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/complete_write"
             android:enabled="@{footer.confirmButtonEnabled}"
+            android:text="@string/complete_write"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
