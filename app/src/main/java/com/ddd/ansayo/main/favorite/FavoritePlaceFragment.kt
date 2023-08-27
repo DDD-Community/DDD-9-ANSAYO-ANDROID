@@ -49,7 +49,6 @@ class FavoritePlaceFragment :
 
     private fun initView() {
         binding.tvNoFavoriteTitle.setHtmlText(getString(R.string.no_favorite_place_title))
-        binding.btnFindPlace.setButtonText(getString(R.string.find_place))
 
         binding.btnFindPlace.setOnClickListener {
             viewModel.onAction(FavoritePlaceAction.ClickFindPlace)

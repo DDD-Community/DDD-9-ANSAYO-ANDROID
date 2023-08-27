@@ -5,4 +5,17 @@
         <attr name="currentRating" format="float" />
         <attr name="reviewCount" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="TextField">
+        <attr name="android:hint" />
+        <attr name="android:enabled" />
+        <attr name="errorFieldMessage" format="string" />
+        <attr name="errorFieldVisible" format="boolean" />
+        <attr name="android:maxLength" />
+    </declare-styleable>
+
+    <declare-styleable name="LabelPrimaryButton">
+        <attr name="android:text" />
+        <attr name="android:enabled" />
+    </declare-styleable>
 </resources>
