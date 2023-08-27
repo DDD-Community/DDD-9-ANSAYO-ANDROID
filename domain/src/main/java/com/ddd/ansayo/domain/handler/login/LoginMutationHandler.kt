@@ -32,7 +32,7 @@ class LoginMutationHandler @Inject constructor(
                           emit(LoginMutation.SideEffect.ShowSnackBar(result.message))
                       }
                       is Response.Success -> {
-                          emit(LoginMutation.SideEffect.StartHomeScreen)
+                          emit(LoginMutation.SideEffect.StartHomeScreen(result.data.accessToken))
                       }
                   }
 
@@ -49,7 +49,7 @@ class LoginMutationHandler @Inject constructor(
                             emit(LoginMutation.SideEffect.ShowSnackBar(result.message))
                         }
                         is Response.Success -> {
-                            emit(LoginMutation.SideEffect.StartHomeScreen)
+                            emit(LoginMutation.SideEffect.StartHomeScreen(result.data.accessToken))
                         }
                     }
                 }
