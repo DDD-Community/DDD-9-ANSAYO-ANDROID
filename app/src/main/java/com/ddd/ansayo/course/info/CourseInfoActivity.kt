@@ -9,6 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ddd.ansayo.R
 import com.ddd.ansayo.base.BaseActivity
+import com.ddd.ansayo.core_model.course.CourseInfo
+import com.ddd.ansayo.course.info.CourseMapBindingAdapter.setMultiGeoPoint
 import com.ddd.ansayo.databinding.ActivityCourseInfoBinding
 import com.ddd.ansayo.domain.model.course.info.CourseInfoAction
 import com.ddd.ansayo.domain.model.course.info.CourseInfoMutation
@@ -16,26 +18,31 @@ import com.ddd.ansayo.presentation.viewmodel.Constant
 import com.ddd.ansayo.presentation.viewmodel.course.CourseInfoViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.geometry.LatLngBounds
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
+import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
+
 @AndroidEntryPoint
 class CourseInfoActivity :
-    BaseActivity<ActivityCourseInfoBinding>(ActivityCourseInfoBinding::inflate){
+    BaseActivity<ActivityCourseInfoBinding>(ActivityCourseInfoBinding::inflate) {
 
     private val viewModel by viewModels<CourseInfoViewModel>()
     private val courseInfoAdapter = CourseInfoAdapter(
-        placeClickListener = {placeId ->
+        placeClickListener = { placeId ->
             viewModel.onAction(CourseInfoAction.NaviToPlaceDetail(placeId))
         }
     )
+    private val tempCourse = CourseInfo.TEMPDATA
     lateinit var mapFragment: MapFragment
     lateinit var naverMap: NaverMap
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,33 +52,26 @@ class CourseInfoActivity :
 
         val courseId = intent.getStringExtra(Constant.COURSE_ID).orEmpty()
         viewModel.onAction(CourseInfoAction.EnteredScreen(courseId))
+
+        Logger.e("placeList value : ${tempCourse}")
+
     }
 
     private fun initView() {
-        binding.rvCoursePlave.apply {
-            adapter = courseInfoAdapter
+        binding.run {
+            rvCoursePlave.apply {
+                adapter = courseInfoAdapter
+            }
+            val lat = tempCourse.places.first().geometry.lat
+            val lng = tempCourse.places.first().geometry.lng
+
+            mapFragment = createNaverMapFragment(LatLng(lat,lng))
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fcv_map_container, mapFragment)
+                .commitAllowingStateLoss()
+
         }
-    }
 
-    private fun getMapLocation() {
-        val builder = LatLngBounds.Builder()
-
-//        for (marker in markerList) {
-//            builder.include(marker.position)
-//        }
-
-        val bounds = builder.build()
-
-//        val padding = resources.getDimensionPixelSize(R.dimen.map_padding)
-//        val cameraUpdate = CameraUpdate.fitBounds(bounds, padding)
-//        naverMap.moveCamera(cameraUpdate)
-    }
-
-    private fun createMapFragment(courseLocation: LatLng) {
-        mapFragment = createNaverMapFragment(courseLocation)
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fcv_map_container, mapFragment)
-            .commitAllowingStateLoss()
     }
 
     private fun createNaverMapFragment(courseLocation: LatLng): MapFragment {
@@ -80,13 +80,25 @@ class CourseInfoActivity :
                 it.minZoom = 11.5
                 it.uiSettings.apply {
                     isCompassEnabled = false
-                    isZoomControlEnabled = true
+                    isZoomControlEnabled = false
                     isLocationButtonEnabled = false
                 }
+                it.locationTrackingMode = LocationTrackingMode.None
+
                 naverMap = it
+                naverMap.moveCamera(
+                    CameraUpdate.scrollTo(
+                        LatLng(courseLocation.latitude, courseLocation.longitude)
+                    )
+                )
+
             }
+
+            tempCourse.let { setMultiGeoPoint(it.places, viewModel) }
+
         }
     }
+
     private fun collectState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -97,7 +109,6 @@ class CourseInfoActivity :
                         .collect {
                             courseInfoAdapter.submitList(it)
                         }
-
                 }
             }
         }
@@ -107,13 +118,15 @@ class CourseInfoActivity :
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.container.sideEffectFlow.collect {
-                    when(it) {
+                    when (it) {
                         CourseInfoMutation.SideEffect.BackScreen -> {
                             finish()
                         }
+
                         is CourseInfoMutation.SideEffect.NaviToPlaceDetail -> {
 
                         }
+
                         is CourseInfoMutation.SideEffect.ShowSnackBar -> {
                             Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()
                         }
@@ -123,6 +136,7 @@ class CourseInfoActivity :
 
         }
     }
+
     companion object {
         fun getIntent(context: Context, courseId: String): Intent {
             return Intent(context, CourseInfoActivity::class.java).apply {
