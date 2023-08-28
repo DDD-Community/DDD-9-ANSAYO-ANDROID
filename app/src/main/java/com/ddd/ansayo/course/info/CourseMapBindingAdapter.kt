@@ -1,5 +1,6 @@
 package com.ddd.ansayo.course.info
 
+import android.graphics.Color
 import android.graphics.Rect
 import androidx.core.content.ContextCompat
 import com.ddd.ansayo.R
@@ -10,6 +11,7 @@ import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PolylineOverlay
 
@@ -47,6 +49,16 @@ object CourseMapBindingAdapter {
                         val icon = OverlayImage.fromResource(imageResource)
                         this.icon = icon
                     }
+
+                    val captionResource = when(index) {
+                        0 -> ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.pink_sub_text)
+                        1 -> ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.orange_sub_text)
+                        2 ->  ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.green_sub_text)
+                        3 -> ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.blue_sub_text)
+                        else -> ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.pink_sub_text)
+                    }
+                    marker.captionText = it.name
+                    marker.captionColor = captionResource
                     marker.map = naverMap
                     val polyCoords = mutableListOf<LatLng>()
 
