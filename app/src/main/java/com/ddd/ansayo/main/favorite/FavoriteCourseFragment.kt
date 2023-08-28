@@ -49,7 +49,6 @@ class FavoriteCourseFragment :
 
     private fun initView() {
         binding.tvNoFavoriteTitle.setHtmlText(getString(R.string.no_favorite_course_title))
-        binding.btnFindCourse.setButtonText(getString(R.string.find_course))
 
         binding.btnFindCourse.setOnClickListener {
             viewModel.onAction(FavoriteCourseAction.ClickFindCourse)
