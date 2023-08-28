@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.ddd.ansayo.GgecoApplication
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.core_design.util.snackbar.SnackBarLineMax
 import com.ddd.ansayo.data.AuthLocalDataSource
@@ -17,6 +16,7 @@ import com.ddd.ansayo.domain.model.login.LoginAction
 import com.ddd.ansayo.domain.model.login.LoginMutation
 import com.ddd.ansayo.main.MainActivity
 import com.ddd.ansayo.presentation.viewmodel.login.LoginViewModel
+import com.ddd.ansayo.search.SearchListActivity
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -33,6 +33,7 @@ class LoginActivity:
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        startActivity(Intent(this@LoginActivity, SearchListActivity::class.java))
 
         initView()
         collectSideEffect()

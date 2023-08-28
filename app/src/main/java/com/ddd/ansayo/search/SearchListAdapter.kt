@@ -1,9 +1,10 @@
 package com.ddd.ansayo.search
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class SearchListAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class SearchListAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
     private val fragments = listOf(
         SearchCourseFragment(),

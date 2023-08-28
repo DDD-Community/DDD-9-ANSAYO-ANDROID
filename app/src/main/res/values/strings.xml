@@ -54,5 +54,6 @@
 
     <!--  검색  -->
     <string name="input_search_keyword">검색해 주세요.</string>
+    <string name="search_course_no_result">다른 사람들을 위해 코스를 기록해 주세요.</string>
 
 </resources>
