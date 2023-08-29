@@ -4,18 +4,24 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ddd.ansayo.R
 import com.ddd.ansayo.base.BaseActivity
+import com.ddd.ansayo.core_model.place.AddPlaceInfoDto
 import com.ddd.ansayo.databinding.ActivityCourseCreateBinding
 import com.ddd.ansayo.domain.model.course.CourseWriteAction
 import com.ddd.ansayo.domain.model.course.CourseWriteMutation
+import com.ddd.ansayo.place.SearchAddPlaceActivity
+import com.ddd.ansayo.presentation.viewmodel.Constant
 import com.ddd.ansayo.presentation.viewmodel.course.CourseCreateViewModel
+import com.ddd.ansayo.util.PermissionCompatHelper
 import com.esafirm.imagepicker.features.ImagePickerConfig
 import com.esafirm.imagepicker.features.ImagePickerLauncher
 import com.esafirm.imagepicker.features.registerImagePicker
@@ -23,9 +29,12 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.coroutine.TedPermission
+import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -75,14 +84,28 @@ class CourseCreateActivity :
         }
     )
 
-    val imagePickerLauncher: ((Int) -> ImagePickerLauncher) = { placeOrder ->
-        registerImagePicker { images ->
-            viewModel.onAction(
-                CourseWriteAction.SelectImages(
-                    placeOrder = placeOrder,
-                    images = images.map { it.uri.toString() }
-                )
+    private var imagePickerOrder = 0
+    private val imagePickerLauncher = registerImagePicker { images ->
+        images.forEachIndexed { index, image ->
+            Logger.d("image$index \n" +
+                    "id : ${image.id}\n" +
+                    "name : ${image.name}\n" +
+                    "path : ${image.path}\n" +
+                    "uri : ${image.uri}")
+        }
+        viewModel.onAction(
+            CourseWriteAction.SelectImages(
+                placeOrder = imagePickerOrder,
+                images = images.map { it.uri.toString() }
             )
+        )
+    }
+
+    private val searchAddPlaceLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (it.resultCode != RESULT_OK) return@registerForActivityResult
+
+        (it.data?.getSerializableExtra(Constant.PLACE_INFO) as? AddPlaceInfoDto)?.let { placeInfo ->
+            viewModel.onAction(CourseWriteAction.SelectPlace(placeInfo))
         }
     }
 
@@ -103,32 +126,32 @@ class CourseCreateActivity :
     }
 
     private fun collectState() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    viewModel.container.stateFlow
-                        .map { it.header }
-                        .distinctUntilChanged()
-                        .collect {
-                            headerAdapter.onChanged(it)
-                        }
-
-                    viewModel.container.stateFlow
-                        .map { it.places }
-                        .distinctUntilChanged()
-                        .collect {
-                            placeAdapter.submitList(it)
-                        }
-
-                    viewModel.container.stateFlow
-                        .map { it.footer }
-                        .distinctUntilChanged()
-                        .collect {
-                            footerAdapter.onChanged(it)
-                        }
-                }
+        viewModel.container.stateFlow
+            .flowWithLifecycle(lifecycle)
+            .map { it.header }
+            .distinctUntilChanged()
+            .onEach {
+                headerAdapter.onChanged(it)
             }
-        }
+            .launchIn(lifecycleScope)
+
+        viewModel.container.stateFlow
+            .flowWithLifecycle(lifecycle)
+            .map { it.places }
+            .distinctUntilChanged()
+            .onEach {
+                placeAdapter.submitList(it)
+            }
+            .launchIn(lifecycleScope)
+
+        viewModel.container.stateFlow
+            .flowWithLifecycle(lifecycle)
+            .map { it.footer }
+            .distinctUntilChanged()
+            .onEach {
+                footerAdapter.onChanged(it)
+            }
+            .launchIn(lifecycleScope)
     }
 
     private fun collectSideEffect() {
@@ -141,11 +164,11 @@ class CourseCreateActivity :
                         }
 
                         CourseWriteMutation.SideEffect.GoToAddPlace -> {
-                            TODO()
+                            searchAddPlaceLauncher.launch(SearchAddPlaceActivity.getIntent(this@CourseCreateActivity))
                         }
 
                         CourseWriteMutation.SideEffect.HideLoading -> {
-                            TODO()
+//                            TODO()
                         }
 
                         CourseWriteMutation.SideEffect.ShowDatePickerDialog -> {
@@ -163,39 +186,32 @@ class CourseCreateActivity :
                         }
 
                         CourseWriteMutation.SideEffect.ShowLoading -> {
-                            TODO()
+//                            TODO()
                         }
 
                         is CourseWriteMutation.SideEffect.ShowPhotoPicker -> {
-                            TedPermission.create()
-                                .setPermissions(
-                                    Manifest.permission.CAMERA,
-                                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                                )
-                                .setPermissionListener(object : PermissionListener {
-                                    override fun onPermissionGranted() {
-                                        imagePickerLauncher.invoke(it.order).launch(
-                                            ImagePickerConfig {
-                                                language = "ko"
-                                                theme = R.style.Theme_DDD9ANSAYOANDROID
-                                                arrowColor = getColor(coreDesignR.color.N0)
-                                                folderTitle = "폴더 선택"
-                                                imageTitle = "이미지 선택"
-                                                doneButtonText = "완료"
-                                                limit = it.remainCount
-                                                isShowCamera = true
-                                            }
-                                        )
-                                    }
-
-                                    override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-                                        Snackbar
-                                            .make(binding.root, "", Snackbar.LENGTH_SHORT)
-                                            .show()
-                                    }
-                                })
+                            val permissionResult = TedPermission.create()
+                                .setPermissions(*PermissionCompatHelper.imagePermission)
                                 .check()
+
+                            if (permissionResult.isGranted) {
+                                imagePickerOrder = it.order
+                                imagePickerLauncher.launch(
+                                    ImagePickerConfig {
+                                        language = "ko"
+                                        theme = R.style.Theme_DDD9ANSAYOANDROID
+                                        arrowColor = getColor(coreDesignR.color.N0)
+                                        folderTitle = "폴더 선택"
+                                        imageTitle = "이미지 선택"
+                                        doneButtonText = "완료"
+                                        limit = it.remainCount
+                                        isShowCamera = true
+                                    }
+                                )
+                            } else {
+                                Snackbar.make(binding.root, permissionResult.deniedPermissions.toString(), Snackbar.LENGTH_SHORT).show()
+                            }
+
                         }
 
                         is CourseWriteMutation.SideEffect.ShowSnackBar -> {

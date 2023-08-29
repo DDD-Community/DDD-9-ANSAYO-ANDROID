@@ -1,5 +1,7 @@
 package com.ddd.ansayo.domain.model.course
 
+import com.ddd.ansayo.core_model.place.AddPlaceInfoDto
+
 sealed class CourseWriteAction {
     data class InputCourseTitle(val text: String) : CourseWriteAction()
     data class InputCourseDescription(val text: String) : CourseWriteAction()
@@ -13,4 +15,5 @@ sealed class CourseWriteAction {
     data class ClickDeletePlaceImage(val placeOrder: Int, val imageIndex: Int) : CourseWriteAction()
     data class ToggleVisibilitySwitch(val checked: Boolean) : CourseWriteAction()
     object ClickUploadButton : CourseWriteAction()
+    data class SelectPlace(val placeInfo: AddPlaceInfoDto) : CourseWriteAction()
 }
