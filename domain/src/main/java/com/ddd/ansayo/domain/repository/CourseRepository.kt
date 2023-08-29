@@ -1,6 +1,7 @@
 package com.ddd.ansayo.domain.repository
 
 import com.ddd.ansayo.core_model.common.Response
+import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.core_model.course.CourseInfo
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
@@ -14,4 +15,6 @@ interface CourseRepository {
     suspend fun postFavoriteCourse(body: FavoriteCoursesEntity.PostRequest): Response<Unit>
     suspend fun deleteFavoriteCourse(courseId: String): Response<Unit>
     suspend fun getSearchCourses(query: String): Response<SearchCourseEntity.Response>
+    suspend fun getPopularCourses(badgeId: String): Response<List<Course>>
+    suspend fun getRecentCourses(): Response<List<Course>>
 }
