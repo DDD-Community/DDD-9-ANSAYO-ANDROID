@@ -1,5 +1,6 @@
 package com.ddd.ansayo.place
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
@@ -9,12 +10,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ddd.ansayo.base.BaseActivity
-import com.ddd.ansayo.core_design.util.DividerDecoration
+import com.ddd.ansayo.core_model.place.mapToDto
 import com.ddd.ansayo.databinding.ActivitySearchAddPlaceBinding
 import com.ddd.ansayo.domain.model.place.SearchAddPlaceAction
 import com.ddd.ansayo.domain.model.place.SearchAddPlaceMutation
 import com.ddd.ansayo.presentation.viewmodel.Constant
-import com.ddd.ansayo.presentation.viewmodel.model.mapToDto
 import com.ddd.ansayo.presentation.viewmodel.place.SearchAddPlaceViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,7 +48,6 @@ class SearchAddPlaceActivity :
             adapter = searchAddPlaceAdapter
             layoutManager = LinearLayoutManager(context)
             itemAnimator = null
-            addItemDecoration(DividerDecoration(context, 16))
         }
 
         binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
@@ -81,7 +80,7 @@ class SearchAddPlaceActivity :
                             finish()
                         }
                         is SearchAddPlaceMutation.SideEffect.GoDetail -> {
-//                            TODO()
+                            startActivity(PlaceDetailActivity.getIntent(this@SearchAddPlaceActivity, it.placeId))
                         }
                         SearchAddPlaceMutation.SideEffect.HideLoading -> {
 //                            TODO()
@@ -103,6 +102,12 @@ class SearchAddPlaceActivity :
                     }
                 }
             }
+        }
+    }
+
+    companion object {
+        fun getIntent(context: Context): Intent {
+            return Intent(context, SearchAddPlaceActivity::class.java)
         }
     }
 }

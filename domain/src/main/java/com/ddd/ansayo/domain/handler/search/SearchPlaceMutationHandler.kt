@@ -34,7 +34,7 @@ class SearchPlaceMutationHandler @Inject constructor(
                         is Response.Success -> {
                             emit(
                                 SearchPlaceMutation.Mutation.UpdatePlace(
-                                    place = result.data
+                                    place = result.data.places.orEmpty()
                                 )
                             )
                         }
