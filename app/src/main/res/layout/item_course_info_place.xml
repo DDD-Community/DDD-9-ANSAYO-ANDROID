@@ -9,9 +9,6 @@
             name="place"
             type="com.ddd.ansayo.core_model.place.Place"/>
 
-        <variable
-            name="cc"
-            type="com.ddd.ansayo.core_model.course.CourseInfo"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

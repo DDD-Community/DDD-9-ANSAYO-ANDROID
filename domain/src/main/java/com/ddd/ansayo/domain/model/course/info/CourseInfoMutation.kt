@@ -11,7 +11,7 @@ sealed class CourseInfoMutation {
 
     sealed class SideEffect : CourseInfoMutation() {
         object BackScreen: SideEffect()
-        data class NaviToPlaceDetail(val id: String) : SideEffect()
+        data class NaviToPlaceDetail(val placeId: String) : SideEffect()
         data class ShowSnackBar(val message: String) : SideEffect()
 
     }

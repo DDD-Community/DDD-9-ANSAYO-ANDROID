@@ -15,6 +15,7 @@ import com.ddd.ansayo.data.AuthLocalDataSource
 import com.ddd.ansayo.databinding.ActivityCourseInfoBinding
 import com.ddd.ansayo.domain.model.course.info.CourseInfoAction
 import com.ddd.ansayo.domain.model.course.info.CourseInfoMutation
+import com.ddd.ansayo.place.PlaceDetailActivity
 import com.ddd.ansayo.presentation.viewmodel.Constant
 import com.ddd.ansayo.presentation.viewmodel.course.CourseInfoViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -131,6 +132,7 @@ class CourseInfoActivity :
                         }
 
                         is CourseInfoMutation.SideEffect.NaviToPlaceDetail -> {
+                            startActivity(PlaceDetailActivity.getIntent(this@CourseInfoActivity, it.placeId))
 
                         }
 
