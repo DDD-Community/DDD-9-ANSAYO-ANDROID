@@ -14,10 +14,6 @@ class PlaceRemoteDataSourceImpl @Inject constructor(
     private val placeService: PlaceService
 ) : PlaceRemoteDataSource {
 
-    override suspend fun getPlaces(query: String): Response<List<Place>> {
-        return placeService.getPlaces(query).toResponse()
-    }
-
     override suspend fun getFavoritePlaces(): Response<FavoritePlacesEntity.Response> {
         return placeService.getFavoritePlaces().toResponse()
     }

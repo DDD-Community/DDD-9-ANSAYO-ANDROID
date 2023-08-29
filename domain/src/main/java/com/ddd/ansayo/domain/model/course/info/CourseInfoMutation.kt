@@ -2,7 +2,6 @@ package com.ddd.ansayo.domain.model.course.info
 
 import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.core_model.course.CourseInfo
-import com.ddd.ansayo.core_model.place.Place
 
 sealed class CourseInfoMutation {
     sealed class Mutation : CourseInfoMutation() {
@@ -13,6 +12,8 @@ sealed class CourseInfoMutation {
     sealed class SideEffect : CourseInfoMutation() {
         object BackScreen: SideEffect()
         data class NaviToPlaceDetail(val id: String) : SideEffect()
+        data class ShowSnackBar(val message: String) : SideEffect()
+
     }
 
 }

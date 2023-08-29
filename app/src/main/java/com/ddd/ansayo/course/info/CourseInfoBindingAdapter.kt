@@ -1,6 +1,7 @@
 package com.ddd.ansayo.course.info
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -20,4 +21,19 @@ object CourseInfoBindingAdapter {
                 .into(this)
         }
     }
+    @JvmStatic
+    @BindingAdapter("placeName")
+    fun TextView.setPlaceName(name: String?) {
+        text = name?.let {
+            it
+        }
+    }
+    @JvmStatic
+    @BindingAdapter("placeReview")
+    fun TextView.setPlaceReview(review: String?) {
+        text = review?.let {
+            it
+        }
+    }
+
 }

@@ -64,14 +64,15 @@ data class CourseInfo(
                 authorId = "",
                 favorites = 3,
                 id = "",
-                isFavorite = false,
+                isFavorite = true,
                 name = "샤로수길 빵지순례",
-                regDate = "",
-                review = ""
+                regDate = "2023년 7월 17일",
+                review = "오늘은 샤로수길에 가서 빵을 먹었다! 빵복한 하루어쩌구 신선 기억"
             ),
             placePhotos = emptyList(),
             placeReviews = emptyList(),
             places = placeList
         )
+
     }
 }
