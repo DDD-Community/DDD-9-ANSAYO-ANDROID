@@ -41,15 +41,15 @@ class CourseInfoMutationHandler @Inject constructor(
                                 if (it.id == action.id) it.copy(isFavorite = action.like.not())
                                 else it
                             }
-
                             emit(CourseInfoMutation.Mutation.UpdateFavorite(course))
                         }
 
                         is Response.Fail -> {
+                            emit(CourseInfoMutation.SideEffect.ShowSnackBar(result.message))
                         }
                     }
                 }
-                is CourseInfoAction.SelectCourseInfo -> {
+                is CourseInfoAction.EnteredScreen -> {
                     when (val result = getCourseInfoUseCase(action.courseId)) {
                         is Response.Success -> {
                             emit(CourseInfoMutation.Mutation.UpdateCourseInfo(
@@ -57,7 +57,7 @@ class CourseInfoMutationHandler @Inject constructor(
                             ))
                         }
                         is Response.Fail -> {
-
+                            emit(CourseInfoMutation.SideEffect.ShowSnackBar(result.message))
                         }
 
                     }
