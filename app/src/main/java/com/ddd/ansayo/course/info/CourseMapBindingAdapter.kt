@@ -1,9 +1,8 @@
 package com.ddd.ansayo.course.info
 
-import android.graphics.Color
-import android.graphics.Rect
 import androidx.core.content.ContextCompat
 import com.ddd.ansayo.R
+import com.ddd.ansayo.core_design.R as coreDesignR
 import com.ddd.ansayo.core_model.place.Place
 import com.ddd.ansayo.presentation.viewmodel.course.CourseInfoViewModel
 import com.naver.maps.geometry.LatLng
@@ -11,7 +10,6 @@ import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.overlay.Marker
-import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PolylineOverlay
 
@@ -41,21 +39,21 @@ object CourseMapBindingAdapter {
                         markers.add(this)
 
                         val imageResource = when (index) {
-                            0 -> com.ddd.ansayo.core_design.R.drawable.img_pin_no1
-                            1 -> com.ddd.ansayo.core_design.R.drawable.img_pin_no2
-                            2 -> com.ddd.ansayo.core_design.R.drawable.img_pin_no3
-                            else -> com.ddd.ansayo.core_design.R.drawable.img_pin_no4
+                            0 -> coreDesignR.drawable.img_pin_no1
+                            1 -> coreDesignR.drawable.img_pin_no2
+                            2 -> coreDesignR.drawable.img_pin_no3
+                            else -> coreDesignR.drawable.img_pin_no4
                         }
                         val icon = OverlayImage.fromResource(imageResource)
                         this.icon = icon
                     }
 
                     val captionResource = when(index) {
-                        0 -> ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.pink_sub_text)
-                        1 -> ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.orange_sub_text)
-                        2 ->  ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.green_sub_text)
-                        3 -> ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.blue_sub_text)
-                        else -> ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.pink_sub_text)
+                        0 -> ContextCompat.getColor(requireContext(), coreDesignR.color.pink_sub_text)
+                        1 -> ContextCompat.getColor(requireContext(), coreDesignR.color.orange_sub_text)
+                        2 ->  ContextCompat.getColor(requireContext(), coreDesignR.color.green_sub_text)
+                        3 -> ContextCompat.getColor(requireContext(), coreDesignR.color.blue_sub_text)
+                        else -> ContextCompat.getColor(requireContext(), coreDesignR.color.pink_sub_text)
                     }
                     marker.captionText = it.name
                     marker.captionColor = captionResource
