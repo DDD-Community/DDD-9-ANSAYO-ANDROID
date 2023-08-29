@@ -3,6 +3,8 @@ package com.ddd.ansayo.data.repository.course
 import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.course.CourseInfo
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
+import com.ddd.ansayo.core_model.course.PopularCourseEntity
+import com.ddd.ansayo.core_model.course.RecentCourseEntity
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.core_model.search.SearchCourseEntity
 import com.ddd.ansayo.data.datasource.course.CourseRemoteDataSource
@@ -38,6 +40,14 @@ class CourseRepositoryImpl @Inject constructor(
 
     override suspend fun getSearchCourses(query: String): Response<SearchCourseEntity.Response> {
         return courseRemoteDataSource.getSearchCourses(query)
+    }
+
+    override suspend fun getPopularCourses(badgeId: String): Response<PopularCourseEntity> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getRecentCourses(): Response<RecentCourseEntity> {
+        TODO("Not yet implemented")
     }
 
 }
