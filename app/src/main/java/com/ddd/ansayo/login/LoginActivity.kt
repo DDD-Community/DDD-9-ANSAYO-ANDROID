@@ -16,6 +16,7 @@ import com.ddd.ansayo.domain.model.login.LoginAction
 import com.ddd.ansayo.domain.model.login.LoginMutation
 import com.ddd.ansayo.main.MainActivity
 import com.ddd.ansayo.presentation.viewmodel.login.LoginViewModel
+import com.ddd.ansayo.search.SearchActivity
 import com.ddd.ansayo.search.SearchListActivity
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +34,7 @@ class LoginActivity:
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity(Intent(this@LoginActivity, SearchListActivity::class.java))
+        startActivity(Intent(this@LoginActivity, SearchActivity::class.java))
 
         initView()
         collectSideEffect()

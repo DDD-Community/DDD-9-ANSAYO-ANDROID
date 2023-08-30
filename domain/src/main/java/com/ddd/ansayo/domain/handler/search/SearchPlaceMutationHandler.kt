@@ -19,17 +19,10 @@ class SearchPlaceMutationHandler @Inject constructor(
     ): Flow<SearchPlaceMutation> {
         return flow {
             when(action) {
-                is SearchPlaceAction.InputPlaceSearchWord -> {
-                    flowOf(
-                        SearchPlaceMutation.Mutation.UpdateSearchWord(
-                            word = action.text
-                        )
-                    )
-                }
-                is SearchPlaceAction.ClickSearch -> {
+                is SearchPlaceAction.SearchKeyword -> {
                     when(val result = getPlacesUseCase(action.searchKeyword)) {
                         is Response.Fail -> {
-
+                            emit(SearchPlaceMutation.SideEffect.ShowSnackBar(result.message))
                         }
                         is Response.Success -> {
                             emit(

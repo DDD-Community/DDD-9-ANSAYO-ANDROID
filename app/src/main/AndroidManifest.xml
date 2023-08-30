@@ -80,6 +80,10 @@
             android:name=".search.SearchListActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".search.SearchActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

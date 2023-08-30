@@ -6,4 +6,5 @@
     <string name="length_count_init"><![CDATA[<font color="#959493">%d/%d</font>]]></string>
     <string name="length_count"><![CDATA[<font color="#262626">%d</font><font color="#959493">/%d</font>]]></string>
     <string name="length_count_max"><![CDATA[<font color="#FF2207">%d</font><font color="#959493">/%d</font>]]></string>
+    <string name="input_search_keyword">검색해 주세요.</string>
 </resources>

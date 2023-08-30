@@ -5,7 +5,6 @@ import com.ddd.ansayo.core_model.course.Course
 
 sealed class SearchCourseMutation {
     sealed class Mutation: SearchCourseMutation() {
-        data class UpdateSearchWord(val word: String) : Mutation()
         data class UpdateCourse(val course: List<Course>): Mutation()
     }
     sealed class SideEffect: SearchCourseMutation() {
@@ -13,5 +12,7 @@ sealed class SearchCourseMutation {
         object NavToPlace: SideEffect()
         object StartCourseRecord : SideEffect()
         data class StartCourseDetail(val id: String): SideEffect()
+        data class ShowSnackBar(val message: String) : SideEffect()
+
     }
 }

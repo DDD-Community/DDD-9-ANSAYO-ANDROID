@@ -1,5 +1,6 @@
 package com.ddd.ansayo.presentation.viewmodel
 
+
 object Constant {
     const val PLACE_INFO = "PLACE_INFO"
     const val IMAGES = "IMAGES"
@@ -10,4 +11,5 @@ object Constant {
     const val FETCH_SEARCH_COURSE = "FETCH_SEARCH_COURSE"
     const val FETCH_SEARCH_PLACE = "FETCH_SEARCH_PLACE"
     const val PLACE_ID = "PLACE_ID"
+    const val SEARCH_WORD = "SEARCH_WORD"
 }
