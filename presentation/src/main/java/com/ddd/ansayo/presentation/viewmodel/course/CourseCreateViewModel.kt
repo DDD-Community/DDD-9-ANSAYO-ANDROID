@@ -81,6 +81,18 @@ class CourseCreateViewModel @Inject constructor(
                     is CourseWriteMutation.Mutation.UpdatePlaceReview -> {
                         state.copy(places = mutation.places)
                     }
+
+                    is CourseWriteMutation.Mutation.AddPlace -> {
+                        state.copy(places = mutation.places)
+                    }
+
+                    is CourseWriteMutation.Mutation.UpdateCompleteButton -> {
+                        state.copy(
+                            footer = state.footer.copy(
+                                isConfirmButtonEnabled = mutation.isConfirmButtonEnabled
+                            )
+                        )
+                    }
                 }
             }
         }
