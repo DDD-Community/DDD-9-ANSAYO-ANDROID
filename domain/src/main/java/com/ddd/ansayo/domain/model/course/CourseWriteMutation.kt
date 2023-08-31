@@ -10,6 +10,8 @@ sealed class CourseWriteMutation {
         data class DeletePlaceImage(val places: List<CourseWriteState.Place>) : Mutation()
         data class UpdatePlaceReview(val places: List<CourseWriteState.Place>) : Mutation()
         data class UpdateCourseVisibility(val isPrivate: Boolean) : Mutation()
+        data class AddPlace(val places: List<CourseWriteState.Place>) : Mutation()
+        data class UpdateCompleteButton(val isConfirmButtonEnabled: Boolean) : Mutation()
     }
 
     sealed class SideEffect : CourseWriteMutation() {
