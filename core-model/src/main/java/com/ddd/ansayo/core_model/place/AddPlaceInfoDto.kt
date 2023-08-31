@@ -1,16 +1,13 @@
-package com.ddd.ansayo.presentation.viewmodel.model
+package com.ddd.ansayo.core_model.place
 
-import android.os.Parcelable
-import com.ddd.ansayo.core_model.place.Place
-import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
-@Parcelize
 data class AddPlaceInfoDto(
     val formattedAddress: String,
     val name: String,
     val placeId: String,
     val types: List<String>?,
-) : Parcelable
+) : Serializable
 
 fun Place.mapToDto(): AddPlaceInfoDto {
     return AddPlaceInfoDto(

@@ -12,4 +12,5 @@ object Constant {
     const val FETCH_SEARCH_PLACE = "FETCH_SEARCH_PLACE"
     const val PLACE_ID = "PLACE_ID"
     const val SEARCH_WORD = "SEARCH_WORD"
+    const val COURSE_ID = "COURSE_ID"
 }

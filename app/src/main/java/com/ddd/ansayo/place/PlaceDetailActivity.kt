@@ -84,7 +84,7 @@ class PlaceDetailActivity :
                         .collect {
                             if (it == null) return@collect
                             Glide.with(this@PlaceDetailActivity)
-                                .load(it.place.photos.firstOrNull())
+                                .load(it.place.photos?.firstOrNull())
                                 .into(binding.ivPlace)
                             binding.tvTitle.text = it.place.name
                             headerAdapter.onChanged(it)

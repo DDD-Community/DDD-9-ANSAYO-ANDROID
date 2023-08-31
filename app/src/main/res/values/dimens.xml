@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="map_padding">50dp</dimen> <!-- 여유 공간 값 설정 -->
+</resources>

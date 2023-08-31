@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.core_design.util.snackbar.SnackBarLineMax
+import com.ddd.ansayo.course.info.CourseInfoActivity
 import com.ddd.ansayo.data.AuthLocalDataSource
 import com.ddd.ansayo.data.repository.auth.KakaoUseCase
 import com.ddd.ansayo.data.repository.auth.NaverUseCase
