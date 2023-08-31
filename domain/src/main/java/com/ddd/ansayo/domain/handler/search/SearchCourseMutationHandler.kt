@@ -45,6 +45,9 @@ class SearchCourseMutationHandler @Inject constructor(
                 is SearchCourseAction.ClickBackButton -> {
                     flowOf(SearchCourseMutation.SideEffect.BackScreen)
                 }
+                SearchCourseAction.ClickSeachBar -> {
+                    emit(SearchCourseMutation.SideEffect.SerachScreen)
+                }
             }
         }
     }

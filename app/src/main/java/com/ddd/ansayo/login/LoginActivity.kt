@@ -34,7 +34,6 @@ class LoginActivity:
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity(Intent(this@LoginActivity, SearchActivity::class.java))
 
         initView()
         collectSideEffect()

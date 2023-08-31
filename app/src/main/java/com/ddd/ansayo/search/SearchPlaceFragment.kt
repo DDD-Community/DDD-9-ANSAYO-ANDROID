@@ -86,11 +86,12 @@ class SearchPlaceFragment:
                         SearchPlaceMutation.SideEffect.NavToCourse -> {
 
                         }
-
+                        SearchPlaceMutation.SideEffect.SerachScreen -> {
+                            parentFragmentManager.popBackStack()
+                        }
                         is SearchPlaceMutation.SideEffect.StartPlaceDetail -> {
 
                         }
-
                         is SearchPlaceMutation.SideEffect.ShowSnackBar -> {
                             Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()
                         }

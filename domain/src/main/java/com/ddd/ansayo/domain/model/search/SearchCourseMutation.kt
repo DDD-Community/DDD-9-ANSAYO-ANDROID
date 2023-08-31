@@ -11,6 +11,7 @@ sealed class SearchCourseMutation {
         object BackScreen: SideEffect()
         object NavToPlace: SideEffect()
         object StartCourseRecord : SideEffect()
+        object SerachScreen: SideEffect()
         data class StartCourseDetail(val id: String): SideEffect()
         data class ShowSnackBar(val message: String) : SideEffect()
 

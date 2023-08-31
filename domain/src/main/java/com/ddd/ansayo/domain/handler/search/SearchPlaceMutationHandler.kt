@@ -43,6 +43,9 @@ class SearchPlaceMutationHandler @Inject constructor(
                 is SearchPlaceAction.ClickBackButton -> {
                     flowOf(SearchPlaceMutation.SideEffect.BackScreen)
                 }
+                SearchPlaceAction.ClickSeachBar -> {
+                    flowOf(SearchPlaceMutation.SideEffect.SerachScreen)
+                }
             }
         }
     }

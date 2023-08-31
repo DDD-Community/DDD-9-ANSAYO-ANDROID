@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ddd.ansayo.base.BaseFragment
 import com.ddd.ansayo.databinding.FragmentSearchCourseBinding
+import com.ddd.ansayo.domain.handler.search.SearchCourseMutationHandler
 import com.ddd.ansayo.domain.model.search.SearchCourseAction
 import com.ddd.ansayo.domain.model.search.SearchCourseMutation
 import com.ddd.ansayo.domain.model.search.SearchPlaceAction
@@ -92,6 +93,9 @@ class SearchCourseFragment :
                         SearchCourseMutation.SideEffect.BackScreen -> {
                             parentFragmentManager.popBackStack()
 
+                        }
+                        SearchCourseMutation.SideEffect.SerachScreen -> {
+                            parentFragmentManager.popBackStack()
                         }
                         is SearchCourseMutation.SideEffect.ShowSnackBar -> {
                             Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()

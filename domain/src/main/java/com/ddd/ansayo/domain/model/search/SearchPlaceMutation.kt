@@ -9,6 +9,7 @@ sealed class SearchPlaceMutation {
     sealed class SideEffect: SearchPlaceMutation() {
         object BackScreen: SideEffect()
         object NavToCourse: SideEffect()
+        object SerachScreen: SideEffect()
         data class StartPlaceDetail(val placeId: String): SideEffect()
         data class ShowSnackBar(val message: String) : SideEffect()
 
