@@ -1,6 +1,5 @@
 package com.ddd.ansayo.search
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.setFragmentResultListener
@@ -15,7 +14,6 @@ import com.ddd.ansayo.domain.model.search.SearchPlaceMutation
 import com.ddd.ansayo.presentation.viewmodel.Constant
 import com.ddd.ansayo.presentation.viewmodel.place.SearchPlaceViewModel
 import com.google.android.material.snackbar.Snackbar
-import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map

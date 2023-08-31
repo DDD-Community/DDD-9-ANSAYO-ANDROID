@@ -5,13 +5,14 @@ import com.ddd.ansayo.domain.model.search.SearchPlaceAction
 import com.ddd.ansayo.domain.model.search.SearchPlaceMutation
 import com.ddd.ansayo.domain.model.search.SearchPlaceState
 import com.ddd.ansayo.domain.usecase.place.GetPlacesUseCase
+import com.ddd.ansayo.domain.usecase.place.GetSearchPlaceUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class SearchPlaceMutationHandler @Inject constructor(
-    private val getPlacesUseCase: GetPlacesUseCase
+    private val getSearchPlaceUseCase: GetSearchPlaceUseCase
 ) {
     suspend fun mutate(
         state: SearchPlaceState,
@@ -20,14 +21,14 @@ class SearchPlaceMutationHandler @Inject constructor(
         return flow {
             when(action) {
                 is SearchPlaceAction.SearchKeyword -> {
-                    when(val result = getPlacesUseCase(action.searchKeyword)) {
+                    when(val result = getSearchPlaceUseCase(action.searchKeyword)) {
                         is Response.Fail -> {
                             emit(SearchPlaceMutation.SideEffect.ShowSnackBar(result.message))
                         }
                         is Response.Success -> {
                             emit(
                                 SearchPlaceMutation.Mutation.UpdatePlace(
-                                    place = result.data
+                                    place = result.data.places.orEmpty()
                                 )
                             )
                         }

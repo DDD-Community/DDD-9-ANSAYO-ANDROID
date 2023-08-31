@@ -12,7 +12,11 @@ class SearchListAdapter(
 
 
     private val fragments = listOf(
-        SearchCourseFragment(),
+        SearchCourseFragment().apply {
+            arguments = Bundle().apply {
+                putString("searchKeyword", searchKeyword)
+            }
+        },
         SearchPlaceFragment().apply {
             arguments = Bundle().apply {
                 putString("searchKeyword", searchKeyword)

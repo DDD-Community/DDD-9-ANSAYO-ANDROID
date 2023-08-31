@@ -2,7 +2,6 @@ package com.ddd.ansayo.search
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -12,6 +11,7 @@ import com.ddd.ansayo.base.BaseFragment
 import com.ddd.ansayo.databinding.FragmentSearchCourseBinding
 import com.ddd.ansayo.domain.model.search.SearchCourseAction
 import com.ddd.ansayo.domain.model.search.SearchCourseMutation
+import com.ddd.ansayo.domain.model.search.SearchPlaceAction
 import com.ddd.ansayo.presentation.viewmodel.Constant
 import com.ddd.ansayo.presentation.viewmodel.course.CourseSearchViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -30,9 +30,15 @@ class SearchCourseFragment :
             viewModel.onAction(SearchCourseAction.ClickCourseList(it))
         }
     )
+    private var searchKeyword: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        arguments?.let {
+            searchKeyword = it.getString("searchKeyword")
+            viewModel.onAction(SearchCourseAction.SearchKeyword(searchKeyword!!))
+        }
 
         initView()
         setFragmentResultListener()
