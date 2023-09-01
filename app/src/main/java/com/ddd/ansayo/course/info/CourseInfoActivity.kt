@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ddd.ansayo.R
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.core_model.course.CourseInfo
-import com.ddd.ansayo.core_model.place.Geometry
-import com.ddd.ansayo.core_model.place.Place
 import com.ddd.ansayo.course.info.CourseMapBindingAdapter.setMultiGeoPoint
 import com.ddd.ansayo.data.AuthLocalDataSource
 import com.ddd.ansayo.databinding.ActivityCourseInfoBinding
