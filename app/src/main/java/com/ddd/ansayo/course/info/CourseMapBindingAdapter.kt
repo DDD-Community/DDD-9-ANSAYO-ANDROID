@@ -70,7 +70,7 @@ object CourseMapBindingAdapter {
                         polyline.apply {
                             coords = polyCoords
                             setPattern(10, 4)
-                            color = ContextCompat.getColor(requireContext(), com.ddd.ansayo.core_design.R.color.N70)
+                            color = ContextCompat.getColor(requireContext(), coreDesignR.color.N70)
                         }
                         polyline.map = naverMap
                     }

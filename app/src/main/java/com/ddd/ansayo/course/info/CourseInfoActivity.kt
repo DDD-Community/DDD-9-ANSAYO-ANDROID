@@ -7,9 +7,13 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.ConcatAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ddd.ansayo.R
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.core_model.course.CourseInfo
+import com.ddd.ansayo.core_model.place.Geometry
+import com.ddd.ansayo.core_model.place.Place
 import com.ddd.ansayo.course.info.CourseMapBindingAdapter.setMultiGeoPoint
 import com.ddd.ansayo.data.AuthLocalDataSource
 import com.ddd.ansayo.databinding.ActivityCourseInfoBinding
@@ -24,12 +28,12 @@ import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
-import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.abs
 
 
 @AndroidEntryPoint
@@ -37,11 +41,20 @@ class CourseInfoActivity :
     BaseActivity<ActivityCourseInfoBinding>(ActivityCourseInfoBinding::inflate) {
 
     private val viewModel by viewModels<CourseInfoViewModel>()
-    private val courseInfoAdapter = CourseInfoAdapter(
-        placeClickListener = { placeId ->
-            viewModel.onAction(CourseInfoAction.NaviToPlaceDetail(placeId))
-        }
-    )
+    private val headerAdapter by lazy {
+        CourseInfoAdapter(
+            favoriteClickListener = {
+                viewModel.onAction(CourseInfoAction.ClickFavorite(it))
+            }
+        )
+    }
+    private val courseInfoAdapter by lazy {
+        CourseDetailInfoAdapter(
+            placeClickListener = {
+                viewModel.onAction(CourseInfoAction.ClickPlace(it))
+            }
+        )
+    }
     private val tempCourse = CourseInfo.TEMPDATA
     lateinit var mapFragment: MapFragment
     lateinit var naverMap: NaverMap
@@ -57,31 +70,37 @@ class CourseInfoActivity :
         collectSideEffect()
 
         val courseId = intent.getStringExtra(Constant.COURSE_ID).orEmpty()
-//        viewModel.onAction(CourseInfoAction.EnteredScreen(courseId))
-        viewModel.onAction(CourseInfoAction.EnteredScreen("10"))
-
-        Logger.e("placeList value : ${tempCourse}")
-        Logger.e("oauth Token : ${authLocalDataSource.authToken}")
-
-
+        viewModel.onAction(CourseInfoAction.EnteredScreen(courseId))
     }
-
     private fun initView() {
         binding.run {
-            rvCoursePlave.apply {
-                adapter = courseInfoAdapter
+            appBar.addOnOffsetChangedListener { appBar, verticalOffset ->
+                val threshold = layoutTitle.height / 2
+                val alpha = when {
+                    abs(verticalOffset) == appBar.totalScrollRange -> 1f
+                    abs(verticalOffset) >= appBar.totalScrollRange - threshold -> {
+                        1 - (appBar.totalScrollRange - abs(verticalOffset)) / threshold.toFloat()
+                    }
+                    else -> 0f
+                }
+               layoutTitle.alpha = alpha
             }
+            rvCouseDetail.apply {
+                adapter = ConcatAdapter(headerAdapter,courseInfoAdapter)
+                layoutManager = LinearLayoutManager(context)
+                itemAnimator = null
+            }
+
             val lat = tempCourse.places.first().geometry.lat
             val lng = tempCourse.places.first().geometry.lng
 
-            mapFragment = createNaverMapFragment(LatLng(lat,lng))
+            mapFragment = createNaverMapFragment(LatLng(lat, lng))
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fcv_map_container, mapFragment)
                 .commitAllowingStateLoss()
         }
 
     }
-
     private fun createNaverMapFragment(courseLocation: LatLng): MapFragment {
         return MapFragment.newInstance().apply {
             getMapAsync {
@@ -101,15 +120,22 @@ class CourseInfoActivity :
                 )
 
             }
-
             tempCourse.let { setMultiGeoPoint(it.places, viewModel) }
-
         }
     }
 
     private fun collectState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.container.stateFlow
+                        .map { it.courseInfo }
+                        .distinctUntilChanged()
+                        .collect {
+                            if (it == null) return@collect
+                            headerAdapter.onChanged(it)
+                        }
+                }
                 launch {
                     viewModel.container.stateFlow
                         .map { it.courseInfo.places }
@@ -132,7 +158,9 @@ class CourseInfoActivity :
                         }
 
                         is CourseInfoMutation.SideEffect.NaviToPlaceDetail -> {
-                            startActivity(PlaceDetailActivity.getIntent(this@CourseInfoActivity, it.placeId))
+                            startActivity(
+                                PlaceDetailActivity.getIntent(this@CourseInfoActivity, it.placeId)
+                            )
 
                         }
 

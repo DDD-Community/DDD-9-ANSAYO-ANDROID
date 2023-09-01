@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.extenstion.dpToPx
 
 object CourseInfoBindingAdapter {
@@ -19,6 +20,20 @@ object CourseInfoBindingAdapter {
                 .transform(CenterCrop(), RoundedCorners(12.dpToPx().toInt()))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(this)
+        }
+    }
+    @JvmStatic
+    @BindingAdapter("courseFavorites")
+    fun TextView.setCourseFavorites(favorites: Int?) {
+        text = favorites?.let {
+            "$it"
+        }
+    }
+    @JvmStatic
+    @BindingAdapter("courseSubInfo")
+    fun TextView.setCourseSubInfo(course: Course?) {
+        text = course?.let {
+            "${it.villageAddress}· ${it.category}"
         }
     }
     @JvmStatic
