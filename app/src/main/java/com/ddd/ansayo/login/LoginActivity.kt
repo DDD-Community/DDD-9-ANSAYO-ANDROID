@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.ddd.ansayo.GgecoApplication
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.core_design.util.snackbar.SnackBarLineMax
 import com.ddd.ansayo.course.info.CourseInfoActivity

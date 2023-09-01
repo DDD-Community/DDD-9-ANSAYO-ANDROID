@@ -9,7 +9,7 @@ data class Place(
     val name: String,
     @SerializedName("opening_hours") val openingHours: List<OpeningHour>?,
     val phone: String,
-    val photos: List<Photo>?,
+    val photos: List<Photo>,
     @SerializedName("place_id") val placeId: String,
     val rating: Float,
     val reviews: List<Review>,
