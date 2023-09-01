@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="18dp"
+            android:text="@{place.name}"
             android:textAppearance="@style/Text_H4"
             android:textColor="@color/N10"
             app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
@@ -48,39 +49,18 @@
             app:layout_constraintTop_toBottomOf="@id/tv_place_title"
             tools:text="관관악구 ∙ 카페" />
 
-        <ImageView
-            android:id="@+id/iv_rating"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
+        <com.ddd.ansayo.core_design.util.RatingView
+            android:id="@+id/rating_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:currentRating="@{4.0f}"
+            app:emphasize="true"
             android:layout_marginStart="8dp"
-            android:src="@drawable/ic_star_gray"
+            app:layout_constraintTop_toTopOf="@id/tv_place_location"
             app:layout_constraintBottom_toBottomOf="@id/tv_place_location"
             app:layout_constraintStart_toEndOf="@id/tv_place_location"
-            app:layout_constraintTop_toTopOf="@id/tv_place_location" />
+            app:reviewCount="@{place.reviews.size()}" />
 
-        <TextView
-            android:id="@+id/tv_place_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:textAppearance="@style/Text_B3"
-            android:textColor="@color/N40"
-            app:layout_constraintBottom_toBottomOf="@id/tv_place_location"
-            app:layout_constraintStart_toEndOf="@id/iv_rating"
-            app:layout_constraintTop_toTopOf="@id/tv_place_location"
-            tools:text="4.0/5" />
-
-        <TextView
-            android:id="@+id/tv_place_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:textAppearance="@style/Text_B3"
-            android:textColor="@color/N40"
-            app:layout_constraintBottom_toBottomOf="@id/tv_place_location"
-            app:layout_constraintStart_toEndOf="@id/tv_place_rating"
-            app:layout_constraintTop_toTopOf="@id/tv_place_location"
-            tools:text="(1,200건)" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

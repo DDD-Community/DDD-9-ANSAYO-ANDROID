@@ -1,11 +1,14 @@
 package com.ddd.ansayo.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import com.ddd.ansayo.R
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.databinding.ActivityMainBinding
 import com.ddd.ansayo.presentation.viewmodel.Constant
+import com.ddd.ansayo.search.SearchActivity
+import com.ddd.ansayo.search.SearchListActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

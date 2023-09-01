@@ -34,11 +34,6 @@ class CourseSearchViewModel @Inject constructor(
        intent {
            reduce {
                when(mutation) {
-                   is SearchCourseMutation.Mutation.UpdateSearchWord -> {
-                        state.copy(
-                            keyword = mutation.word
-                        )
-                   }
                    is SearchCourseMutation.Mutation.UpdateCourse -> {
                        state.copy(
                            courses = mutation.course

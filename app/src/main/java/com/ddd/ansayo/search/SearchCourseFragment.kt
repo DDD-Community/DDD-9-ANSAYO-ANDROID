@@ -9,10 +9,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ddd.ansayo.base.BaseFragment
 import com.ddd.ansayo.databinding.FragmentSearchCourseBinding
+import com.ddd.ansayo.domain.handler.search.SearchCourseMutationHandler
 import com.ddd.ansayo.domain.model.search.SearchCourseAction
 import com.ddd.ansayo.domain.model.search.SearchCourseMutation
+import com.ddd.ansayo.domain.model.search.SearchPlaceAction
 import com.ddd.ansayo.presentation.viewmodel.Constant
 import com.ddd.ansayo.presentation.viewmodel.course.CourseSearchViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
@@ -28,9 +31,15 @@ class SearchCourseFragment :
             viewModel.onAction(SearchCourseAction.ClickCourseList(it))
         }
     )
+    private var searchKeyword: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        arguments?.let {
+            searchKeyword = it.getString("searchKeyword")
+            viewModel.onAction(SearchCourseAction.SearchKeyword(searchKeyword!!))
+        }
 
         initView()
         setFragmentResultListener()
@@ -72,17 +81,24 @@ class SearchCourseFragment :
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.container.sideEffectFlow.collect {
                     when (it) {
-                        is SearchCourseMutation.SideEffect.NavToPlace -> {
+                        SearchCourseMutation.SideEffect.NavToPlace -> {
 
                         }
                         is SearchCourseMutation.SideEffect.StartCourseDetail -> {
 
                         }
-                        is SearchCourseMutation.SideEffect.StartCourseRecord -> {
+                        SearchCourseMutation.SideEffect.StartCourseRecord -> {
 
                         }
-                        is SearchCourseMutation.SideEffect.BackScreen -> {
+                        SearchCourseMutation.SideEffect.BackScreen -> {
+                            parentFragmentManager.popBackStack()
 
+                        }
+                        SearchCourseMutation.SideEffect.SerachScreen -> {
+                            parentFragmentManager.popBackStack()
+                        }
+                        is SearchCourseMutation.SideEffect.ShowSnackBar -> {
+                            Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()
                         }
                     }
                 }
