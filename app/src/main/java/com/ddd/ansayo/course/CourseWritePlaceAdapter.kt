@@ -70,7 +70,7 @@ class CourseWritePlaceAdapter(
                 FIRST_ADD_PLACE
             }
 
-            position == currentList.lastIndex -> {
+            position == currentList.size -> {
                 ADD_PLACE
             }
 
@@ -92,6 +92,21 @@ class CourseWritePlaceAdapter(
         private val placeImageDeleteClickListener: ((Int, Int) -> Unit)
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        private val imageAdapter by lazy {
+            CoursePlaceImageAdapter(
+                placeImageAddClickListener = {
+                    binding.place?.let { place ->
+                        placeImageAddClickListener.invoke(place.order)
+                    }
+                },
+                placeImageDeleteClickListener = { imageIndex ->
+                    binding.place?.let { place ->
+                        placeImageDeleteClickListener.invoke(place.order, imageIndex)
+                    }
+                }
+            )
+        }
+
         init {
             binding.etPlaceReview.doAfterTextChanged {
                 binding.place?.let { place ->
@@ -106,19 +121,7 @@ class CourseWritePlaceAdapter(
             }
 
             binding.rvPlaceImage.apply {
-                adapter = CoursePlaceImageAdapter(
-                    placeImageAddClickListener = {
-                        binding.place?.let { place ->
-                            placeImageAddClickListener.invoke(place.order)
-                        }
-                    },
-                    placeImageDeleteClickListener = { imageIndex ->
-                        binding.place?.let { place ->
-                            placeImageDeleteClickListener.invoke(place.order, imageIndex)
-                        }
-                    }
-                )
-                layoutManager = LinearLayoutManager(context)
+                adapter = imageAdapter
                 itemAnimator = null
                 setHasFixedSize(true)
             }
@@ -126,6 +129,7 @@ class CourseWritePlaceAdapter(
 
         fun onBind(item: CourseWriteState.Place) {
             binding.place = item
+            imageAdapter.submitList(item.images)
         }
     }
 

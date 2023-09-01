@@ -29,7 +29,7 @@ data class CourseWriteState(
         val order: Int,
         val title: String,
         val address: String,
-        val category: String,
+        val category: List<String>?,
         val isPlaceReviewMaxInputted: Boolean,
         val review: String,
         val images: List<CoursePlaceImage>

@@ -144,6 +144,24 @@ class CourseWriteMutationHandler @Inject constructor(
                     CourseWriteMutation.SideEffect.HideLoading,
                 )
             }
+
+            is CourseWriteAction.SelectPlace -> {
+                val newList = state.places + CourseWriteState.Place(
+                    order = state.places.size + 1,
+                    title = action.placeInfo.name,
+                    address = action.placeInfo.formattedAddress,
+                    category = action.placeInfo.types,
+                    isPlaceReviewMaxInputted = false,
+                    review = "",
+                    images = emptyList()
+                )
+                flowOf(CourseWriteMutation.Mutation.AddPlace(newList))
+                flowOf(
+                    CourseWriteMutation.Mutation.UpdateCompleteButton(
+                        isConfirmButtonEnabled = state.header.title.isNotEmpty() && newList.isNotEmpty()
+                    )
+                )
+            }
         }
     }
 

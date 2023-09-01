@@ -43,7 +43,7 @@ class CoursePlaceImageAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ImageViewHolder -> holder.onBind(getItem(position))
+            is ImageViewHolder -> holder.onBind(getItem(position - 1))
             is AddViewHolder -> holder.onBind(currentList.size)
         }
     }
@@ -66,7 +66,7 @@ class CoursePlaceImageAdapter(
 
         init {
             binding.ivDeleteImage.setOnClickListener {
-                placeImageDeleteClickListener.invoke(absoluteAdapterPosition)
+                placeImageDeleteClickListener.invoke(absoluteAdapterPosition - 1)
             }
         }
 
