@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="view"
+            type="com.ddd.ansayo.search.SearchListActivity" />
+
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/cl_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/N95">
+
+    <com.ddd.ansayo.core_design.util.SearchView
+        android:id="@+id/v_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="17dp"
+        android:backgroundTint="@color/N95"
+        app:tabIndicatorColor="@color/N10"
+        app:layout_constraintTop_toBottomOf="@id/v_search"
+        app:tabSelectedTextColor="@color/N10"
+        app:tabTextAppearance="@style/Text_H4"
+        app:tabTextColor="@color/N70"
+        app:tabRippleColor="@android:color/transparent" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_search"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

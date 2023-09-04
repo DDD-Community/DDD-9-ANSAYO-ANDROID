@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="footer"
             type="com.ddd.ansayo.domain.model.course.CourseWriteState.Footer" />
@@ -10,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/N95">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_start"
@@ -31,6 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/course_visibility"
+            android:textAppearance="@style/Text_B1"
+            android:textColor="@color/N10"
             app:layout_constraintBottom_toBottomOf="@id/switch_visibility"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintTop_toTopOf="@id/switch_visibility" />
@@ -39,16 +44,20 @@
             android:id="@+id/switch_visibility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:thumb="@drawable/switch_thumb"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:track="@drawable/selector_switch_track"
+            tools:checked="true" />
 
-        <Button
+        <com.ddd.ansayo.core_design.util.button.LabelPrimaryButton
             android:id="@+id/btn_complete"
             android:layout_width="0dp"
             android:layout_height="48dp"
+            android:layout_marginTop="36dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/complete_write"
             android:enabled="@{footer.confirmButtonEnabled}"
+            android:text="@string/complete_write"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"

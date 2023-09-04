@@ -19,45 +19,59 @@ class CourseInfoMutationHandler @Inject constructor(
     suspend fun mutate(
         state: CourseInfoState,
         action: CourseInfoAction
-    ) : Flow<CourseInfoMutation> {
+    ): Flow<CourseInfoMutation> {
         return flow {
             when (action) {
                 is CourseInfoAction.BackScreen -> {
                     emit(CourseInfoMutation.SideEffect.BackScreen)
                 }
-                is CourseInfoAction.NaviToPlaceDetail -> {
+
+                is CourseInfoAction.ClickPlace -> {
                     emit(CourseInfoMutation.SideEffect.NaviToPlaceDetail(action.id))
                 }
+
                 is CourseInfoAction.ClickFavorite -> {
-                    when ( val result =
+                    when (val result =
                         if (action.like) {
-                            deleteFavoritePlaceUseCase(action.id)
+                            deleteFavoritePlaceUseCase(state.courseInfo.course.id)
                         } else {
-                            postFavoritePlaceUseCase(action.id)
+                            postFavoritePlaceUseCase(state.courseInfo.course.id)
                         }
                     ) {
                         is Response.Success -> {
-                            val course = state.courseInfo.course.let {
-                                if (it.id == action.id) it.copy(isFavorite = action.like.not())
-                                else it
+                            val favoriteCount = if (action.like) {
+                                state.courseInfo.course.favorites - 1
+                            } else {
+                                state.courseInfo.course.favorites + 1
                             }
-
-                            emit(CourseInfoMutation.Mutation.UpdateFavorite(course))
+                            emit(
+                                CourseInfoMutation.Mutation.UpdateFavoriteCount(
+                                    state.courseInfo.course.copy(
+                                        favorites = favoriteCount,
+                                        isFavorite = state.courseInfo.course.isFavorite.not()
+                                    )
+                                )
+                            )
                         }
 
                         is Response.Fail -> {
+                            emit(CourseInfoMutation.SideEffect.ShowSnackBar(result.message))
                         }
                     }
                 }
-                is CourseInfoAction.SelectCourseInfo -> {
+
+                is CourseInfoAction.EnteredScreen -> {
                     when (val result = getCourseInfoUseCase(action.courseId)) {
                         is Response.Success -> {
-                            emit(CourseInfoMutation.Mutation.UpdateCourseInfo(
-                                courseInfo = result.data
-                            ))
+                            emit(
+                                CourseInfoMutation.Mutation.UpdateCourseInfo(
+                                    courseInfo = result.data
+                                )
+                            )
                         }
-                        is Response.Fail -> {
 
+                        is Response.Fail -> {
+                            emit(CourseInfoMutation.SideEffect.ShowSnackBar(result.message))
                         }
 
                     }

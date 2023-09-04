@@ -19,10 +19,12 @@
     <string name="my_page">마이페이지</string>
 
     <!--  코스 작성  -->
-    <string name="course_title">코스 제목</string>
+    <string name="course_create">코스 작성하기</string>
+    <string name="course_title"><![CDATA[코스 제목<font color="#FF2207>*</font>]]></string>
     <string name="course_title_hint">코스 제목을 입력해주세요.</string>
     <string name="course_description">코스 설명</string>
     <string name="course_description_hint">코스에 대해서 간단히 설명해주세요.</string>
+    <string name="place_review_hint">장소에 대해서 간단히 리뷰해주세요.</string>
     <string name="course_date_hint">날짜 추가</string>
     <string name="add_place">장소 추가하기</string>
     <string name="add_first_place_description">다녀온 장소의 기록을 남겨 주세요</string>
@@ -54,5 +56,7 @@
 
     <!--  검색  -->
     <string name="input_search_keyword">검색해 주세요.</string>
-
+    <string name="search_course_no_result">다른 사람들을 위해 코스를 기록해 주세요.</string>
+    <string name="search_result_not_found_place">"%s에 대한\n장소 검색 결과가 없어요."</string>
+    <string name="search_result_not_found_course">"%s에 대한\n장소 코스 결과가 없어요."</string>
 </resources>

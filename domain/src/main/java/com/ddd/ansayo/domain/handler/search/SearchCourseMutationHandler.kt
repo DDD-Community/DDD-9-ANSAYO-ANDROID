@@ -19,21 +19,14 @@ class SearchCourseMutationHandler @Inject constructor(
     ): Flow<SearchCourseMutation> {
         return flow {
             when(action) {
-                is SearchCourseAction.InputPlaceSearchWord -> {
-                    flowOf(
-                        SearchCourseMutation.Mutation.UpdateSearchWord(
-                            word = action.text
-                        )
-                    )
-                }
                 is SearchCourseAction.ClickCourseList -> {
                     emit(SearchCourseMutation.SideEffect.StartCourseDetail(action.id))
                 }
                 is SearchCourseAction.ClickRecordCourse -> {
                     emit(SearchCourseMutation.SideEffect.StartCourseRecord)
                 }
-                is SearchCourseAction.ClickSearch -> {
-                    when(val result = getSearchCoursesUseCase(action.text)) {
+                is SearchCourseAction.SearchKeyword -> {
+                    when(val result = getSearchCoursesUseCase(action.searchKeyword)) {
                         is Response.Fail -> {
 
                         }
@@ -51,6 +44,9 @@ class SearchCourseMutationHandler @Inject constructor(
                 }
                 is SearchCourseAction.ClickBackButton -> {
                     flowOf(SearchCourseMutation.SideEffect.BackScreen)
+                }
+                SearchCourseAction.ClickSeachBar -> {
+                    emit(SearchCourseMutation.SideEffect.SerachScreen)
                 }
             }
         }

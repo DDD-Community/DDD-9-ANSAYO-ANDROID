@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
+import com.ddd.ansayo.R
 import com.ddd.ansayo.databinding.ItemCourseWriteHeaderBinding
 import com.ddd.ansayo.domain.model.course.CourseWriteState
+import com.ddd.ansayo.extenstion.setHtmlText
 
 class CourseWriteHeaderAdapter(
     private val courseTitleChangedListener: ((String) -> Unit),
@@ -54,6 +56,7 @@ class CourseWriteHeaderAdapter(
 
         fun onBind(item: CourseWriteState.Header) {
             binding.header = item
+            binding.tvCourseTitle.setHtmlText(itemView.context.getString(R.string.course_title))
         }
     }
 }

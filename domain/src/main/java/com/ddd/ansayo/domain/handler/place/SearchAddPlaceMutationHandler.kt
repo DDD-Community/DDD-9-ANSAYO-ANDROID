@@ -31,7 +31,7 @@ class SearchAddPlaceMutationHandler @Inject constructor(
                     emit(SearchAddPlaceMutation.SideEffect.ShowLoading)
                     when (val response = getPlacesUseCase(action.searchKeyword)) {
                         is Response.Success -> {
-                            emit(SearchAddPlaceMutation.Mutation.UpdateSearchResult(response.data))
+                            emit(SearchAddPlaceMutation.Mutation.UpdateSearchResult(response.data.places.orEmpty()))
                         }
 
                         is Response.Fail -> {

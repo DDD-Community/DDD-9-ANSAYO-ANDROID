@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -21,14 +22,16 @@
             android:layout_marginStart="16dp"
             app:cardCornerRadius="4dp"
             app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/divider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:imageUrl="@{place.photos.get(0).photoPath}" />
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:placeImage="@{place.photos}" />
 
         </androidx.cardview.widget.CardView>
 
@@ -36,57 +39,72 @@
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
+            android:layout_marginHorizontal="12dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{place.name}"
+            android:textAppearance="@style/Text_H4"
+            android:textColor="@color/N10"
+            app:layout_constraintBottom_toTopOf="@id/tv_category"
             app:layout_constraintEnd_toStartOf="@id/tv_show_detail"
             app:layout_constraintStart_toEndOf="@id/cv_image"
-            app:layout_constraintTop_toTopOf="@id/cv_image" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="소디스에스프레소바" />
 
         <TextView
             android:id="@+id/tv_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            app:layout_constraintBottom_toBottomOf="@id/cv_image"
+            android:textAppearance="@style/Text_B3"
+            android:textColor="@color/N40"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/rating"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             app:placeAddress="@{place.formattedAddress}"
-            app:placeTypes="@{place.types}" />
+            app:placeTypes="@{place.types}"
+            tools:text="관악구 ∙ 카페" />
 
-        <ImageView
-            android:id="@+id/iv_rating"
-            android:layout_width="11dp"
-            android:layout_height="11dp"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/ic_star_gray"
-            app:layout_constraintBottom_toBottomOf="@id/tv_category"
-            app:layout_constraintStart_toEndOf="@id/tv_category"
-            app:layout_constraintTop_toTopOf="@id/tv_category" />
-
-        <TextView
-            android:id="@+id/tv_rating"
+        <com.ddd.ansayo.core_design.util.RatingView
+            android:id="@+id/rating"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="12dp"
-            android:ellipsize="end"
-            android:maxLines="1"
+            app:currentRating="@{place.rating}"
+            app:emphasize="false"
             app:layout_constraintBottom_toBottomOf="@id/tv_category"
             app:layout_constraintEnd_toStartOf="@id/tv_show_detail"
-            app:layout_constraintStart_toEndOf="@id/iv_rating"
-            app:layout_constraintTop_toTopOf="@id/tv_category" />
+            app:layout_constraintStart_toEndOf="@id/tv_category"
+            app:layout_constraintTop_toTopOf="@id/tv_category"
+            app:reviewCount="@{place.reviews.size()}" />
 
         <TextView
             android:id="@+id/tv_show_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/button_label_secondary_enable"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="5dp"
             android:text="@string/show_detail"
+            android:textAppearance="@style/Text_B3"
+            android:textColor="@color/N50"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@color/N90"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

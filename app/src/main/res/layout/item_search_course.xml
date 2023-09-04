@@ -7,6 +7,10 @@
         <variable
             name="course"
             type="com.ddd.ansayo.core_model.course.Course" />
+
+        <variable
+            name="info"
+            type="com.ddd.ansayo.core_model.course.CourseInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/Text_H4"
+            android:text="@{course.name}"
             android:textColor="@color/N10"
             android:layout_marginTop="26dp"
             android:layout_marginStart="12dp"
@@ -39,6 +44,7 @@
             android:id="@+id/tv_course_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{course.villageAddress}"
             android:textAppearance="@style/Text_B3"
             android:textColor="@color/N40"
             android:layout_marginStart="12dp"
@@ -61,6 +67,7 @@
             android:id="@+id/tv_place_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{info.places.size()}"
             android:textAppearance="@style/Text_B3"
             android:textColor="@color/N40"
             android:layout_marginStart="2dp"
@@ -84,6 +91,7 @@
             android:id="@+id/tv_like_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{course.favorites}"
             android:textAppearance="@style/Text_B3"
             android:textColor="@color/N40"
             android:layout_marginStart="2dp"
@@ -96,6 +104,7 @@
             android:id="@+id/tv_course_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{course.review}"
             android:textAppearance="@style/Text_B2"
             android:textColor="@color/N40"
             android:layout_marginTop="5dp"
