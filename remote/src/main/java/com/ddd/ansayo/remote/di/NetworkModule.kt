@@ -5,6 +5,7 @@ import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
 import com.ddd.ansayo.remote.interceptor.AuthHeaderInterceptor
+import com.ddd.ansayo.remote.interceptor.FileUploadHeaderInterceptor
 import com.ddd.ansayo.remote.interceptor.TokenAuthenticator
 import com.orhanobut.logger.Logger
 import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
@@ -76,14 +77,14 @@ object NetworkModule {
     @FileUploadClient
     fun providesFileUploadClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        authHeaderInterceptor: AuthHeaderInterceptor,
+        fileUploadHeaderInterceptor: FileUploadHeaderInterceptor,
         tokenAuthenticator: TokenAuthenticator,
         chuckerInterceptor: ChuckerInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(chuckerInterceptor)
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(authHeaderInterceptor)
+            .addInterceptor(fileUploadHeaderInterceptor)
             .authenticator(tokenAuthenticator)
             .connectTimeout(FILE_UPLOAD_TIME_OUT, TimeUnit.SECONDS)
             .readTimeout(FILE_UPLOAD_TIME_OUT, TimeUnit.SECONDS)

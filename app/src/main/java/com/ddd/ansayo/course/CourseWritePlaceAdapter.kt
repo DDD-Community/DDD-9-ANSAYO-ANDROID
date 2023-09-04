@@ -2,15 +2,13 @@ package com.ddd.ansayo.course
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.widget.doAfterTextChanged
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ddd.ansayo.util.ItemCallback
 import com.ddd.ansayo.databinding.ItemAddPlaceBinding
 import com.ddd.ansayo.databinding.ItemCourseWritePlaceBinding
 import com.ddd.ansayo.databinding.ItemFirstAddPlaceBinding
 import com.ddd.ansayo.domain.model.course.CourseWriteState
+import com.ddd.ansayo.util.ItemCallback
 
 class CourseWritePlaceAdapter(
     private val placeReviewChangedListener: ((Int, String) -> Unit),
@@ -20,7 +18,13 @@ class CourseWritePlaceAdapter(
     private val placeImageDeleteClickListener: ((Int, Int) -> Unit)
 ) : ListAdapter<CourseWriteState.Place, RecyclerView.ViewHolder>(
     ItemCallback<CourseWriteState.Place>(
-        itemTheSame = { oldItem, newItem -> oldItem == newItem },
+        itemTheSame = { oldItem, newItem ->
+            if (oldItem.id != newItem.id) {
+                oldItem.id == newItem.id
+            } else {
+                oldItem.order == newItem.order
+            }
+        },
         contentsTheSame = { oldItem, newItem -> oldItem == newItem }
     )
 ) {

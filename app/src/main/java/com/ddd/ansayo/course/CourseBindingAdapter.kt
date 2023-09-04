@@ -6,18 +6,21 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.ddd.ansayo.R
 import com.ddd.ansayo.extenstion.setHtmlText
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import com.ddd.ansayo.core_design.R as coreDesignR
 
 object CourseBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("courseDate")
-    fun TextView.setCourseDate(date: String) {
-        if (date.isEmpty()) {
+    fun TextView.setCourseDate(date: Long) {
+        if (date == 0L) {
             text = context.getString(R.string.course_date_hint)
             setTextColor(context.getColor(coreDesignR.color.N0))
         } else {
-            text = date
+            text = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA).format(Date(date))
             setTextColor(context.getColor(coreDesignR.color.N0))
         }
     }

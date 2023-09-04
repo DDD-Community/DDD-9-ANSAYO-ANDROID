@@ -1,6 +1,5 @@
 package com.ddd.ansayo.course
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -23,11 +22,9 @@ import com.ddd.ansayo.presentation.viewmodel.Constant
 import com.ddd.ansayo.presentation.viewmodel.course.CourseCreateViewModel
 import com.ddd.ansayo.util.PermissionCompatHelper
 import com.esafirm.imagepicker.features.ImagePickerConfig
-import com.esafirm.imagepicker.features.ImagePickerLauncher
 import com.esafirm.imagepicker.features.registerImagePicker
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
-import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.coroutine.TedPermission
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,9 +33,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import com.ddd.ansayo.core_design.R as coreDesignR
 
 @AndroidEntryPoint
@@ -178,8 +172,7 @@ class CourseCreateActivity :
                                 .build()
                                 .apply {
                                     addOnPositiveButtonClickListener { time ->
-                                        val date = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA).format(Date(time))
-                                        viewModel.onAction(CourseWriteAction.SelectDate(date))
+                                        viewModel.onAction(CourseWriteAction.SelectDate(time))
                                     }
                                 }
                                 .show(supportFragmentManager, "")
