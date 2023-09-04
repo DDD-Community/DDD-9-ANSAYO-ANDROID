@@ -1,5 +1,5 @@
 package com.ddd.ansayo.core_model.course
 
-data class RecentCourseEntity(
+data class RecommendCourseEntity(
     val course: List<Course>
 )
