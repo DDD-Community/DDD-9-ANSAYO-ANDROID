@@ -33,7 +33,6 @@ class HomeMutationHandler @Inject constructor(
 
                 }
                 is HomeAction.ClickRecordButton -> {
-                    emit(HomeMutation.SideEffect.)
 
                 }
                 is HomeAction.ClickSearchButton -> {
