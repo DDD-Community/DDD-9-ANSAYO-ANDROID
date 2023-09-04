@@ -18,6 +18,13 @@ object SearchBindingAdapter {
             text = "$it"
         }
     }
+    @JvmStatic
+    @BindingAdapter("placeType")
+    fun TextView.setPlaceType(type: List<String>?) {
+        type?.let {
+            text = "${it.first()}"
+        }
+    }
 
     @JvmStatic
     @BindingAdapter("searchThumbnail")

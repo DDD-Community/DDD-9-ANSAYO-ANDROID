@@ -44,12 +44,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@{place.formattedAddress}"
-            android:maxLength="15"
             android:textAppearance="@style/Text_B3"
             android:textColor="@color/N40"
             app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
             app:layout_constraintTop_toBottomOf="@id/tv_place_title"
+            app:placeType="@{place.types}"
             tools:text="관관악구 ∙ 카페전문점입니다요" />
 
         <com.ddd.ansayo.core_design.util.RatingView
