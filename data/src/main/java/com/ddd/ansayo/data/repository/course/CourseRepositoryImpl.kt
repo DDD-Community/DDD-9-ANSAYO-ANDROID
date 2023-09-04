@@ -2,6 +2,7 @@ package com.ddd.ansayo.data.repository.course
 
 import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.course.CourseInfo
+import com.ddd.ansayo.core_model.course.CourseUploadEntity
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.core_model.search.SearchCourseEntity
@@ -12,13 +13,6 @@ import javax.inject.Inject
 class CourseRepositoryImpl @Inject constructor(
     private val courseRemoteDataSource: CourseRemoteDataSource
 ) : CourseRepository {
-
-    override suspend fun getUploadImageUrl(
-        code: String,
-        fileName: String
-    ): Response<UploadImageUrlEntity> {
-        return courseRemoteDataSource.getUploadImageUrl(code, fileName)
-    }
 
     override suspend fun getFavoriteCourses(): Response<FavoriteCoursesEntity.Response> {
         return courseRemoteDataSource.getFavoriteCourses()
@@ -40,4 +34,11 @@ class CourseRepositoryImpl @Inject constructor(
         return courseRemoteDataSource.getSearchCourses(query)
     }
 
+    override suspend fun uploadImage(contentUri: String): Response<UploadImageUrlEntity> {
+        return courseRemoteDataSource.uploadImage(contentUri)
+    }
+
+    override suspend fun postCourse(body: CourseUploadEntity.Request): Response<CourseUploadEntity.Response> {
+        return courseRemoteDataSource.postCourse(body)
+    }
 }
