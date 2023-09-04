@@ -57,5 +57,6 @@
     <!--  검색  -->
     <string name="input_search_keyword">검색해 주세요.</string>
     <string name="search_course_no_result">다른 사람들을 위해 코스를 기록해 주세요.</string>
-
+    <string name="search_result_not_found_place">"%s에 대한\n장소 검색 결과가 없어요."</string>
+    <string name="search_result_not_found_course">"%s에 대한\n장소 코스 결과가 없어요."</string>
 </resources>

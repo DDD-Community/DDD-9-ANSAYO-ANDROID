@@ -24,6 +24,11 @@ class SearchListActivity :
             val searchKeyword = intent.getStringExtra(Constant.SEARCH_WORD).orEmpty()
             vSearch.setText(searchKeyword)
             vpSearch.adapter = SearchListAdapter(this@SearchListActivity,searchKeyword)
+            vSearch.apply {
+                setFocusCallback {
+                    finish()
+                }
+            }
         }
         val tabs = arrayOf("코스","장소")
         TabLayoutMediator(binding.tabLayout, binding.vpSearch) {tab, pos ->
