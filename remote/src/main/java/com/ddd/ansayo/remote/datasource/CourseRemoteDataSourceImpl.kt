@@ -40,4 +40,12 @@ class CourseRemoteDataSourceImpl @Inject constructor(
     override suspend fun getSearchCourses(query: String): Response<SearchCourseEntity.Response> {
         return courseService.getSearchCourse(query).toResponse()
     }
+
+    override suspend fun getPopularCourses(badgeId: String): Response<SearchCourseEntity.Response> {
+        return courseService.getPopularCourse(badgeId).toResponse()
+    }
+
+    override suspend fun getRecommendCourses(): Response<SearchCourseEntity.Response> {
+        return courseService.getRecommendCourse().toResponse()
+    }
 }
