@@ -7,6 +7,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.ddd.ansayo.core_model.place.Photo
+import com.ddd.ansayo.extenstion.dpToPx
 
 object SearchBindingAdapter {
     @JvmStatic
@@ -16,13 +18,14 @@ object SearchBindingAdapter {
             text = "$it"
         }
     }
+
     @JvmStatic
     @BindingAdapter("searchThumbnail")
-    fun ImageView.setSearchThumbnail(url: String?) {
+    fun ImageView.setSearchThumbnail(url: List<Photo>?) {
         url?.let {
             Glide.with(context)
-                .load(url)
-//                .transform(CenterCrop(), RoundedCorners(12.dpToPx().toInt()))
+                .load(it?.firstOrNull()?.photoPath)
+                .transform(CenterCrop(), RoundedCorners(12.dpToPx().toInt()))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(this)
         }

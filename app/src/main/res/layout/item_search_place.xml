@@ -23,6 +23,7 @@
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:searchThumbnail="@{place.photos}"
             tools:src="@color/orange_point"/>
 
         <TextView
@@ -30,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
             android:text="@{place.name}"
             android:textAppearance="@style/Text_H4"
             android:textColor="@color/N10"
@@ -40,28 +41,28 @@
 
         <TextView
             android:id="@+id/tv_place_location"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:text="@{place.formattedAddress}"
+            android:maxLength="15"
             android:textAppearance="@style/Text_B3"
             android:textColor="@color/N40"
             app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
             app:layout_constraintTop_toBottomOf="@id/tv_place_title"
-            tools:text="관관악구 ∙ 카페" />
+            tools:text="관관악구 ∙ 카페전문점입니다요" />
 
         <com.ddd.ansayo.core_design.util.RatingView
             android:id="@+id/rating_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:currentRating="@{4.0f}"
             app:emphasize="true"
             android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@id/tv_place_location"
             app:layout_constraintBottom_toBottomOf="@id/tv_place_location"
             app:layout_constraintStart_toEndOf="@id/tv_place_location"
+            app:currentRating="@{place.rating}"
             app:reviewCount="@{place.reviews.size()}" />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
