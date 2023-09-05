@@ -1,9 +1,9 @@
-package com.ddd.ansayo.domain.repository
+package com.ddd.ansayo.data.datasource.badge
 
-import com.ddd.ansayo.core_model.badge.Badge
 import com.ddd.ansayo.core_model.badge.BadgeEntity
 import com.ddd.ansayo.core_model.common.Response
 
-interface BadgeRepository {
+interface BadgeRemoteDataSource {
     suspend fun getSearchableBadge(): Response<BadgeEntity.Response>
+
 }

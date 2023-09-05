@@ -4,8 +4,6 @@ import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.course.CourseInfo
 import com.ddd.ansayo.core_model.course.CourseUploadEntity
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
-import com.ddd.ansayo.core_model.course.PopularCourseEntity
-import com.ddd.ansayo.core_model.course.RecommendCourseEntity
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.core_model.search.SearchCourseEntity
 import com.ddd.ansayo.data.datasource.course.CourseRemoteDataSource
@@ -36,12 +34,12 @@ class CourseRepositoryImpl @Inject constructor(
         return courseRemoteDataSource.getSearchCourses(query)
     }
 
-    override suspend fun getPopularCourses(badgeId: String): Response<PopularCourseEntity> {
-        TODO("Not yet implemented")
+    override suspend fun getPopularCourses(badgeId: String): Response<SearchCourseEntity.Response> {
+        return courseRemoteDataSource.getPopularCourses(badgeId)
     }
 
-    override suspend fun getRecommendCourses(): Response<RecommendCourseEntity> {
-        TODO("Not yet implemented")
+    override suspend fun getRecommendCourses(): Response<SearchCourseEntity.Response> {
+        return courseRemoteDataSource.getRecommendCourses()
     }
 
     override suspend fun uploadImage(contentUri: String): Response<UploadImageUrlEntity> {

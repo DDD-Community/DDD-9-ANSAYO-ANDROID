@@ -16,6 +16,8 @@ interface CourseRemoteDataSource {
     suspend fun deleteFavoriteCourse(courseId: String): Response<Unit>
 
     suspend fun getSearchCourses(query: String): Response<SearchCourseEntity.Response>
+    suspend fun getPopularCourses(badgeId: String): Response<SearchCourseEntity.Response>
+    suspend fun getRecommendCourses(): Response<SearchCourseEntity.Response>
     suspend fun uploadImage(contentUri: String): Response<UploadImageUrlEntity>
     suspend fun postCourse(body: CourseUploadEntity.Request): Response<CourseUploadEntity.Response>
 }

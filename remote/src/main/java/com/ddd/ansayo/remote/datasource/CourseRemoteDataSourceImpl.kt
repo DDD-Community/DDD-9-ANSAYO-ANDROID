@@ -46,7 +46,13 @@ class CourseRemoteDataSourceImpl @Inject constructor(
     override suspend fun getSearchCourses(query: String): Response<SearchCourseEntity.Response> {
         return courseService.getSearchCourse(query).toResponse()
     }
+    override suspend fun getPopularCourses(badgeId: String): Response<SearchCourseEntity.Response> {
+        return courseService.getPopularCourse(badgeId).toResponse()
+    }
 
+    override suspend fun getRecommendCourses(): Response<SearchCourseEntity.Response> {
+        return courseService.getRecommendCourse().toResponse()
+    }
     override suspend fun uploadImage(contentUri: String): Response<UploadImageUrlEntity> {
         return fileService.uploadImage(
             fileType = getFileType(contentUri.toUri()),
@@ -57,7 +63,6 @@ class CourseRemoteDataSourceImpl @Inject constructor(
             )
         ).toResponse()
     }
-
     private fun getFileType(contentUri: Uri): RequestBody {
         val mimeType = context.contentResolver.getType(contentUri) ?: throw Exception("")
         return mimeType.toRequestBody("text/plain".toMediaTypeOrNull())

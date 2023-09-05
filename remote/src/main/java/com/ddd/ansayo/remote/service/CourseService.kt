@@ -36,6 +36,14 @@ interface CourseService {
         @Query("query") query: String
     ): ApiResponse<SearchCourseEntity.Response>
 
+    @GET("app/course/popular")
+    suspend fun getPopularCourse(
+        @Query("badge_id") badgeId: String
+    ): ApiResponse<SearchCourseEntity.Response>
+
+    @GET("app/course/recommend")
+    suspend fun getRecommendCourse(
+    ): ApiResponse<SearchCourseEntity.Response>
     @POST("app/course")
     suspend fun postCourse(
         @Body body: CourseUploadEntity.Request
