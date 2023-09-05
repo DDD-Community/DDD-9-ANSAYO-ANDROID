@@ -18,6 +18,7 @@ import javax.inject.Singleton
 object ServiceModule {
 
     private const val BASE_URL = "https://ggeco-func.azurewebsites.net/"
+    private const val FILE_UPLOAD_URL = "https://ggeco-image-entry.azurewebsites.net/"
 
     @Provides
     @Singleton
@@ -65,6 +66,7 @@ object ServiceModule {
         @FileUploadClient okHttpClient: OkHttpClient
     ): FileService {
         return retrofitBuilder
+            .baseUrl(FILE_UPLOAD_URL)
             .client(okHttpClient)
             .build()
             .create()

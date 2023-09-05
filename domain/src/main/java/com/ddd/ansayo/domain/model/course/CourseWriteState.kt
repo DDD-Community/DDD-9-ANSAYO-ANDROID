@@ -11,7 +11,7 @@ data class CourseWriteState(
         val description: String,
         val isCourseTitleMaxInputted: Boolean,
         val isCourseDescriptionMaxInputted: Boolean,
-        val date: String
+        val date: Long
     ) {
 
         companion object {
@@ -20,16 +20,17 @@ data class CourseWriteState(
                 description = "",
                 isCourseTitleMaxInputted = false,
                 isCourseDescriptionMaxInputted = false,
-                date = ""
+                date = 0L
             )
         }
     }
 
     data class Place(
+        val id: String,
         val order: Int,
         val title: String,
         val address: String,
-        val category: String,
+        val category: List<String>?,
         val isPlaceReviewMaxInputted: Boolean,
         val review: String,
         val images: List<CoursePlaceImage>

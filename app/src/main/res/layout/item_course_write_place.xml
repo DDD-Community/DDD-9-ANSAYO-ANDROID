@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/N95">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_top"
@@ -29,19 +31,25 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginStart="16dp"
             android:elevation="0dp"
-            app:placeOrder="@{place.order}"
+            app:cardCornerRadius="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/gl_top">
+            app:layout_constraintTop_toTopOf="@id/gl_top"
+            app:placeOrder="@{place.order}"
+            tools:background="@drawable/bg_circle_pink_sub">
 
             <TextView
                 android:id="@+id/tv_order"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{place.order}" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{String.valueOf(place.order)}"
+                android:textAppearance="@style/Text_B4"
+                android:textColor="@color/N95"
+                tools:text="1" />
 
         </androidx.cardview.widget.CardView>
 
@@ -51,43 +59,73 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@{place.title}"
+            android:textAppearance="@style/Text_H4"
+            android:textColor="@color/N10"
+            app:layout_constraintBottom_toBottomOf="@id/cv_order"
             app:layout_constraintStart_toEndOf="@id/cv_order"
-            app:layout_constraintTop_toTopOf="@id/cv_order" />
+            app:layout_constraintTop_toTopOf="@id/cv_order"
+            tools:text="쟝블랑제리" />
 
         <TextView
             android:id="@+id/tv_place_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@{place.category}"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/Text_B3"
+            android:textColor="@color/N40"
             app:layout_constraintStart_toStartOf="@id/tv_place_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_place_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_place_title"
+            app:placeAddress="@{place.address}"
+            app:placeTypes="@{place.category}"
+            tools:text="봉천동 ∙ 베이커리" />
 
         <ImageView
             android:id="@+id/iv_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_delete_review"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/gl_top" />
+            app:layout_constraintTop_toTopOf="@id/gl_top"
+            app:tint="@color/N70" />
 
-        <EditText
+        <com.ddd.ansayo.core_design.util.textfiled.TextFiledLong
             android:id="@+id/et_place_review"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toTopOf="@id/tv_place_category"
+            android:enabled="@{!place.placeReviewMaxInputted}"
+            android:hint="@string/place_review_hint"
+            android:maxLength="300"
+            app:errorFieldMessage="@string/warning_place_review_max_length"
+            app:errorFieldVisible="@{place.placeReviewMaxInputted}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_place_title" />
+            app:layout_constraintStart_toStartOf="@id/tv_place_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_place_category" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_place_image"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="@id/et_place_review"
             app:layout_constraintStart_toStartOf="@id/et_place_review"
-            app:layout_constraintTop_toBottomOf="@id/et_place_review" />
+            app:layout_constraintTop_toBottomOf="@id/et_place_review"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_course_place_image" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/N90"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_place_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

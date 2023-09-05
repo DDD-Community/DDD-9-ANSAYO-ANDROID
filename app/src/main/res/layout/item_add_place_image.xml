@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="currentCount"
             type="Integer" />
@@ -11,14 +13,16 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_add"
         android:layout_width="60dp"
-        android:layout_height="64dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="4dp"
+        app:cardBackgroundColor="@color/N90"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="4dp">
+            android:layout_height="60dp">
 
             <ImageView
                 android:id="@+id/iv_camera"
@@ -35,10 +39,14 @@
                 android:id="@+id/tv_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/Text_B4"
+                android:textColor="@color/N60"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_camera" />
+                app:layout_constraintTop_toBottomOf="@id/iv_camera"
+                app:placeImageCount="@{currentCount}"
+                tools:text="2/4" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

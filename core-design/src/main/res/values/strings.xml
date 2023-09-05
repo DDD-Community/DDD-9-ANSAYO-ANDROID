@@ -3,4 +3,8 @@
     <!--Design System-->
     <string name="text_filed_length">%1$d / %2$d</string>
     <string name="review_count">(%d)건</string>
+    <string name="length_count_init"><![CDATA[<font color="#959493">%d/%d</font>]]></string>
+    <string name="length_count"><![CDATA[<font color="#262626">%d</font><font color="#959493">/%d</font>]]></string>
+    <string name="length_count_max"><![CDATA[<font color="#FF2207">%d</font><font color="#959493">/%d</font>]]></string>
+    <string name="input_search_keyword">검색해 주세요.</string>
 </resources>

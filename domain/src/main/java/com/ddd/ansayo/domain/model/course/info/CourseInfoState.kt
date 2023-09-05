@@ -11,6 +11,12 @@ data class CourseInfoState(
         val EMPTY = CourseInfoState(
            course = Course(
                authorId = "",
+               authorBadgeName = "",
+               authorName = "",
+               authorBadgeImage = "",
+               category = "",
+               villageAddress = "",
+               titleImage ="",
                favorites = 0,
                id = "",
                name = "",
@@ -21,6 +27,12 @@ data class CourseInfoState(
            courseInfo = CourseInfo(
                course = Course(
                    authorId = "",
+                   authorBadgeName = "",
+                   authorName = "",
+                   authorBadgeImage = "",
+                   category = "",
+                   villageAddress = "",
+                   titleImage ="",
                    favorites = 0,
                    id = "",
                    name = "",

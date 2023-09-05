@@ -18,6 +18,7 @@ android {
 
     defaultConfig {
         buildConfigField("String", "X_FUNCTION_KEY", localProperties.getProperty("x_function_key"))
+        buildConfigField("String", "FILE_UPLOAD_KEY", localProperties.getProperty("file_upload_key"))
     }
 }
 

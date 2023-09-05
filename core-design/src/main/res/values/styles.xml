@@ -83,4 +83,9 @@
         <item name="android:letterSpacing">-0.02</item>
     </style>
 
+    <style name="TextAppearance.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/N10</item>
+        <item name="android:textAppearance">@style/Text_H3</item>
+    </style>
+
 </resources>
