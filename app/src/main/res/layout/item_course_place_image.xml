@@ -18,6 +18,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -28,6 +29,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
                 app:imageUrl="@{image.origin}" />
 
         </androidx.cardview.widget.CardView>

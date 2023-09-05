@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.ddd.ansayo.GgecoApplication
 import com.ddd.ansayo.base.BaseActivity
 import com.ddd.ansayo.core_design.util.snackbar.SnackBarLineMax
 import com.ddd.ansayo.data.AuthLocalDataSource
@@ -45,13 +44,9 @@ class LoginActivity:
         }
             val kakaoLogin = KakaoUseCase(this)  { oAuthToken, _ ->
                 viewModel.onAction(LoginAction.ClickKakaoLogin(oAuthToken!!.accessToken))
-                authLocalDataSource.authToken = oAuthToken.accessToken
-
             }
             val naverLogin = NaverUseCase(this) { token, _ ->
                 viewModel.onAction(LoginAction.ClickNaverLogin(token!!))
-                authLocalDataSource.authToken = token
-
             }
 
             binding.run {
@@ -60,7 +55,6 @@ class LoginActivity:
                 }
                 binding.btnLoginNaver.setOnClickListener {
                     naverLogin.getAccessToken()
-
             }
         }
 
@@ -76,6 +70,7 @@ class LoginActivity:
                         }
                         is LoginMutation.SideEffect.StartHomeScreen -> {
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            authLocalDataSource.authToken = it.token
                         }
 
                     }

@@ -35,7 +35,7 @@ class CourseInfoViewModel @Inject constructor(
         intent {
             reduce {
                 when(mutation) {
-                    is CourseInfoMutation.Mutation.UpdateFavorite -> {
+                    is CourseInfoMutation.Mutation.UpdateFavoriteCount -> {
                         state.copy(course = mutation.course)
                     }
                     is CourseInfoMutation.Mutation.UpdateCourseInfo -> {
