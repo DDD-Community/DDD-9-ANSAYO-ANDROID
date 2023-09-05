@@ -2,14 +2,12 @@ package com.ddd.ansayo.data.datasource.course
 
 import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.course.CourseInfo
+import com.ddd.ansayo.core_model.course.CourseUploadEntity
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.core_model.search.SearchCourseEntity
 
 interface CourseRemoteDataSource {
-
-    suspend fun getUploadImageUrl(code: String, fileName: String): Response<UploadImageUrlEntity>
-
     suspend fun getFavoriteCourses(): Response<FavoriteCoursesEntity.Response>
     suspend fun getCourseInfo(courseId: String): Response<CourseInfo>
 
@@ -20,5 +18,6 @@ interface CourseRemoteDataSource {
     suspend fun getSearchCourses(query: String): Response<SearchCourseEntity.Response>
     suspend fun getPopularCourses(badgeId: String): Response<SearchCourseEntity.Response>
     suspend fun getRecommendCourses(): Response<SearchCourseEntity.Response>
-
+    suspend fun uploadImage(contentUri: String): Response<UploadImageUrlEntity>
+    suspend fun postCourse(body: CourseUploadEntity.Request): Response<CourseUploadEntity.Response>
 }

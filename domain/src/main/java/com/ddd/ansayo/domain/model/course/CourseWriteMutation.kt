@@ -4,7 +4,7 @@ sealed class CourseWriteMutation {
     sealed class Mutation : CourseWriteMutation() {
         data class UpdateCourseTitle(val title: String, val isCourseTitleMaxInputted: Boolean) : Mutation()
         data class UpdateCourseDescription(val description: String, val isCourseDescriptionMaxInputted: Boolean) : Mutation()
-        data class UpdateCourseDate(val date: String) : Mutation()
+        data class UpdateCourseDate(val date: Long) : Mutation()
         data class AddPlaceImages(val places: List<CourseWriteState.Place>) : Mutation()
         data class DeletePlace(val places: List<CourseWriteState.Place>) : Mutation()
         data class DeletePlaceImage(val places: List<CourseWriteState.Place>) : Mutation()

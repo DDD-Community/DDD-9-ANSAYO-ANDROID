@@ -1,8 +1,8 @@
 package com.ddd.ansayo.remote.service
 
 import com.ddd.ansayo.core_model.course.CourseInfo
+import com.ddd.ansayo.core_model.course.CourseUploadEntity
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
-import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.core_model.search.SearchCourseEntity
 import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.Body
@@ -12,12 +12,6 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface CourseService {
-
-    @GET("/image")
-    suspend fun getImageUploadUrl(
-        @Query("code") code: String,
-        @Query("name") name: String
-    ): ApiResponse<UploadImageUrlEntity>
 
     @GET("app/course/favorite")
     suspend fun getFavoriteCourses(): ApiResponse<FavoriteCoursesEntity.Response>
@@ -50,4 +44,8 @@ interface CourseService {
     @GET("app/course/recommend")
     suspend fun getRecommendCourse(
     ): ApiResponse<SearchCourseEntity.Response>
+    @POST("app/course")
+    suspend fun postCourse(
+        @Body body: CourseUploadEntity.Request
+    ): ApiResponse<CourseUploadEntity.Response>
 }
