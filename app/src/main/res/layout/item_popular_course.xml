@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="place"
-            type="com.ddd.ansayo.core_model.place.Place" />
+            name="couse"
+            type="com.ddd.ansayo.core_model.course.Course" />
 
     </data>
 

@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.ListAdapter
-import com.ddd.ansayo.core_model.place.Place
+import com.ddd.ansayo.core_model.badge.Badge
 import com.ddd.ansayo.databinding.ItemSearchableBadgeBinding
 import com.ddd.ansayo.util.ItemCallback
 
 class SearchableBadgeAdapter(
     private val badgeClickListener: (String) -> Unit
-) : ListAdapter<Place, SearchableBadgeAdapter.ViewHolder>(
+) : ListAdapter<Badge, SearchableBadgeAdapter.ViewHolder>(
     ItemCallback(
-        itemTheSame = { oldItem, newItem -> oldItem.placeId == newItem.placeId },
+        itemTheSame = { oldItem, newItem -> oldItem.id == newItem.id },
         contentsTheSame = { oldItem, newItem -> oldItem == newItem }
     )
 ) {
@@ -33,12 +33,12 @@ class SearchableBadgeAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
-                binding.place?.let { badgeClickListener(it.placeId) }
+                binding.badge?.let { badgeClickListener(it.id) }
             }
         }
 
-        fun onBind(item: Place) {
-            binding.place = item
+        fun onBind(item: Badge) {
+            binding.badge = item
         }
     }
 
