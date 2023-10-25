@@ -11,6 +11,7 @@ import com.ddd.ansayo.data.SearchedQueryStore
 import com.ddd.ansayo.databinding.ActivitySearchBinding
 import com.ddd.ansayo.domain.model.search.keyword.SearchAction
 import com.ddd.ansayo.domain.model.search.keyword.SearchMutation
+import com.ddd.ansayo.place.PlaceDetailActivity
 import com.ddd.ansayo.presentation.viewmodel.search.SearchViewModel
 import com.ddd.ansayo.search.keyword.SearchkeywordAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +27,7 @@ class SearchActivity :
     private val viewModel by viewModels<SearchViewModel>()
     private val keywordAdapter = SearchkeywordAdapter(
         keywordClickListener = {
-
+            viewModel.onAction(SearchAction.ClickKeyword(it))
         },
         deleteClickListener = {
             viewModel.onAction(SearchAction.ClickKeywordDelete(it))
@@ -64,7 +65,7 @@ class SearchActivity :
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 launch {
                     viewModel.container.stateFlow
-                        .map { it.keyword }
+                        .map { it.recentKeyword }
                         .distinctUntilChanged()
                         .collect{
                             keywordAdapter.updateItems(it)
@@ -79,9 +80,12 @@ class SearchActivity :
                 viewModel.container.sideEffectFlow.collect{
                     when(it) {
                         is SearchMutation.SideEffect.StartSearchResultScreen -> {
-
+                            startActivity(
+                                SearchListActivity.getIntent(this@SearchActivity, it.keyword)
+                            )
                         }
                         is SearchMutation.SideEffect.DeleteKeyword -> {
+                            keywordAdapter.updateItems(it.keyword)
                         }
                         is SearchMutation.SideEffect.ShowSnackBar -> {
                             SnackBarLineMax(binding.root,it.message).show()

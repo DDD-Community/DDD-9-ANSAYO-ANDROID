@@ -25,19 +25,18 @@ class SearchMutationHandler @Inject constructor(
                        SearchMutation.Mutation.UpdateRecentKeyword(
                            keyword = result
                        )
-
                    )
                 }
                 is SearchAction.ClickKeyword -> {
-
+                    emit(SearchMutation.SideEffect.StartSearchResultScreen(action.keyword))
                 }
                 is  SearchAction.ClickKeywordDelete -> {
-                    val result = removeRecentSearchKeywordUseCase.invoke(action.recentKeyword)
+                    removeRecentSearchKeywordUseCase.invoke(action.recentKeyword)
+                    val result = getRecentSearchKeywordUseCase.invoke()
                     emit(
                         SearchMutation.Mutation.DeleteRecentKeyword(
-                            keyword = action.recentKeyword
+                            keyword = result
                         )
-
                     )
                 }
             }

@@ -37,7 +37,12 @@ class SearchViewModel @Inject constructor(
                 when(mutation) {
                     is SearchMutation.Mutation.UpdateRecentKeyword -> {
                         state.copy(
-                            keyword = mutation.keyword
+                            recentKeyword = mutation.keyword
+                        )
+                    }
+                    is SearchMutation.Mutation.DeleteRecentKeyword -> {
+                        state.copy(
+                            recentKeyword = mutation.keyword
                         )
                     }
                 }

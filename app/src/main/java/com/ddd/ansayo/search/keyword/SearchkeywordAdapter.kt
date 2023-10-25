@@ -8,7 +8,7 @@ import com.ddd.ansayo.databinding.ItemRecentKeywordBinding
 
 class SearchkeywordAdapter(
     private val keywordClickListener: (String) -> Unit,
-    private val deleteClickListener: (String) -> Unit
+    private val deleteClickListener: (RecentKeyword) -> Unit
 ) : RecyclerView.Adapter<SearchkeywordAdapter.ViewHolder>() {
 
     private val items = mutableListOf<RecentKeyword>()
@@ -27,8 +27,17 @@ class SearchkeywordAdapter(
     class ViewHolder(
         private val binding: ItemRecentKeywordBinding,
         private val keywordClickListener: (String) -> Unit,
-        private val deleteClickListener: (String) -> Unit
+        private val deleteClickListener: (RecentKeyword) -> Unit
     ): RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.tvKeyword.setOnClickListener {
+                binding.keyword?.let { keywordClickListener(it.keyword) }
+            }
+            binding.ivRemove.setOnClickListener {
+                binding.keyword?.let { deleteClickListener(it) }
+            }
+        }
         fun bind(item: RecentKeyword) {
             binding.keyword = item
         }
