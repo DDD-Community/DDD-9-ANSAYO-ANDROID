@@ -19,6 +19,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.bundles.room)
     implementation(libs.androidx.datastore)
+    implementation(libs.gson)
     implementation(libs.logger) {
         exclude(group = "com.android.support", module = "support-annotations")
     }
