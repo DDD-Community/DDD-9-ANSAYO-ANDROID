@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="keyword"
+            type="com.ddd.ansayo.core_model.search.RecentKeyword" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="14dp"
+        android:paddingEnd="23dp">
+
+        <TextView
+            android:id="@+id/tv_keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{keyword.keyword}"
+            android:textAppearance="@style/Text_B2"
+            android:textColor="@color/N40"
+            android:layout_marginStart="3dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="장블랑제리"/>
+
+        <ImageView
+            android:id="@+id/iv_remove"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_delete_review"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_keyword"
+            app:layout_constraintBottom_toBottomOf="@id/tv_keyword" />
+
+        <View
+            android:id="@+id/v_division"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/N90"
+            android:layout_marginTop="14dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_keyword"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
