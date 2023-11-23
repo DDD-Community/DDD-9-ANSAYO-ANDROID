@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import androidx.core.net.toUri
 import com.ddd.ansayo.core_model.common.Response
-import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.core_model.course.CourseInfo
 import com.ddd.ansayo.core_model.course.CourseUploadEntity
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
@@ -31,7 +30,7 @@ class CourseRemoteDataSourceImpl @Inject constructor(
 ) : CourseRemoteDataSource {
 
     override suspend fun getMyCourses(): Response<MyCourse> {
-        courseService.getMyCourses().toResponse()
+        return courseService.getMyCourses().toResponse()
     }
 
     override suspend fun getFavoriteCourses(): Response<FavoriteCoursesEntity.Response> {

@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.databinding.ItemCourseBinding
 import com.ddd.ansayo.util.load
-import com.orhanobut.logger.Logger
 
 class CourseViewHolder(
     private val binding: ItemCourseBinding,

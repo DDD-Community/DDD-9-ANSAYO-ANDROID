@@ -1,7 +1,6 @@
 package com.ddd.ansayo.data.repository.course
 
 import com.ddd.ansayo.core_model.common.Response
-import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.core_model.course.CourseInfo
 import com.ddd.ansayo.core_model.course.CourseUploadEntity
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
@@ -10,7 +9,6 @@ import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.core_model.search.SearchCourseEntity
 import com.ddd.ansayo.data.datasource.course.CourseRemoteDataSource
 import com.ddd.ansayo.domain.repository.CourseRepository
-import com.orhanobut.logger.Logger
 import javax.inject.Inject
 
 class CourseRepositoryImpl @Inject constructor(
