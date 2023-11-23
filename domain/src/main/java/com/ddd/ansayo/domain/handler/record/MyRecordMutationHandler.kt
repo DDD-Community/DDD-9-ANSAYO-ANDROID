@@ -1,13 +1,17 @@
 package com.ddd.ansayo.domain.handler.record
 
+import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.domain.model.record.MyRecordAction
 import com.ddd.ansayo.domain.model.record.MyRecordMutation
 import com.ddd.ansayo.domain.model.record.MyRecordState
+import com.ddd.ansayo.domain.usecase.course.GetMyCourseUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class MyRecordMutationHandler @Inject constructor() {
+class MyRecordMutationHandler @Inject constructor(
+    private val myCourseUseCase: GetMyCourseUseCase
+) {
 
     suspend fun mutate(
         state: MyRecordState,
@@ -24,7 +28,15 @@ class MyRecordMutationHandler @Inject constructor() {
                 }
 
                 MyRecordAction.SelectMyRecordTab -> {
-                    emit(MyRecordMutation.Mutation.UpdateRecords(false, emptyList()))
+                    when (val myCourse = myCourseUseCase()) {
+                        is Response.Success -> {
+                            emit(MyRecordMutation.Mutation.UpdateRecords(myCourse.data.courses.isNotEmpty(), myCourse.data.courses))
+                        }
+                        is Response.Fail -> {
+                            emit(MyRecordMutation.Mutation.UpdateRecords(false, emptyList()))
+                        }
+                    }
+
                 }
 
                 is MyRecordAction.ClickCourse -> {

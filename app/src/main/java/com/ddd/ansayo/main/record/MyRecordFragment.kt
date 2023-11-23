@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,9 +13,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ddd.ansayo.base.BaseFragment
 import com.ddd.ansayo.course.CourseCreateActivity
+import com.ddd.ansayo.course.info.CourseInfoActivity
 import com.ddd.ansayo.databinding.FragmentMyRecordBinding
+import com.ddd.ansayo.domain.model.favorite.FavoritePlaceAction
 import com.ddd.ansayo.domain.model.record.MyRecordAction
 import com.ddd.ansayo.domain.model.record.MyRecordMutation
+import com.ddd.ansayo.presentation.viewmodel.Constant
 import com.ddd.ansayo.presentation.viewmodel.record.MyRecordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -27,7 +31,7 @@ class MyRecordFragment : BaseFragment<FragmentMyRecordBinding>(FragmentMyRecordB
     private val viewModel by viewModels<MyRecordViewModel>()
     private val myRecordAdapter = MyRecordAdapter(
         courseClickListener = {
-            viewModel.onAction(MyRecordAction.ClickCourse(""))
+            viewModel.onAction(MyRecordAction.ClickCourse(it.id))
         }
     )
     private val createCourseLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -41,6 +45,7 @@ class MyRecordFragment : BaseFragment<FragmentMyRecordBinding>(FragmentMyRecordB
 
         initView()
         collectState()
+        setFragmentResultListener()
         collectSideEffect()
     }
 
@@ -58,6 +63,12 @@ class MyRecordFragment : BaseFragment<FragmentMyRecordBinding>(FragmentMyRecordB
 
         binding.btnCourseWrite.setOnClickListener {
             viewModel.onAction(MyRecordAction.ClickCourseWriteButton)
+        }
+    }
+
+    private fun setFragmentResultListener() {
+        setFragmentResultListener(Constant.SELECT_MY_RECORD_TAB) { _, _ ->
+            viewModel.onAction(MyRecordAction.SelectMyRecordTab)
         }
     }
 
@@ -94,7 +105,7 @@ class MyRecordFragment : BaseFragment<FragmentMyRecordBinding>(FragmentMyRecordB
                             createCourseLauncher.launch(CourseCreateActivity.getIntent(requireContext()))
                         }
                         is MyRecordMutation.SideEffect.NaviToCourseDetail -> {
-
+                            startActivity(CourseInfoActivity.getIntent(requireContext(), it.id))
                         }
                     }
                 }
