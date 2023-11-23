@@ -31,13 +31,7 @@ class CourseRemoteDataSourceImpl @Inject constructor(
 ) : CourseRemoteDataSource {
 
     override suspend fun getMyCourses(): Response<MyCourse> {
-        return runCatching {
-            courseService.getMyCourses().toResponse()
-        }.onFailure {
-            Logger.e(it.message ?: "알 수 없는 오류가 발생했습니다.")
-        }.getOrElse {
-            Response.Fail(it.message ?: "알 수 없는 오류가 발생했습니다.")
-        }
+        courseService.getMyCourses().toResponse()
     }
 
     override suspend fun getFavoriteCourses(): Response<FavoriteCoursesEntity.Response> {
