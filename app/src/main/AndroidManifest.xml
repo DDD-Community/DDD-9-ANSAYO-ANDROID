@@ -33,7 +33,7 @@
             android:value="${NAVER_MAPS_ID}" />
 
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -57,6 +57,11 @@
                     android:scheme="${KAKAO_SCHEME}" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".main.MainActivity"
