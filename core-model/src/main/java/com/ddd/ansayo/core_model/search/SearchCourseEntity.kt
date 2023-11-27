@@ -5,7 +5,7 @@ import com.ddd.ansayo.core_model.course.Course
 sealed class SearchCourseEntity {
 
     data class Response(
-        val courses: List<Course>?
+        val courses: List<Course>
     ) : SearchCourseEntity()
 
 }
