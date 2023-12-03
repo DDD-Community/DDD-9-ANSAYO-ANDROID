@@ -1,11 +1,9 @@
 package com.ddd.ansayo.common
 
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.ddd.ansayo.base.BaseBindingAdapter.setImageUrl
 import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.databinding.ItemCourseBinding
-import com.ddd.ansayo.util.load
 
 class CourseViewHolder(
     private val binding: ItemCourseBinding,

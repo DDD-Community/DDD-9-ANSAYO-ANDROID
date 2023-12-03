@@ -30,7 +30,7 @@ class MyRecordMutationHandler @Inject constructor(
                 MyRecordAction.SelectMyRecordTab -> {
                     when (val myCourse = myCourseUseCase()) {
                         is Response.Success -> {
-                            emit(MyRecordMutation.Mutation.UpdateRecords(myCourse.data.courses.isNotEmpty(), myCourse.data.courses))
+                            emit(MyRecordMutation.Mutation.UpdateRecords(myCourse.data.courses != null, myCourse.data.courses))
                         }
                         is Response.Fail -> {
                             emit(MyRecordMutation.Mutation.UpdateRecords(false, emptyList()))

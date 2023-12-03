@@ -4,7 +4,7 @@ import com.ddd.ansayo.core_model.course.Course
 
 data class MyRecordState(
     val hasRecord: Boolean,
-    val courses: List<Course>
+    val courses: List<Course>?
 ) {
     companion object {
         val EMPTY = MyRecordState(

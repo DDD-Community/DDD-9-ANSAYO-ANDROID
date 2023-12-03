@@ -3,7 +3,7 @@ package com.ddd.ansayo.core_model.course
 import com.google.gson.annotations.SerializedName
 
 data class MyCourse(
-    val courses: List<Course>,
+    val courses: List<Course>?,
 )
 
 data class Course(

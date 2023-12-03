@@ -6,7 +6,7 @@ sealed class MyRecordMutation {
     sealed class Mutation : MyRecordMutation() {
         data class UpdateRecords(
             val hasRecord: Boolean,
-            val courses: List<Course>
+            val courses: List<Course>?
         ) : Mutation()
     }
 

@@ -18,7 +18,7 @@ object BaseBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("imageUrl")
-    fun ImageView.setImageUrl(url: String) {
+    fun ImageView.setImageUrl(url: String?) {
         Glide.with(this)
             .load(url)
             .into(this)
