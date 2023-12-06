@@ -7,6 +7,7 @@ import com.ddd.ansayo.core_model.common.Response
 import com.ddd.ansayo.core_model.course.CourseInfo
 import com.ddd.ansayo.core_model.course.CourseUploadEntity
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
+import com.ddd.ansayo.core_model.course.MyCourse
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.core_model.search.SearchCourseEntity
 import com.ddd.ansayo.data.datasource.course.CourseRemoteDataSource
@@ -14,6 +15,7 @@ import com.ddd.ansayo.remote.model.ContentUriRequestBody
 import com.ddd.ansayo.remote.service.CourseService
 import com.ddd.ansayo.remote.service.FileService
 import com.ddd.ansayo.remote.util.toResponse
+import com.orhanobut.logger.Logger
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -26,6 +28,10 @@ class CourseRemoteDataSourceImpl @Inject constructor(
     private val courseService: CourseService,
     private val fileService: FileService
 ) : CourseRemoteDataSource {
+
+    override suspend fun getMyCourses(): Response<MyCourse> {
+        return courseService.getMyCourses().toResponse()
+    }
 
     override suspend fun getFavoriteCourses(): Response<FavoriteCoursesEntity.Response> {
         return courseService.getFavoriteCourses().toResponse()

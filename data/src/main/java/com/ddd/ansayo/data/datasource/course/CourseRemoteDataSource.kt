@@ -1,13 +1,17 @@
 package com.ddd.ansayo.data.datasource.course
 
 import com.ddd.ansayo.core_model.common.Response
+import com.ddd.ansayo.core_model.course.Course
 import com.ddd.ansayo.core_model.course.CourseInfo
 import com.ddd.ansayo.core_model.course.CourseUploadEntity
 import com.ddd.ansayo.core_model.course.FavoriteCoursesEntity
+import com.ddd.ansayo.core_model.course.MyCourse
 import com.ddd.ansayo.core_model.course.UploadImageUrlEntity
 import com.ddd.ansayo.core_model.search.SearchCourseEntity
 
 interface CourseRemoteDataSource {
+    suspend fun getMyCourses(): Response<MyCourse>
+
     suspend fun getFavoriteCourses(): Response<FavoriteCoursesEntity.Response>
     suspend fun getCourseInfo(courseId: String): Response<CourseInfo>
 

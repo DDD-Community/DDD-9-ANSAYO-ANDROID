@@ -36,6 +36,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 }
                 R.id.menu_my_record -> {
                     binding.vpFragment.setCurrentItem(MainFragmentAdapter.MY_RECORD, false)
+                    supportFragmentManager.setFragmentResult(Constant.SELECT_MY_RECORD_TAB, bundleOf())
                 }
                 R.id.menu_favorite -> {
                     binding.vpFragment.setCurrentItem(MainFragmentAdapter.FAVORITE, false)
