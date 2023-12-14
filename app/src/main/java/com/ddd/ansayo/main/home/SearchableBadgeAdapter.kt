@@ -10,7 +10,6 @@ import com.ddd.ansayo.core_design.R
 import com.ddd.ansayo.core_model.badge.Badge
 import com.ddd.ansayo.databinding.ItemSearchableBadgeBinding
 import com.ddd.ansayo.util.ItemCallback
-import com.orhanobut.logger.Logger
 
 class SearchableBadgeAdapter(
     private val badgeClickListener: (Badge) -> Unit
