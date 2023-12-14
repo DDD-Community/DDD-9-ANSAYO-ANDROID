@@ -25,10 +25,10 @@ class SearchView @JvmOverloads constructor(
     private val _hintText = MutableLiveData<String>("검색해 주세요.")
     val hintText: LiveData<String> = _hintText
 
-
     private var changedTextCallback: ((String) -> Unit)? = null
     private var clearTextCallback: (() -> Unit)? = null
     private var focusCallback: (() -> Unit)? = null
+    private var finishCallback: (() -> Unit)? = null
 
     private val binding =
         LayoutSearchViewBinding.inflate(LayoutInflater.from(context), this, true).apply {
@@ -95,6 +95,13 @@ class SearchView @JvmOverloads constructor(
 
     fun setFocusCallback(callback: () -> Unit) {
         focusCallback = callback
+    }
+
+    fun onBackButton() {
+        finishCallback?.invoke()
+    }
+    fun setFinishCallback(callback: () -> Unit) {
+        finishCallback = callback
     }
 
     override fun onAttachedToWindow() {

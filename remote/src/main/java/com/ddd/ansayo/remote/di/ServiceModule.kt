@@ -1,5 +1,7 @@
 package com.ddd.ansayo.remote.di
 
+import com.ddd.ansayo.core_model.badge.Badge
+import com.ddd.ansayo.remote.service.BadgeService
 import com.ddd.ansayo.remote.service.CourseService
 import com.ddd.ansayo.remote.service.FileService
 import com.ddd.ansayo.remote.service.LoginService
@@ -72,4 +74,16 @@ object ServiceModule {
             .create()
     }
 
+    @Provides
+    @Singleton
+    fun providesBadgeService(
+        retrofitBuilder: Retrofit.Builder,
+        @AuthClient okHttpClient: OkHttpClient
+    ): BadgeService {
+        return retrofitBuilder
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .build()
+            .create()
+    }
 }

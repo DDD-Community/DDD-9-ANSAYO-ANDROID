@@ -9,6 +9,7 @@ sealed class SearchMutation {
         data class DeleteRecentKeyword(val keyword: List<RecentKeyword>): Mutation()
     }
     sealed class SideEffect: SearchMutation() {
+        object BackScreen: SideEffect()
         data class DeleteKeyword(val keyword: List<RecentKeyword>): SideEffect()
         data class StartSearchResultScreen(val keyword: String): SideEffect()
         data class ShowSnackBar(val message: String) : SideEffect()

@@ -53,6 +53,9 @@ class SearchActivity :
                 startActivity(SearchListActivity.getIntent(this@SearchActivity, it))
                 search(it)
             }
+            vSearch.setFinishCallback {
+                finish()
+            }
             rvRecentKeyword.run {
                 adapter = keywordAdapter
                 itemAnimator = null
@@ -79,6 +82,9 @@ class SearchActivity :
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.container.sideEffectFlow.collect{
                     when(it) {
+                        is SearchMutation.SideEffect.BackScreen -> {
+                            finish()
+                        }
                         is SearchMutation.SideEffect.StartSearchResultScreen -> {
                             startActivity(
                                 SearchListActivity.getIntent(this@SearchActivity, it.keyword)

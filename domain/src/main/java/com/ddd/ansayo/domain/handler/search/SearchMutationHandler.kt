@@ -19,6 +19,9 @@ class SearchMutationHandler @Inject constructor(
     ): Flow<SearchMutation> {
         return flow {
             when(action) {
+                is SearchAction.ClickBackButton -> {
+                    emit(SearchMutation.SideEffect.BackScreen)
+                }
                 is SearchAction.EnteredScreen -> {
                    val result = getRecentSearchKeywordUseCase.invoke()
                    emit(

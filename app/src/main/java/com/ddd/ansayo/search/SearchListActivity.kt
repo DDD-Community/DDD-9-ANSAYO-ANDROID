@@ -28,6 +28,10 @@ class SearchListActivity :
                 setFocusCallback {
                     finish()
                 }
+                setFinishCallback {
+                    finish()
+                }
+
             }
         }
         val tabs = arrayOf("코스","장소")

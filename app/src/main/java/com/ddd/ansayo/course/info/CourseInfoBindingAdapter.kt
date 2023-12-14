@@ -50,5 +50,11 @@ object CourseInfoBindingAdapter {
             it
         }
     }
-
+    @JvmStatic
+    @BindingAdapter("placeCount")
+    fun TextView.setPlaceCount(placeCount: Int?) {
+        text = placeCount?.let {
+            "$it"
+        }
+    }
 }
