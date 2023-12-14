@@ -1,32 +1,31 @@
 package com.ddd.ansayo.main.home
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ddd.ansayo.base.BaseFragment
+import com.ddd.ansayo.course.CourseCreateActivity
 import com.ddd.ansayo.databinding.FragmentHomeBinding
-import com.ddd.ansayo.domain.model.favorite.FavoriteCourseMutation
 import com.ddd.ansayo.domain.model.home.HomeAction
 import com.ddd.ansayo.domain.model.home.HomeMutation
+import com.ddd.ansayo.search.SearchActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import java.util.logging.Logger
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val viewModel by viewModels<HomeViewModel>()
     private val badgeAdapter = SearchableBadgeAdapter(
-        badgeClickListener = { badgeId ->
-            viewModel.onAction(HomeAction.ClickBadgeCategory(badgeId))
+        badgeClickListener = { badge ->
+            viewModel.onAction(HomeAction.ClickBadgeCategory(badge))
         }
     )
     private val popularCourseAdapter = PopularCourseAdapter(
@@ -42,7 +41,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         initView()
         collectState()
@@ -104,6 +102,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.container.sideEffectFlow.collect {
                     when (it) {
+                        is HomeMutation.SideEffect.ClickBadge -> {
+                            badgeAdapter.setSelectedBadge(it.badge)
+                        }
                         is HomeMutation.SideEffect.NaviToCourseDetail -> {
 
                         }
@@ -111,8 +112,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                             Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()
                         }
                         is HomeMutation.SideEffect.NaviToRecord -> {
+                            activity?.let {
+                                startActivity(Intent(it, CourseCreateActivity::class.java))
+                            }
                         }
                         is HomeMutation.SideEffect.NaviToSearch -> {
+                            activity?.let {
+                                startActivity(Intent(it, SearchActivity::class.java))
+                            }
+
                         }
                     }
                 }

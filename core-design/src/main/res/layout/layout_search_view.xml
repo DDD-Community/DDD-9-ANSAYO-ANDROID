@@ -23,6 +23,7 @@
             android:src="@drawable/ic_back"
             android:layout_marginTop="20dp"
             android:layout_marginStart="9dp"
+            android:onClick="@{() -> view.onBackButton()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

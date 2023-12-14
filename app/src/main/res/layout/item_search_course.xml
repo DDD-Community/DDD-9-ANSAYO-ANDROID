@@ -26,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:src="@color/orange_point"
+            app:placeThumbnail="@{course.titleImage}"
             tools:src="@color/orange_point"/>
 
         <TextView

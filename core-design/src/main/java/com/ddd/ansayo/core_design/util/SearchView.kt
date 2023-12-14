@@ -3,6 +3,7 @@ package com.ddd.ansayo.core_design.util
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -12,6 +13,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import com.ddd.ansayo.core_design.databinding.LayoutSearchViewBinding
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 
 class SearchView @JvmOverloads constructor(
     context: Context,
@@ -25,10 +28,10 @@ class SearchView @JvmOverloads constructor(
     private val _hintText = MutableLiveData<String>("검색해 주세요.")
     val hintText: LiveData<String> = _hintText
 
-
     private var changedTextCallback: ((String) -> Unit)? = null
     private var clearTextCallback: (() -> Unit)? = null
     private var focusCallback: (() -> Unit)? = null
+    private var finishCallback: (() -> Unit)? = null
 
     private val binding =
         LayoutSearchViewBinding.inflate(LayoutInflater.from(context), this, true).apply {
@@ -95,6 +98,13 @@ class SearchView @JvmOverloads constructor(
 
     fun setFocusCallback(callback: () -> Unit) {
         focusCallback = callback
+    }
+
+    fun onBackButton() {
+        finishCallback?.invoke()
+    }
+    fun setFinishCallback(callback: () -> Unit) {
+        finishCallback = callback
     }
 
     override fun onAttachedToWindow() {

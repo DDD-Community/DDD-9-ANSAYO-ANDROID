@@ -16,6 +16,7 @@ sealed class HomeMutation {
     sealed class SideEffect : HomeMutation() {
         object NaviToSearch : SideEffect()
         object NaviToRecord : SideEffect()
+        data class ClickBadge(val badge: Badge) : SideEffect()
         data class NaviToCourseDetail(val courseId: String) : SideEffect()
         data class ShowSnackBar(val message: String) : SideEffect()
     }

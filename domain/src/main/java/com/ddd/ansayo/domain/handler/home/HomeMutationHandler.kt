@@ -43,7 +43,8 @@ class HomeMutationHandler @Inject constructor(
                     }
                 }
                 is HomeAction.ClickBadgeCategory -> {
-                    when (val result = getPopularCourseUseCase(badgeId = action.badgeId)) {
+                    emit(HomeMutation.SideEffect.ClickBadge(action.badge))
+                    when (val result = getPopularCourseUseCase(badgeId = action.badge.id)) {
                         is Response.Fail -> {
                             emit(HomeMutation.SideEffect.ShowSnackBar(result.message))
                         }

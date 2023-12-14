@@ -70,6 +70,7 @@ class LoginActivity:
                         }
                         is LoginMutation.SideEffect.StartHomeScreen -> {
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            finish()
                             authLocalDataSource.authToken = it.token
                         }
 
